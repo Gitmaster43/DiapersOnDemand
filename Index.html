@@ -6,7 +6,7 @@
     <link
     href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
     rel="stylesheet">
-
+   
 
 </head>
 <body>
@@ -24,19 +24,20 @@
 <!-- submit.onclick="getInfo()" -->
 <span id="loginResult"></span>
 
-<script src="JavaScript.js"></script>
+<script src="js/LoginFunction.js"></script>
 
 
 
-<!-- I am a Robot feature <--- does not work -->
+<!-- I am a Robot feature <--- does not work
 
 <form method="post" onsubmit="return submitUserForm();">
     <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="verifyCaptcha"></div>
     <div id="g-recaptcha-error"></div>
     <input type="submit" name="submit" value="Submit" />
-</form>
+</form> -->
 <!-- Use a script from google to make the 'I'm not a robot feature -->
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<!-- <script src='https://www.google.com/recaptcha/api.js'></script>
+
 <script>
 function submitUserForm() {
     var response = grecaptcha.getResponse();
@@ -50,7 +51,7 @@ function submitUserForm() {
 function verifyCaptcha() {
     document.getElementById('g-recaptcha-error').innerHTML = '';
 }
-</script>
+</script> -->
 
 
 </body>
