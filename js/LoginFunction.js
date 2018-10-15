@@ -29,6 +29,8 @@ var objPeople = [
 // declare the variable 'submit' and connect it to the button in index.html.
 var submit = document.getElementById('submit');
 
+var attempt = 3; 
+
 // The function that gets information from the objPeople array and checks if it fits.
 function getInfo() {
     // Declaring the variables username and password, and connect them to the buttons in index.html.
@@ -36,10 +38,10 @@ function getInfo() {
     var password = document.getElementById("pwd").value
 
     // Setting the maximum number of attempts to log in.
-    var attempt = 3; 
+    
 
     // Creating a for-loop to loop through the objPeople array.
-    for(i = 1; i < objPeople.length; i++) {
+    for(i = 0; i < objPeople.length; i++) {
 
         // if username and password matches in objPeople, the user is logged in.
         if (username == objPeople[i].username && password == objPeople[i].password) {
@@ -55,11 +57,11 @@ function getInfo() {
             attempt--; // If wrong, it just continues to count downwards. <-------------- 
             alert ("You will die! "+ attempt +" attempts left");
             
-        }
-      if (attempt == 0) 
+        } if {
+            (attempt == 0) 
             alert ("You have spent all your attempts. Please try again later") ;
-            
-                
+            return;
+        }
     console.log("incorrect username or password") }
     
 }   
