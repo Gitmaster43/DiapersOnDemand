@@ -52,21 +52,34 @@ function getInfo() {
         // else, decrement the attempts and alert the user that he has fewer attempts left
         // user only have 3 attempts
         else {
-            attempt --; // Stops at 2. does not work. <-------------- 
+            attempt--; // If wrong, it just continues to count downwards. <-------------- 
             alert ("You will die! "+ attempt +" attempt left");
-            if (attempt == 0)  
-            return; 
+            
         }
-    break
-    }
-    console.log("incorrect username or password")
+      if (attempt == 0) 
+            alert ("Please try again later") ;
+            
+             
+        
+    
+   
+    console.log("incorrect username or password") }
 
-    // if the user presses Enter while in the pwd box, he should be logged in
-}   password.addEventListener(keydown, function(e){
-        if (e.keyCode === 13) { // 13 is code for the key 'enter'
-        onclick(submit);
-        }
-});
+    
+}   
+function enter(e){
+    console.log("running");
+    if (e.keyCode == 13) { // 13 is code for the key 'enter'
+        getInfo();
+        return false;}
+
+}
+// if the user presses Enter while in the password box, it should trigger a click on the login button
+document.getElementById("pwd").addEventListener('keypress', enter);
+
+
+
+ 
 
 // Make the password visible
 // Declare the variables andconnect them to the password-button and eye-button
