@@ -39,7 +39,7 @@ function getInfo() {
     var attempt = 3; 
 
     // Creating a for-loop to loop through the objPeople array.
-    for(i = 0; i < objPeople.length; i++) {
+    for(i = 1; i < objPeople.length; i++) {
 
         // if username and password matches in objPeople, the user is logged in.
         if (username == objPeople[i].username && password == objPeople[i].password) {
@@ -53,18 +53,14 @@ function getInfo() {
         // user only have 3 attempts
         else {
             attempt--; // If wrong, it just continues to count downwards. <-------------- 
-            alert ("You will die! "+ attempt +" attempt left");
+            alert ("You will die! "+ attempt +" attempts left");
             
         }
       if (attempt == 0) 
-            alert ("Please try again later") ;
+            alert ("You have spent all your attempts. Please try again later") ;
             
-             
-        
-    
-   
+                
     console.log("incorrect username or password") }
-
     
 }   
 function enter(e){
