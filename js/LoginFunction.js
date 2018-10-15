@@ -6,6 +6,7 @@
 
 // Create a simple function 
 
+// Creates an array that has the hardcoded users(objects).
 var objPeople = [
 
     {
@@ -25,13 +26,16 @@ var objPeople = [
      }
 ]
 
+// declare the variable 'submit' and connect it to the button in index.html.
 var submit = document.getElementById('submit');
 
-
+// The function that gets information from the objPeople array and checks if it fits.
 function getInfo() {
+    // Declaring the variables username and password, and connect them to the buttons in index.html.
     var username = document.getElementById("username").value
     var password = document.getElementById("pwd").value
 
+    //
     var attempt = 3; 
 
     for(i = 0; i < objPeople.length; i++) {
