@@ -35,21 +35,26 @@ function getInfo() {
     var username = document.getElementById("username").value
     var password = document.getElementById("pwd").value
 
-    //
+    // Setting the maximum number of attempts to log in.
     var attempt = 3; 
 
+    // Creating a for-loop to loop through the objPeople array.
     for(i = 0; i < objPeople.length; i++) {
+
+        // if username and password matches in objPeople, the user is logged in.
         if (username == objPeople[i].username && password == objPeople[i].password) {
             console.log(username + " is logged in!!!")
-            alert ("Login was successfull");
+            alert ("Login was successfull"); 
             window.location.href = "2index.html";  //redirecting to another page
             return; 
         }
     
+        // else, decrement the attempts and alert the user that he has fewer attempts left
+        // user only have 3 attempts
         else {
             attempt --; // Stops at 2. does not work. <-------------- 
             alert ("You will die! "+ attempt +" attempt left");
-            if (attempt == 0)
+            if (attempt == 0)  
             return; 
         }
     break
@@ -57,12 +62,15 @@ function getInfo() {
     console.log("incorrect username or password")
 }
 
-//Make it visible
+// Make the password visible
+// Declare the variables andconnect them to the password-button and eye-button
 var pwd = document.getElementById("pwd");
 var eye = document.getElementById("eye");
 
+// add a listener on the eye that responds to clicks and execute the function togglePass
 eye.addEventListener("click",togglePass);
 
+// 
 function togglePass(){
 
     eye.classList.toggle("active");

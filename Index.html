@@ -12,6 +12,7 @@
 
 <h1> Amazing login function</h1>
 
+<!-- Defining all the buttons in HTML -->
 <input type="text" name="username" id="username" placeholder="Username"/>
 <input type="password" name="password" id="pwd" placeholder="Password"/>
 <i class="fa fa-eye" id="eye"></i>
@@ -24,13 +25,16 @@
 
 <script src="JavaScript.js"></script>
 
-<!-- I am a Robot -->
+
+
+<!-- I am a Robot feature <--- does not work -->
 
 <form method="post" onsubmit="return submitUserForm();">
     <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="verifyCaptcha"></div>
     <div id="g-recaptcha-error"></div>
     <input type="submit" name="submit" value="Submit" />
 </form>
+<!-- Use a script from google to make the 'I'm not a robot feature -->
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
 function submitUserForm() {
