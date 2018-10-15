@@ -44,8 +44,8 @@ function getInfo() {
         // if username and password matches in objPeople, the user is logged in.
         if (username == objPeople[i].username && password == objPeople[i].password) {
             console.log(username + " is logged in!!!")
-            alert ("Login was successfull"); 
-            window.location.href = "2index.html";  //redirecting to another page
+            alert ("Login was successful"); 
+            window.location.href = "html/LoginPage.html";  //redirecting to another page
             return; 
         }
     
@@ -60,7 +60,13 @@ function getInfo() {
     break
     }
     console.log("incorrect username or password")
-}
+
+    // if the user presses Enter while in the pwd box, he should be logged in
+}   password.addEventListener(keydown, function(e){
+        if (e.keyCode === 13) { // 13 is code for the key 'enter'
+        onclick(submit);
+        }
+});
 
 // Make the password visible
 // Declare the variables andconnect them to the password-button and eye-button
