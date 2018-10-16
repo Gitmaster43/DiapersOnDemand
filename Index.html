@@ -2,54 +2,32 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login function</title>
-    <link
-    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
-    rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Diapers On Demand</title>
+   
+    
 </head>
+
+<!-- Next we link the css file to this html -->
+<link href="css/style.css" rel="stylesheet">
+
 <body>
+    <header>
+        <h1>Diapers On Demand</h1>
+        <div class="row">
+        <ul class="main-nav">
+            <li><a href=""> HOME </a></li>
+            <li><a href=""> SIGN UP </a></li>
+            <li><a href=""> CONTACT </a></li>
+            <li><a href=""> NEWS </a></li>
+            <li><a href=""> FAQ </a></li>
+        </ul>
+        </div>
 
-<h1> Amazing login function</h1>
+        
+    </header>
 
-<!-- Defining all the buttons in HTML -->
-<input type="text" name="username" id="username" placeholder="Username"/>
-<input type="password" name="password" id="pwd" placeholder="Password"/>
-<i class="fa fa-eye" id="eye"></i>
-<input type="button" value="Login" name="submit" id="submit" />
-
-
-</div>
-<!-- submit.onclick="getInfo()" -->
-<span id="loginResult"></span>
-
-<script src="JavaScript.js"></script>
-
-
-
-<!-- I am a Robot feature <--- does not work -->
-
-<form method="post" onsubmit="return submitUserForm();">
-    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="verifyCaptcha"></div>
-    <div id="g-recaptcha-error"></div>
-    <input type="submit" name="submit" value="Submit" />
-</form>
-<!-- Use a script from google to make the 'I'm not a robot feature -->
-<script src='https://www.google.com/recaptcha/api.js'></script>
-<script>
-function submitUserForm() {
-    var response = grecaptcha.getResponse();
-    if(response.length == 0) {
-        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
-        return false;
-    }
-    return true;
-}
- 
-function verifyCaptcha() {
-    document.getElementById('g-recaptcha-error').innerHTML = '';
-}
-</script>
 
 
 </body>

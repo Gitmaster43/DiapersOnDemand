@@ -2,24 +2,59 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Login function</title>
+    <link
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+    rel="stylesheet">
+   
+
 </head>
 <body>
-    
-    <input type="button" value="Log Out" submit1.onclick="Logout" id="Logout" />
+
+<!-- <h1> Diapers on Demand</h1> -->
+
+<h3> Please sign in </h3>
+
+<!-- Defining all the buttons in HTML -->
+<input type="text" name="username" id="username" placeholder="Username"/>
+<input type="password" name="password" id="pwd" placeholder="Password"/>
+<i class="fa fa-eye" id="eye"></i>
+<input type="button" value="Login" name="submit" id="submit" />
 
 
-    <script>
-    var submit1 = document.getElementById("Logout");
 
-submit1.onclick = function () {
+<!-- submit.onclick="getInfo()" -->
+<span id="loginResult"></span>
 
-    window.location.href="index.html";
+<script src="../js/LoginFunction.js"></script>
+
+
+
+<!-- I am a Robot feature <--- does not work
+
+<form method="post" onsubmit="return submitUserForm();">
+    <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY" data-callback="verifyCaptcha"></div>
+    <div id="g-recaptcha-error"></div>
+    <input type="submit" name="submit" value="Submit" />
+</form> -->
+<!-- Use a script from google to make the 'I'm not a robot feature -->
+<!-- <script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script>
+function submitUserForm() {
+    var response = grecaptcha.getResponse();
+    if(response.length == 0) {
+        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+        return false;
+    }
+    return true;
 }
-    
-    </script>
+ 
+function verifyCaptcha() {
+    document.getElementById('g-recaptcha-error').innerHTML = '';
+}
+</script> -->
+
 
 </body>
 </html>
