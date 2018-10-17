@@ -6,6 +6,16 @@
 
 // Create a simple function 
 
+
+// 1. Adding class of users, with defined user characteristics
+// 2. Changing code below.
+
+class User {
+
+    // The constructor defines the values that each object can have, and makes us able to make more objects
+    constructor (firstname, )
+}
+
 // Creates an array that has the hardcoded users(objects).
 var objPeople = [
 
