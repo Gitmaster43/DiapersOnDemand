@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <script src="../js/RegistrationFunction.js"></script>
+
+    <link rel="stylesheet" href="../css/RegistrationFunction.css">
 </head>
 <body>
     <!-- Creating the Login page -->
     <div class="Login page">
-
+        <h1>Register</h1>
+        <p>Please fill in this form to create an account.</p>
+        <hr> 
     <!-- Setting up the registration form -->
     <div class="form">
         <form class="register-form">
@@ -42,20 +45,15 @@
             <input type="postal number" placeholder="Postal Number" id="postalNumber" required/>
             <input type="text" placeholder="City" id="city"/>
 
+            <p><b>By creating an account you agree to our</b> <a href="#">Terms & Privacy</a>.</p>
               <!-- On-Click button to sign up for our service -->
-            <input type="submit" value="Submit" id="submit" onclick='match();' >
+            <input type="submit" value="Create" id="submit" onclick='match();' >
             <!-- Creating a checkbox for Terms & Conditions -->
-            <input type="checkbox" name="checkbox" id="agree" required/> 
-            <h2>I have read and agree to the Terms and Conditions and Privacy Policy</h2>
-              
-             
+            <!-- <input type="checkbox" name="checkbox" id="agree" required/>  -->
             
-               
-                
-        </form>
-        
-        
-               
+             <p class="message3"> <b>Already Registered?</b> <a href="#">Login</a></p>
+                       
+        </form>          
     </div>
     </div>
 
