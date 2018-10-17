@@ -4,14 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<<<<<<< HEAD
     <title>Registration form</title>
         <link rel="stylesheet" href="../css/RegistrationFunction.css">
     
-=======
-    <title>Document</title>
-    <script src="../js/RegistrationFunction.js"></script>
->>>>>>> 4e4ff523767ab65200989d9d6eb7054bdb331520
 </head>
 <body>
     <!-- Creating the Login page -->
@@ -31,7 +26,13 @@
            
             <input type="password" placeholder="Password" name="p" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
             title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-            required  minlength="8" maxlength="20"/> 
+            required  minlength="8" maxlength="20" onkeyup='check();'/> 
+
+            <!-- Check if the passwords match: confirmation password  -->
+
+            <input type="password" placeholder="Confirm Password" id="confirmPsw" onkeyup='check();' required>
+                <span id="message2"></span> 
+                <!-- Span tag: to group inline-elements; a way to add to a part of a text or a part of a document-->
 
             <input type="number" placeholder="Phone Number" id="phoneNumber" required/>
 
@@ -41,12 +42,15 @@
             <input type="address" placeholder="Street Name" id="streetName" required/>
             <input type="postal number" placeholder="Postal Number" id="postalNumber" required/>
             <input type="text" placeholder="City" id="city"/>
-            <input type="submit" value="Submit">
+
+              <!-- On-Click button to sign up for our service -->
+            <input type="submit" value="Submit" id="submit" onclick='match();' >
             <!-- Creating a checkbox for Terms & Conditions -->
-            <input type="checkbox" name="checkbox" id="agree" required/> <h2>I have read and agree to the Terms and Conditions and Privacy Policy</h2>
-                <!-- On-Click button to sign up for our service -->
+            <input type="checkbox" name="checkbox" id="agree" required/> 
+            <h2>I have read and agree to the Terms and Conditions and Privacy Policy</h2>
+              
              
-         
+            
                
                 
         </form>

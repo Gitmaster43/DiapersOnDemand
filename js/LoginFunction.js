@@ -29,6 +29,8 @@ var objPeople = [
 // declare the variable 'submit' and connect it to the button in index.html.
 var submit = document.getElementById('submit');
 
+var attempt = 3; 
+
 // The function that gets information from the objPeople array and checks if it fits.
 function getInfo() {
     // Declaring the variables username and password, and connect them to the buttons in index.html.
@@ -36,7 +38,7 @@ function getInfo() {
     var password = document.getElementById("pwd").value
 
     // Setting the maximum number of attempts to log in.
-    var attempt = 3; 
+    
 
     // Creating a for-loop to loop through the objPeople array.
     for(i = 0; i < objPeople.length; i++) {
@@ -44,23 +46,38 @@ function getInfo() {
         // if username and password matches in objPeople, the user is logged in.
         if (username == objPeople[i].username && password == objPeople[i].password) {
             console.log(username + " is logged in!!!")
-            alert ("Login was successfull"); 
-            window.location.href = "2index.html";  //redirecting to another page
+            alert ("Login was successful"); 
+            window.location.href = "html/LoginPage.html";  //redirecting to another page
             return; 
         }
     
         // else, decrement the attempts and alert the user that he has fewer attempts left
         // user only have 3 attempts
         else {
-            attempt --; // Stops at 2. does not work. <-------------- 
-            alert ("You will die! "+ attempt +" attempt left");
-            if (attempt == 0)  
-            return; 
+            attempt--; // If wrong, it just continues to count downwards. <-------------- 
+            alert ("You will die! "+ attempt +" attempts left");
+            
+        } if {
+            (attempt == 0) 
+            alert ("You have spent all your attempts. Please try again later") ;
+            return;
         }
-    break
-    }
-    console.log("incorrect username or password")
+    console.log("incorrect username or password") }
+    
+}   
+function enter(e){
+    console.log("running");
+    if (e.keyCode == 13) { // 13 is code for the key 'enter'
+        getInfo();
+        return false;}
+
 }
+// if the user presses Enter while in the password box, it should trigger a click on the login button
+document.getElementById("pwd").addEventListener('keypress', enter);
+
+
+
+ 
 
 // Make the password visible
 // Declare the variables andconnect them to the password-button and eye-button
