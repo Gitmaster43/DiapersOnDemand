@@ -13,30 +13,30 @@
 class User {
 
     // The constructor defines the values that each object can have, and makes us able to make more objects
-    constructor (firstname, )
+    constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city) {
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.username = userName;
+        this.email = email;
+        this.password = password /*  .hashPassword(password)*/;
+        this.phonenumber = phoneNumber;
+        this.dateofbirth = dateOfBirth;
+        this.streetname = streetName;
+        this.postalnumber = postalNumber;
+        this.city = city;
+    }
 }
 
-// Creates an array that has the hardcoded users(objects).
-var objPeople = [
+// 3. Create the hashPassword(password) function
 
-    {
-        
-        username: 'Joe',
-        password: '1234'
-    },
-    {
-    username: 'matt',
-    password: 'acedemy'
+// 4. initialize empty user array
+var users = [];
 
-     },
+// 5. push users to the array
+users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg"));
 
-     {
-         username: 'chris',
-         password: 'forever'
-     }
-]
 
-// declare the variable 'submit' and connect it to the button in index.html.
+// declare the variable 'submit' and connect it to the button in LoginPage.html.
 var submit = document.getElementById('submit');
 
 // The function that gets information from the objPeople array and checks if it fits.
@@ -49,13 +49,13 @@ function getInfo() {
     var attempt = 3; 
 
     // Creating a for-loop to loop through the objPeople array.
-    for(i = 0; i < objPeople.length; i++) {
+    for(i = 0; i < users.length; i++) {
 
         // if username and password matches in objPeople, the user is logged in.
-        if (username == objPeople[i].username && password == objPeople[i].password) {
+        if (username == users[i].username && password == users[i].password) {
             console.log(username + " is logged in!!!")
-            alert ("Login was successfull"); 
-            window.location.href = "2index.html";  //redirecting to another page
+            alert ("Login was successful"); 
+            window.location.href = "LoggedinPage.html";  //redirecting to another page
             return; 
         }
     
