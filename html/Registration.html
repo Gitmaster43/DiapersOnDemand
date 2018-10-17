@@ -4,10 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<<<<<<< HEAD
+    <title>Registration form</title>
+        <link rel="stylesheet" href="../css/RegistrationFunction.css">
+    
+=======
     <title>Document</title>
     <script src="../js/RegistrationFunction.js"></script>
+>>>>>>> 4e4ff523767ab65200989d9d6eb7054bdb331520
 </head>
 <body>
-    
+    <!-- Creating the Login page -->
+    <div class="Login page">
+
+    <!-- Setting up the registration form -->
+    <div class="form">
+        <form class="register-form">
+            <!-- User information: line 18 until 35 -->
+            <input type="text" placeholder="First Name" id="firstName" required/>
+            <input type="text" placeholder="Last Name" id="lastName" required/>
+            <input type="text" placeholder="User Name" id="userName" required/>
+            <input type="email" placeholder="E-Mail" id="email" required/>
+            <input type="email" placeholder="Confirm E-Mail" id="confirmEmail" required/>
+
+            <!-- Defining the password and its requirements -->
+           
+            <input type="password" placeholder="Password" name="p" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            required  minlength="8" maxlength="20"/> 
+
+            <input type="number" placeholder="Phone Number" id="phoneNumber" required/>
+
+            <!-- Change type from "text" to "date" in order to see a pop up where you can select your date of birth-->
+            <input type="date" placeholder="Date of Birth" id="dateOfBirth" required/> 
+
+            <input type="address" placeholder="Street Name" id="streetName" required/>
+            <input type="postal number" placeholder="Postal Number" id="postalNumber" required/>
+            <input type="text" placeholder="City" id="city"/>
+            <input type="submit" value="Submit">
+            <!-- Creating a checkbox for Terms & Conditions -->
+            <input type="checkbox" name="checkbox" id="agree" required/> <h2>I have read and agree to the Terms and Conditions and Privacy Policy</h2>
+                <!-- On-Click button to sign up for our service -->
+             
+         
+               
+                
+        </form>
+        
+        
+               
+    </div>
+    </div>
+
+
+    <!-- Creating an pop-up which shows the requirements for the password -->
+    <!-- Source: https://www.w3schools.com/howto/howto_js_password_validation.asp -->
+    <div id="message">
+            <h3>Password must contain the following:</h3>
+                <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                <p id="number" class="invalid">A <b>number</b></p>
+                <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+
+    <script src="../js/RegistrationFunction.js"></script>
+
+
 </body>
 </html>
