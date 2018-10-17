@@ -1,3 +1,5 @@
+// Password (line 3-62): Depicts if the user matches the password requirements
+
 // Defining the variables 
 var myInput = document.getElementById("psw");
 var letter = document.getElementById("letter");
@@ -58,3 +60,44 @@ myInput.onkeyup = function() {
     length.classList.add("invalid");
   }
 }
+
+// Confirm password function (line 68-78)
+
+// I created the variable "check" in HTML with an onkey-function at password and confirm password
+// Now I create the check function to check if the string of the passwords are the same by using an if statement 
+var check = function() {
+  if (document.getElementById("psw").value == document.getElementById("confirmPsw").value) {
+    // if the string of both passwords are correct --> it shows the message "matching" in green
+    // message2: it is created as span at the confirm-password in HTML
+    document.getElementById("message2").style.color = "green";
+    document.getElementById("message2").innerHTML = "√ matching";
+  } else {
+    document.getElementById("message2").style.color = "red";
+    document.getElementById("message2").innerHTML = "X not matching";
+  } 
+  
+}
+
+
+// if passwords don't match, the user can not proceed
+
+var match = function() {
+  
+  // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
+  if  (document.getElementById("psw").value != document.getElementById("confirmPsw").value) {
+  alert ("Passwords don't match");
+  } 
+}
+
+// By clicking enter, you will automatically click "Create"
+var enter = function(e) {
+    
+  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+   getInfo();
+   console.log("running");
+   return false;}
+}
+
+// add an eventlistener for keypress on the enter button. function above.
+// It only listens to the passwordbox, but can listen to anything if we use "document"
+document.getElementById("pws").addEventListener("keyup", enter);

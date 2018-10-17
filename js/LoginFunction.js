@@ -79,6 +79,12 @@ async function getInfo() {
     
     console.log("incorrect username or password")
 }
+// if the user presses Enter while in the password box, it should trigger a click on the login button
+document.getElementById("pwd").addEventListener('keypress', enter);
+
+
+
+ 
 
 if (attempt == 0) {
     alert("You are now blocked from the system");
