@@ -25,7 +25,9 @@ class User {
         this.city = city;
     }
 }
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 // TODO: Create the hashPassword(password) function
 
 // initialize empty user array
@@ -41,23 +43,24 @@ var submit = document.getElementById('submit');
 // Setting the maximum number of attempts to log in.
 var attempt = 3;
 
-var resultSpan = document.getElementById('loginresult')
+var resultSpan = document.getElementById('loginResult')
 
-// The function that gets information from the objPeople array and checks if it fits.
-function getInfo() {
+// The function that gets information from the users array and checks if it fits.
+// Using "async" in order to make it 'await (milliseconds)' before the redirection
+async function getInfo() {
     // Declaring the variables username and password, and connect them to the buttons in index.html.
     var username = document.getElementById("username").value
     var password = document.getElementById("pwd").value
 
-     
 
-    // Creating a for-loop to loop through the objPeople array.
+    // Creating a for-loop to loop through the users array.
     for(i = 0; i < users.length; i++) {
 
-        // if username and password matches in objPeople, the user is logged in.
+        // if username and password matches in users, the user is logged in.
         if (username == users[i].username && password == users[i].password) {
             console.log(username + " is logged in!!!")
             resultSpan.innerText = "Login was successful"; 
+            await sleep(3000);
             window.location.href = "LoggedinPage.html";  //redirecting to another page
             return; 
         }
@@ -70,7 +73,7 @@ function getInfo() {
             
             return; 
         }
-    break
+    
     } 
     
     
@@ -80,6 +83,7 @@ function getInfo() {
 if (attempt == 0) {
     alert("You are now blocked from the system");
 }
+
 
 // Make the password visible
 // Declare the variables andconnect them to the password-button and eye-button
