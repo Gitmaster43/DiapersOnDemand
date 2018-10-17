@@ -7,8 +7,7 @@
 // Create a simple function 
 
 
-// 1. Adding class of users, with defined user characteristics
-// 2. Changing code below.
+// Adding class of users, with defined user characteristics
 
 class User {
 
@@ -18,7 +17,7 @@ class User {
         this.lastname = lastName;
         this.username = userName;
         this.email = email;
-        this.password = password /*  .hashPassword(password)*/;
+        this.password = password /*.hashPassword(password)*/;
         this.phonenumber = phoneNumber;
         this.dateofbirth = dateOfBirth;
         this.streetname = streetName;
@@ -27,9 +26,9 @@ class User {
     }
 }
 
-// 3. Create the hashPassword(password) function
+// TODO: Create the hashPassword(password) function
 
-// 4. initialize empty user array
+// initialize empty user array
 var users = [];
 
 // 5. push users to the array
@@ -39,14 +38,18 @@ users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com",
 // declare the variable 'submit' and connect it to the button in LoginPage.html.
 var submit = document.getElementById('submit');
 
+// Setting the maximum number of attempts to log in.
+var attempt = 3;
+
+var resultSpan = document.getElementById('loginresult')
+
 // The function that gets information from the objPeople array and checks if it fits.
 function getInfo() {
     // Declaring the variables username and password, and connect them to the buttons in index.html.
     var username = document.getElementById("username").value
     var password = document.getElementById("pwd").value
 
-    // Setting the maximum number of attempts to log in.
-    var attempt = 3; 
+     
 
     // Creating a for-loop to loop through the objPeople array.
     for(i = 0; i < users.length; i++) {
@@ -54,7 +57,7 @@ function getInfo() {
         // if username and password matches in objPeople, the user is logged in.
         if (username == users[i].username && password == users[i].password) {
             console.log(username + " is logged in!!!")
-            alert ("Login was successful"); 
+            resultSpan.innerText = "Login was successful"; 
             window.location.href = "LoggedinPage.html";  //redirecting to another page
             return; 
         }
@@ -62,14 +65,20 @@ function getInfo() {
         // else, decrement the attempts and alert the user that he has fewer attempts left
         // user only have 3 attempts
         else {
-            attempt --; // Stops at 2. does not work. <-------------- 
+            attempt --; 
             alert ("You will die! "+ attempt +" attempt left");
-            if (attempt == 0)  
+            
             return; 
         }
     break
-    }
+    } 
+    
+    
     console.log("incorrect username or password")
+}
+
+if (attempt == 0) {
+    alert("You are now blocked from the system");
 }
 
 // Make the password visible
@@ -91,6 +100,19 @@ function togglePass(){
     
 }
 
+// Make a function that clicks the submit button when you press enter in the pwd box.
+ 
+var enter = function(e) {
+    
+   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+    getInfo();
+    console.log("running");
+    return false;}
+}
+
+// add an eventlistener for keypress on the enter button. function above.
+// It only listens to the passwordbox, but can listen to anything if we use "document"
+document.getElementById("pwd").addEventListener("keyup", enter);
 
 
 submit.onclick = getInfo
