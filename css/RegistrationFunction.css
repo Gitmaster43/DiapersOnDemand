@@ -1,12 +1,30 @@
+/* form {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center
+
+
+
+} */
+
+
+
 /* Style all input fields */
 input {
-    width: 10%;
+    width: 50%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    margin-top: 6px;
-    margin-bottom: 16px;
+    display: inline-block;
+   /* position: ; */
+    /* margin-top: 6px;
+    margin-bottom: 16px; */
+    margin: auto;
 }
 
 /* Style the submit button */
@@ -19,6 +37,9 @@ input[type=submit] {
 .container {
     background-color: #f1f1f1;
     padding: 20px;
+    display: inline-block;
+    position: relative;
+
 }
 
 /* The message box is shown when the user clicks on the password field */
@@ -26,9 +47,9 @@ input[type=submit] {
     display:none;
     background: #f1f1f1;
     color: #000;
-    position: relative;
+    position: center;
     padding: 20px;
-    margin-top: 10px;
+    margin-top: auto;
 }
 
 #message p {

@@ -88,3 +88,16 @@ var match = function() {
   alert ("Passwords don't match");
   } 
 }
+
+// By clicking enter, you will automatically click "Create"
+var enter = function(e) {
+    
+  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+   getInfo();
+   console.log("running");
+   return false;}
+}
+
+// add an eventlistener for keypress on the enter button. function above.
+// It only listens to the passwordbox, but can listen to anything if we use "document"
+document.getElementById("pws").addEventListener("keyup", enter);
