@@ -17,7 +17,8 @@
     <!-- Setting up the registration form -->
     <div class="form">
         <form class="register-form">
-            <!-- User information: line 18 until 35 -->
+            
+            <!-- User information: line 21 until 46 -->
             <input type="text" placeholder="First Name" id="firstName" required/>
             <input type="text" placeholder="Last Name" id="lastName" required/>
             <input type="text" placeholder="User Name" id="userName" required/>
@@ -47,15 +48,21 @@
 
             <p><b>By creating an account you agree to our</b> <a href="#">Terms & Privacy</a>.</p>
               <!-- On-Click button to sign up for our service -->
-            <input type="submit" value="Create" id="submit" onclick='match();' >
+        
+            <button  id="submit" onclick='match();'style="width:auto;">Create</button>
+
+
             <!-- Creating a checkbox for Terms & Conditions -->
             <!-- <input type="checkbox" name="checkbox" id="agree" required/>  -->
             
-             <p class="message3"> <b>Already Registered?</b> <a href="#">Login</a></p>
+             <p class="message3"> <b>Already Registered?</b> </p>
                        
         </form>          
     </div>
     </div>
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
 
 
     <!-- Creating an pop-up which shows the requirements for the password -->
@@ -67,6 +74,35 @@
                 <p id="number" class="invalid">A <b>number</b></p>
                 <p id="length" class="invalid">Minimum <b>8 characters</b></p>
     </div>
+
+<!-- Creating the Login-Button which redirects you to the Login. This page is called "modal"-->
+<!-- Source: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_login_form_modal -->
+    <div id="id01" class="modal">
+            <!-- The class "modal-content animate allows us to open a new page by clicking on Login" -->
+            <form class="modal-content animate" action="/action_page.php">
+              <div class="imgcontainer">
+
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+               
+               <!-- Adding a profile picture or icon -->
+                <!-- <img src="../Images/img_avatar2.png" alt="Avatar" class="avatar"> -->
+              </div>
+                <!--Login information on the Modal   -->
+              <div class="container">
+             
+                <input type="text" placeholder="Enter Username" name="uname" required>
+                <input type="password" placeholder="Enter Password" name="psw" required>
+                <button type="submit">Login</button>
+                
+              </div>
+          
+              
+              </div>
+            </form>
+     </div>
+
+
+
 
     <script src="../js/RegistrationFunction.js"></script>
 
