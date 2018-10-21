@@ -101,3 +101,10 @@ var enter = function(e) {
 // add an eventlistener for keypress on the enter button. function above.
 // It only listens to the passwordbox, but can listen to anything if we use "document"
 document.getElementById("pws").addEventListener("keyup", enter);
+
+
+// By clicking the login-button the "modal" appears
+
+// Get the modal
+var modal = document.getElementById('id01');
+
