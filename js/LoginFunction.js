@@ -6,28 +6,42 @@
 
 // Create a simple function 
 
-// Creates an array that has the hardcoded users(objects).
-var objPeople = [
 
-    {
-        
-        username: 'Joe',
-        password: '1234'
-    },
-    {
-    username: 'matt',
-    password: 'acedemy'
+// Adding class of users, with defined user characteristics
 
-     },
+class User {
 
-     {
-         username: 'chris',
-         password: 'forever'
-     }
-]
+    // The constructor defines the values that each object can have, and makes us able to make more objects
+    constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city) {
+        this.firstname = firstName;
+        this.lastname = lastName;
+        this.username = userName;
+        this.email = email;
+        this.password = password /*.hashPassword(password)*/;
+        this.phonenumber = phoneNumber;
+        this.dateofbirth = dateOfBirth;
+        this.streetname = streetName;
+        this.postalnumber = postalNumber;
+        this.city = city;
+    }
+}
 
-// declare the variable 'submit' and connect it to the button in index.html.
+// TODO: Create the hashPassword(password) function
+
+// initialize empty user array
+var users = [];
+
+// 5. push users to the array
+users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg"));
+
+
+// declare the variable 'submit' and connect it to the button in LoginPage.html.
 var submit = document.getElementById('submit');
+
+// Setting the maximum number of attempts to log in.
+var attempt = 3;
+
+var resultSpan = document.getElementById('loginresult')
 
 // The function that gets information from the objPeople array and checks if it fits.
 function getInfo() {
@@ -35,38 +49,43 @@ function getInfo() {
     var username = document.getElementById("username").value
     var password = document.getElementById("pwd").value
 
-    // Setting the maximum number of attempts to log in.
-    var attempt = 3; 
+     
 
     // Creating a for-loop to loop through the objPeople array.
-    for(i = 0; i < objPeople.length; i++) {
+    for(i = 0; i < users.length; i++) {
 
         // if username and password matches in objPeople, the user is logged in.
-        if (username == objPeople[i].username && password == objPeople[i].password) {
+        if (username == users[i].username && password == users[i].password) {
             console.log(username + " is logged in!!!")
-            alert ("Login was successful"); 
-            window.location.href = "html/LoginPage.html";  //redirecting to another page
+            resultSpan.innerText = "Login was successful"; 
+            window.location.href = "LoggedinPage.html";  //redirecting to another page
             return; 
         }
     
         // else, decrement the attempts and alert the user that he has fewer attempts left
         // user only have 3 attempts
         else {
-            attempt --; // Stops at 2. does not work. <-------------- 
+            attempt --; 
             alert ("You will die! "+ attempt +" attempt left");
-            if (attempt == 0)  
+            
             return; 
         }
     break
-    }
+    } 
+    
+    
     console.log("incorrect username or password")
+}
+// if the user presses Enter while in the password box, it should trigger a click on the login button
+document.getElementById("pwd").addEventListener('keypress', enter);
 
-    // if the user presses Enter while in the pwd box, he should be logged in
-}   password.addEventListener(keydown, function(e){
-        if (e.keyCode === 13) { // 13 is code for the key 'enter'
-        onclick(submit);
-        }
-});
+
+
+ 
+
+if (attempt == 0) {
+    alert("You are now blocked from the system");
+}
 
 // Make the password visible
 // Declare the variables andconnect them to the password-button and eye-button
@@ -87,6 +106,19 @@ function togglePass(){
     
 }
 
+// Make a function that clicks the submit button when you press enter in the pwd box.
+ 
+var enter = function(e) {
+    
+   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+    getInfo();
+    console.log("running");
+    return false;}
+}
+
+// add an eventlistener for keypress on the enter button. function above.
+// It only listens to the passwordbox, but can listen to anything if we use "document"
+document.getElementById("pwd").addEventListener("keyup", enter);
 
 
 submit.onclick = getInfo
