@@ -53,8 +53,22 @@
 
     h1 {
         position: absolute;
-        font-family: ;
+        font-family: Arial, Helvetica, sans-serif;
         color: grey;  
         margin-top: 25px;
         margin-left: 25px;
+    }
+
+    .box1 {
+        padding-top:260px;
+        float: left;
+    }
+    .button1 {
+        font-family: Arial, Helvetica, sans-serif
+        
+    }
+
+    .box2 {
+        padding-top: 260px;
+        float: right;
     }
