@@ -55,7 +55,7 @@ users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com",
 
 
 // declare the variable 'submit' and connect it to the button in LoginPage.html.
-var submit = document.getElementById('submit');
+var login = document.getElementById('submit');
 
 // Setting the maximum number of attempts to log in.
 var attempt = 3;
@@ -65,7 +65,7 @@ var resultSpan = document.getElementById('loginResult')
 
 // The function that gets information from the users array and checks if it fits.
 // Using "async" in order to make it 'await (milliseconds)' before the redirection <-- What does async mean?
-async function getInfo() {
+async function loggingIn() {
 
     // Declaring the variables username and password, and connect them to the buttons in index.html.
     var inputUsername = document.getElementById("username")
@@ -121,7 +121,7 @@ async function getInfo() {
         // Disable the two input fields and the button in order for the user to not make any trouble
         inputUsername.disabled = true;
         inputPassword.disabled = true;
-        submit.disabled = true;
+        login.disabled = true;
         
         // Return false to stop us from doing anything further.
         return false;
@@ -164,7 +164,7 @@ function togglePass(){
 var enter = function(e) {
     
    if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-    getInfo();
+    loggingIn();
     console.log("running");
     return false;}
 }
@@ -175,5 +175,5 @@ var enter = function(e) {
 document.getElementById("pwd").addEventListener("keyup", enter);
 
 
-submit.onclick = getInfo
+login.onclick = loggingIn
 // a lot of blank spaces 
