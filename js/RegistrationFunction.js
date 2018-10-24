@@ -133,19 +133,20 @@ var check = function() {
 
 // if passwords don't match, the user can not proceed
 
-var resultSpan = document.getElementById("creationResult");
+
 var match = function() {
 
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
   // Otherwise it will depict the message "Creation was successfull"
   if  (document.getElementById("psw").value != document.getElementById("confirmPsw").value) {
   alert ("Passwords don't match");
-  } else {
-    resultSpan.innerText = "Creation was successful"
-  }
+  } 
 } 
 
 
+var resultSpan = document.getElementById("creationResult");
+resultSpan.innerText = "Creation was successful"
+  
 
 // By clicking enter, you will automatically click "Create"
 var enter = function(e) {
@@ -182,7 +183,7 @@ if (localStorage.clickcount) {
 document.getElementById("result") +
 localStorage.clickcount + " time(s).";
 
-//Local storage (domain specific)
+//Local storage (domain specific): hardcoded version 
 
 // turning our users into a JSON string and then set it into local storage
 
@@ -339,11 +340,31 @@ login.onclick = loggingIn
 
 /* Errors:
 1. Cannot find the user Joe with password 1234 (but it does hash the password, and run the loginfunction)
+<<<<<<< HEAD
 2. Will not redirect to index, but goes to a page that is not found..: "file:///C:/action_page.php?username=Joe&psw=1234"
+=======
+2. Will not redirect to index, but goes to a page that is not found: Cannot GET /action_page.php?username=Joe&psw=1234
+>>>>>>> b49116fb1db05f924f4e1dd55644f61c731c1b43
 3. Does not wait with the sleep function
 4. ?
 */
-
+//function () {
+     //   Math.random().toString(36).substr(2, 9);
+    //}
+    // Create function that assigns random userID, then it becomes a method. Create method instead. math.random 0 - 1 multiply it by a million 
+    // or detect number of users and add 1. 
+   // }
+ // } 
+ /* //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
+ aunthenticatedUserId = users[i].userId;
+ console.log (aunthenticatedUserId)
+ } 
+ users.push(new User(username, password, firstname, surname, country, email, gender));
+    console.log(users);
+    localStorage.setItem('users',JSON.stringify(users));
+    window.location = "index.html";
+      });
+ */
 
 document.getElementById("submit").addEventListener("click", function(){
   firstName = document.getElementById("regFirstName").value;
