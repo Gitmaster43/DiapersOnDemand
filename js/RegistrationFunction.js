@@ -340,11 +340,7 @@ login.onclick = loggingIn
 
 /* Errors:
 1. Cannot find the user Joe with password 1234 (but it does hash the password, and run the loginfunction)
-<<<<<<< HEAD
 2. Will not redirect to index, but goes to a page that is not found..: "file:///C:/action_page.php?username=Joe&psw=1234"
-=======
-2. Will not redirect to index, but goes to a page that is not found: Cannot GET /action_page.php?username=Joe&psw=1234
->>>>>>> b49116fb1db05f924f4e1dd55644f61c731c1b43
 3. Does not wait with the sleep function
 4. ?
 */
@@ -366,6 +362,7 @@ login.onclick = loggingIn
       });
  */
 
+// Add comments!!
 document.getElementById("submit").addEventListener("click", function(){
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
