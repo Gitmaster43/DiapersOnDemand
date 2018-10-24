@@ -28,12 +28,37 @@ class User {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
-// TODO: Create the hashPassword(password) function
+
+
+// TODO: Create the hashPassword(password) function -->> Does hashing really work??
+/* 
+hashPassword(rawPassword) {
+    var a = 1,
+        c = 0,
+        h,
+        o;
+    if (rawPassword) {
+      a = 0;
+      /*jshint plusplus:false bitwise:false <<-- Have no idea what this means *//*
+      for (h = rawPassword.length - 1; h >= 0; h--) {
+        o = rawPassword.charCodeAt(h);
+        a = (a << 6 & 268435455) + o + (o << 14);
+        c = a & 266338304;
+        a = c !== 0 ? a ^ c >> 21 : a;
+      }
+    } else {
+      // If the password is not valid, we'll throw and error we're able to catch
+      throw new Error("The password supplied is not valid");
+    }
+    return String(a);
+  }
+} */
+
 
 // initialize empty user array
 var users = [];
 
-// 5. push users to the array
+// push user to the array
 users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg"));
 
 
@@ -43,52 +68,67 @@ var submit = document.getElementById('submit');
 // Setting the maximum number of attempts to log in.
 var attempt = 3;
 
+// Binding the resultspan to a textfield in html-file.
 var resultSpan = document.getElementById('loginResult')
 
 // The function that gets information from the users array and checks if it fits.
 // Using "async" in order to make it 'await (milliseconds)' before the redirection
 async function getInfo() {
+
     // Declaring the variables username and password, and connect them to the buttons in index.html.
-    var username = document.getElementById("username").value
-    var password = document.getElementById("pwd").value
+    var inputUsername = document.getElementById("username")
+    var inputPassword = document.getElementById("pwd")
 
 
     // Creating a for-loop to loop through the users array.
     for(i = 0; i < users.length; i++) {
 
         // if username and password matches in users, the user is logged in.
-        if (username == users[i].username && password == users[i].password) {
+        if (inputUsername.value == users[i].username && inputPassword.value == users[i].password) {
             console.log(username + " is logged in!!!")
             resultSpan.innerText = "Login was successful"; 
-            await sleep(3000);
+            await sleep(2000);
             window.location.href = "LoggedinPage.html";  //redirecting to another page
             return; 
         }
     
         // else, decrement the attempts and alert the user that he has fewer attempts left
         // user only have 3 attempts
+        // TODO: Trying to get the counter to stop at 0
         else {
             attempt --; 
             alert ("You will die! "+ attempt +" attempt left");
             
-            return; 
         }
     
-    } 
+        
+        if (attempt == 0) {
+        // Since the user has tried three times, we let the user know that he's been banned
+        resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
+
+        // You have tried too many times, you are now redirected to forgotten password?
+        // Or just redirect the user to the forgotten password site?
+
+        // Disable the two input fields and the button in order for the user to not make any trouble
+        inputUsername.disabled = true;
+        inputPassword.disabled = true;
+        submit.disabled = true;
+        
+        // Return false to stop us from doing anything further.
+        return false;
+        } 
+        else {
+        // Since we did not find a match, we know that the user has typed a wrong password and username
+        resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
+
+        console.log("incorrect username or password")
+
+        // Return false, since we do not have anything more to do
+        return false;
+    };
     
-    
-    console.log("incorrect username or password")
 }
-// if the user presses Enter while in the password box, it should trigger a click on the login button
-document.getElementById("pwd").addEventListener('keypress', enter);
-
-
-
- 
-
-if (attempt == 0) {
-    alert("You are now blocked from the system");
-}
+} 
 
 
 // Make the password visible
@@ -120,6 +160,7 @@ var enter = function(e) {
     return false;}
 }
 
+// if the user presses Enter while in the password box, it should trigger a click on the login button
 // add an eventlistener for keypress on the enter button. function above.
 // It only listens to the passwordbox, but can listen to anything if we use "document"
 document.getElementById("pwd").addEventListener("keyup", enter);
