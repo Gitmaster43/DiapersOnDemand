@@ -1,11 +1,5 @@
 
 
-// submit.onclick = function(){
-// //   console.log("Button is clicked");
-// // };
-
-// Create a simple function 
-
 
 // Adding class of users, with defined user characteristics
 
@@ -17,42 +11,40 @@ class User {
         this.lastname = lastName;
         this.username = userName;
         this.email = email;
-        this.password = password /*.hashPassword(password)*/;
+        this.password = this.hashPassword(password);
         this.phonenumber = phoneNumber;
         this.dateofbirth = dateOfBirth;
         this.streetname = streetName;
         this.postalnumber = postalNumber;
         this.city = city;
     }
-}
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
 
 
-// TODO: Create the hashPassword(password) function -->> Does hashing really work??
-/* 
-hashPassword(rawPassword) {
-    var a = 1,
-        c = 0,
-        h,
-        o;
+// TODO: implement the hashPassword(password) function <-- Doing
+// Function copied from Henriks login-example. 
+hashPassword(rawPassword){
+    var a = 1, c = 0, h, o;
     if (rawPassword) {
       a = 0;
-      /*jshint plusplus:false bitwise:false <<-- Have no idea what this means *//*
+      //jshint plusplus:false bitwise:false <<-- Have no idea what this means
       for (h = rawPassword.length - 1; h >= 0; h--) {
         o = rawPassword.charCodeAt(h);
         a = (a << 6 & 268435455) + o + (o << 14);
         c = a & 266338304;
         a = c !== 0 ? a ^ c >> 21 : a;
       }
-    } else {
-      // If the password is not valid, we'll throw and error we're able to catch
+    } else {    
+      // If the password is not valid, we'll throw an error we're able to catch
       throw new Error("The password supplied is not valid");
     }
     return String(a);
   }
-} */
+}
+
+// Declare a function that makes the login pause for some ms to show a message
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
 
 
 // initialize empty user array
@@ -72,19 +64,36 @@ var attempt = 3;
 var resultSpan = document.getElementById('loginResult')
 
 // The function that gets information from the users array and checks if it fits.
-// Using "async" in order to make it 'await (milliseconds)' before the redirection
+// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- What does async mean?
 async function getInfo() {
 
     // Declaring the variables username and password, and connect them to the buttons in index.html.
     var inputUsername = document.getElementById("username")
     var inputPassword = document.getElementById("pwd")
 
+   
 
     // Creating a for-loop to loop through the users array.
     for(i = 0; i < users.length; i++) {
 
+        // Declaring a user for easy use.
+        var user = users[i];
+
+        //Copied from Henriks login example
+        // We use a try-catch for the hash-password function, since something could go wrong.
+        try {
+
+            // We try to create a variable with the hashed version of the inputPassword
+            var hashedInputPassword = user.hashPassword(inputPassword.value);
+            console.log(hashedInputPassword);
+        } catch (error) {
+
+            // We console log any error that might have been thrown
+            console.log(error);
+        }
+
         // if username and password matches in users, the user is logged in.
-        if (inputUsername.value == users[i].username && inputPassword.value == users[i].password) {
+        if (inputUsername.value == users[i].username && inputPassword.value == hashedInputPassword) {
             console.log(username + " is logged in!!!")
             resultSpan.innerText = "Login was successful"; 
             await sleep(2000);
