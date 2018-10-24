@@ -97,7 +97,7 @@ async function getInfo() {
             console.log(username + " is logged in!!!")
             resultSpan.innerText = "Login was successful"; 
             await sleep(2000);
-            window.location.href = "LoggedinPage.html";  //redirecting to another page
+            window.location.href = "index.html";  //redirecting to another page
             return; 
         }
     
