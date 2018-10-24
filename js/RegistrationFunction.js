@@ -81,26 +81,45 @@ var check = function() {
 
 // if passwords don't match, the user can not proceed
 
+var resultSpan = document.getElementById("creationResult");
 var match = function() {
-  
+
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
+  // Otherwise it will depict the message "Creation was successfull"
   if  (document.getElementById("psw").value != document.getElementById("confirmPsw").value) {
   alert ("Passwords don't match");
-  } 
-}
+  } else {
+    resultSpan.innerText = "Creation was successful"
+  }
+} 
+
+
+
+
 
 // By clicking enter, you will automatically click "Create"
 var enter = function(e) {
     
   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-   getInfo();
-   console.log("running");
+    
+
+    // Get all users from local storage
+
+    // Create new user object
+
+    // Add object to users array
+
+    // Use JSON stringify
+
+    // Save new list
+
+    console.log("running");
    return false;}
 }
 
 // add an eventlistener for keypress on the enter button. function above.
 // It only listens to the passwordbox, but can listen to anything if we use "document"
-document.getElementById("pws").addEventListener("keyup", enter);
+// document.getElementById("pws").addEventListener("keyup", enter);
 
 
 // By clicking the login-button the "modal" appears
@@ -108,3 +127,43 @@ document.getElementById("pws").addEventListener("keyup", enter);
 // Get the modal
 var modal = document.getElementById('id01');
 
+// Show the numer of times a button was clicked
+if (localStorage.clickcount) {
+  localStorage.clickcount = Number(localStorage.clickcount) + 1;
+} else {
+  localStorage.clickcount = 1;
+}
+document.getElementById("result") +
+localStorage.clickcount + " time(s).";
+
+//Local storage (domain specific)
+
+//Defining the object userData with its properties 
+var userData = {
+  firstName: "Johannes",
+  lastName: "Reisinger",
+  userName: "Joe",
+  email: "reisingerjohannes@icloud.com",
+  confirmEmail: "reisingerjohannes@icloud.com",
+  password: "SbagW&imI6",
+  confirmPassword: "SbagW&imI6",
+  phoneNumber: "+4552529095",
+  birthday: "04.10.1994",
+  streetName: "Krimsvej 1B, 12tv",
+  postCode: "2300",
+  city: "Copenhagen"  
+},
+localData;
+
+// turning our userData into a JSON string and then set it into local storage
+
+//first parameter in the parantheses is the name (unique; is in local storage)
+// Storing multiple types of information into a single local storage key value
+// In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts
+localStorage.setItem( "userData", JSON.stringify( userData ));
+
+// When we want to get item out we want to parse it back into a native JavaScript object
+localData = JSON.parse( localStorage.getItem("userData"));
+
+// console.log(localData);
+console.log(userData);
