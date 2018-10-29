@@ -6,28 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script src="/js/ReusableProductPage.js"></script>
+    <link href="../css/reusableStyle.css" rel="stylesheet">
+
 </head>
 <body>
-<h1>Reusable Diaper</h1>
-<form>
-        <select id="diaperSize" onchange="size()"> 
-        <option>0-0,5yOld</option>
-        <option>0,5-1yOld</option>
-        <option>1-2yOld</option>
-        <option>2-3yOld</option>
-        <option>3-4yold</option>
-        <option>4-6yOld</option>
+    <div class="header">
+        <h1>Reusable Diaper</h1>
+    </div>
+    <div class="selection">
+        <form>
+        <select id="diaperSize">
+            <option>Select size</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
         </select>
-        
-        <select id="diapersADay" onchange="qanuntity()"> 
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
+                    
+        <select id="diapersADay"> 
+            <option>Diapers a day</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
         </select>
         </form>
+    </div>
+
         
 
 </body>
