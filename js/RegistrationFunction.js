@@ -1,7 +1,7 @@
 // Password (line 3-62): Depicts if the user matches the password requirements
 
 // Defining the variables 
-var myInput = document.getElementById("psw");
+var myInput = document.getElementById("regPsw");
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
@@ -66,7 +66,7 @@ myInput.onkeyup = function() {
 // I created the variable "check" in HTML with an onkey-function at password and confirm password
 // Now I create the check function to check if the string of the passwords are the same by using an if statement 
 var check = function() {
-  if (document.getElementById("psw").value == document.getElementById("confirmPsw").value) {
+  if (document.getElementById("regPsw").value == document.getElementById("regConfirmPsw").value) {
     // if the string of both passwords are correct --> it shows the message "matching" in green
     // message2: it is created as span at the confirm-password in HTML
     document.getElementById("message2").style.color = "green";
@@ -86,7 +86,7 @@ var match = function() {
 
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
   // Otherwise it will depict the message "Creation was successfull"
-  if  (document.getElementById("psw").value != document.getElementById("confirmPsw").value) {
+  if  (document.getElementById("regPsw").value != document.getElementById("regConfirmPsw").value) {
   alert ("Passwords don't match");
   } 
 } 
