@@ -15,6 +15,7 @@ class User {
       this.streetname = streetName;
       this.postalnumber = postalNumber;
       this.city = city;
+      this.userId = 0;
   }
 
 
@@ -46,9 +47,9 @@ if(users === null){
     var users = [];
 
     // push user to the array
-    users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg"));
+    users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
 
-    users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg"));
+    users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
 }
 // Password (line 49-140): Depicts if the user matches the password requirements
 
@@ -118,7 +119,7 @@ myInput.onkeyup = function() {
 // I created the variable "check" in HTML with an onkey-function at password and confirm password
 // Now I create the check function to check if the string of the passwords are the same by using an if statement 
 var check = function() {
-  if (document.getElementById("psw").value == document.getElementById("confirmPsw").value) {
+  if (document.getElementById("regPassword").value == document.getElementById("regConfirmPassword").value) {
     // if the string of both passwords are correct --> it shows the message "matching" in green
     // message2: it is created as span at the confirm-password in HTML
     document.getElementById("message2").style.color = "green";
@@ -138,7 +139,7 @@ var match = function() {
 
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
   // Otherwise it will depict the message "Creation was successfull"
-  if  (document.getElementById("psw").value != document.getElementById("confirmPsw").value) {
+  if  (document.getElementById("password").value != document.getElementById("confirmPassword").value) {
   alert ("Passwords don't match");
   } 
 } 
@@ -345,24 +346,8 @@ login.onclick = loggingIn
 4. ?
 */
 
-function registerUser() {
-      Math.random().toString(36).substr(2, 9);
-    
-    // Create function that assigns random userID, then it becomes a method. Create method instead. math.random 0 - 1 multiply it by a million 
-    // or detect number of users and add 1. 
-   // }
- // } 
-  //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
- aunthenticatedUserId = users[i].userId;
- console.log (aunthenticatedUserId)
-  
- users.push(new User(regFirstName, regLastName, regUserName, regEmail, regPsw, regPhoneNumber, regDateOfBirth, regStreetName, regPostalNumber, regCity));
-    console.log(users);
-    localStorage.setItem('users',JSON.stringify(users));
-    window.location = "../index.html";
-} 
 
-// Add comments!!
+// Here we get the elements by the ID, and say that the click should execute the function which sets the user?
 document.getElementById("submit").addEventListener("click", function(){
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
@@ -376,3 +361,28 @@ document.getElementById("submit").addEventListener("click", function(){
   city = document.getElementById("regCity").value;
 
 });
+
+function registerUser() {
+      
+  // Get all users from the database
+  
+
+
+  // Making a random-function that creates a random userId which we can push to the user.
+  Math.random().toString(36).substr(2, 9);
+  
+
+// 
+//Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value 
+// What will we use this for? Is the authenticatedUserId important to have?
+aunthenticatedUserId = users[i].userId;
+console.log (aunthenticatedUserId)
+
+
+// Take the user data and push it to the Class
+
+users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
+  console.log(users);
+  localStorage.setItem('users', JSON.stringify(users));
+  window.location = "../index.html";
+} 
