@@ -1,4 +1,56 @@
-// Password (line 3-62): Depicts if the user matches the password requirements
+
+// Adding class of users, with defined user characteristics
+
+class User {
+
+  // The constructor defines the values that each object can have, and makes us able to make more objects
+  constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city) {
+      this.firstname = firstName;
+      this.lastname = lastName;
+      this.username = userName;
+      this.email = email;
+      this.password = this.hashPassword(password);
+      this.phonenumber = phoneNumber;
+      this.dateofbirth = dateOfBirth;
+      this.streetname = streetName;
+      this.postalnumber = postalNumber;
+      this.city = city;
+  }
+
+
+    // Function copied from Henriks login-example. 
+    hashPassword(rawPassword){
+      var a = 1, c = 0, h, o;
+      if (rawPassword) {
+        a = 0;
+        //jshint plusplus:false bitwise:false <<-- Have no idea what this means
+        for (h = rawPassword.length - 1; h >= 0; h--) {
+          o = rawPassword.charCodeAt(h);
+          a = (a << 6 & 268435455) + o + (o << 14);
+          c = a & 266338304;
+          a = c !== 0 ? a ^ c >> 21 : a;
+        }
+      } else {    
+        // If the password is not valid, we'll throw an error we're able to catch
+        throw new Error("The password supplied is not valid");
+      }
+      return String(a);
+    }
+}
+
+// Create array called users
+var users = JSON.parse(localStorage.getItem("users"));
+
+if(users === null){
+    // initialize empty user array
+    var users = [];
+
+    // push user to the array
+    users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg"));
+
+    users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg"));
+}
+// Password (line 49-140): Depicts if the user matches the password requirements
 
 // Defining the variables 
 var myInput = document.getElementById("regPsw");
@@ -96,8 +148,6 @@ var resultSpan = document.getElementById("creationResult");
 resultSpan.innerText = "Creation was successful"
   
 
-
-
 // By clicking enter, you will automatically click "Create"
 var enter = function(e) {
     
@@ -123,12 +173,8 @@ var enter = function(e) {
 // document.getElementById("pws").addEventListener("keyup", enter);
 
 
-// By clicking the login-button the "modal" appears
 
-// Get the modal
-var modal = document.getElementById('id01');
-
-// Show the numer of times a button was clicked
+// Show the number of times a button was clicked
 if (localStorage.clickcount) {
   localStorage.clickcount = Number(localStorage.clickcount) + 1;
 } else {
@@ -139,89 +185,31 @@ localStorage.clickcount + " time(s).";
 
 //Local storage (domain specific): hardcoded version 
 
-//Defining the object userData with its properties 
-var userData = {
-  firstName: "Johannes",
-  lastName: "Reisinger",
-  userName: "Joe",
-  email: "reisingerjohannes@icloud.com",
-  confirmEmail: "reisingerjohannes@icloud.com",
-  password: "SbagW&imI6",
-  confirmPassword: "SbagW&imI6",
-  phoneNumber: "+4552529095",
-  birthday: "04.10.1994",
-  streetName: "Krimsvej 1B, 12tv",
-  postCode: "2300",
-  city: "Copenhagen"  
-},
-localData;
-
-// turning our userData into a JSON string and then set it into local storage
+// turning our users into a JSON string and then set it into local storage
 
 //first parameter in the parantheses is the name (unique; is in local storage)
 // Storing multiple types of information into a single local storage key value
 // In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts
-localStorage.setItem( "userData", JSON.stringify( userData ));
+localStorage.setItem( "User", JSON.stringify( users ));
 
 // When we want to get item out we want to parse it back into a native JavaScript object
-localData = JSON.parse( localStorage.getItem("userData"));
+localData = JSON.parse( localStorage.getItem("User"));
 
 // console.log(localData);
-console.log(userData);
+console.log(users);
 
 
+// By clicking the login-button the "modal" appears
 
-// Adding class of users, with defined user characteristics
+// Get the modal
+var modal = document.getElementById('id01');
 
-class User {
-
-  // The constructor defines the values that each object can have, and makes us able to make more objects
-  constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city) {
-      this.firstname = firstName;
-      this.lastname = lastName;
-      this.username = userName;
-      this.email = email;
-      this.password = this.hashPassword(password);
-      this.phonenumber = phoneNumber;
-      this.dateofbirth = dateOfBirth;
-      this.streetname = streetName;
-      this.postalnumber = postalNumber;
-      this.city = city;
-  }
-
-
-// TODO: implement the hashPassword(password) function <-- Doing
-// Function copied from Henriks login-example. 
-hashPassword(rawPassword){
-  var a = 1, c = 0, h, o;
-  if (rawPassword) {
-    a = 0;
-    //jshint plusplus:false bitwise:false <<-- Have no idea what this means
-    for (h = rawPassword.length - 1; h >= 0; h--) {
-      o = rawPassword.charCodeAt(h);
-      a = (a << 6 & 268435455) + o + (o << 14);
-      c = a & 266338304;
-      a = c !== 0 ? a ^ c >> 21 : a;
-    }
-  } else {    
-    // If the password is not valid, we'll throw an error we're able to catch
-    throw new Error("The password supplied is not valid");
-  }
-  return String(a);
-}
-}
 
 // Declare a function that makes the login pause for some ms to show a message
+// TODO: google to find what New, Promise and Resolve means
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
-// initialize empty user array
-var users = [];
-
-// push user to the array
-users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg"));
 
 
 // declare the variable 'login' and connect it to the button in Registration.html.
@@ -259,7 +247,7 @@ async function loggingIn() {
       } catch (error) {
 
           // We console log any error that might have been thrown
-          console.log(error);
+          console.log(error); 
       }
 
       // if username and password matches in users, the user is logged in.
@@ -267,7 +255,8 @@ async function loggingIn() {
           console.log(username + " is logged in!!!")
           resultSpan.innerText = "Login was successful"; 
           await sleep(2000);
-          window.location.href = "index.html";  //redirecting to another page
+          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
+         // ../Index.html
           return; 
       }
   
@@ -277,7 +266,7 @@ async function loggingIn() {
       else {
           attempt --; 
           alert ("You will die! "+ attempt +" attempt left");
-          
+          //make a span in stead of alert (alert makes it jump out of the function)
       }
   
       
@@ -351,127 +340,39 @@ login.onclick = loggingIn
 
 /* Errors:
 1. Cannot find the user Joe with password 1234 (but it does hash the password, and run the loginfunction)
-2. Will not redirect to index, but goes to a page that is not found: Cannot GET /action_page.php?username=Joe&psw=1234
+2. Will not redirect to index, but goes to a page that is not found..: "file:///C:/action_page.php?username=Joe&psw=1234"
 3. Does not wait with the sleep function
 4. ?
 */
-
-
-
-
-    
-
-    //function () {
+//function () {
      //   Math.random().toString(36).substr(2, 9);
     //}
     // Create function that assigns random userID, then it becomes a method. Create method instead. math.random 0 - 1 multiply it by a million 
     // or detect number of users and add 1. 
    // }
  // } 
-
-// Create array called users
-var users = JSON.parse(localStorage.getItem("users"));
-
-if(users === null){
-  users = [];
-  users.push(new User("CoolJoe", "1234", "Joe", "Reisinger", "Germany", "joe@email.de", 1));
-  users.push(new User("CoolAnna", "1234", "Anna", "Reisinger", "Germany", "joe@email.de", 2));
-}
-
-// Create Function that pushes new user data in existing array 
-
-// push new instance of Users into newly created array
-
-
-
-// In order to authenticate logged in user we create a variable and assign null
-var aunthenticatedUserId = null
-
-// Define the buttons and span
-var submit = document.getElementById('submit');
-var forget = document.getElementById('forgotPassword');
-var logout = document.getElementById("logout");
-var register = document.getElementById ('registerUser');
-var resultSpan = document.getElementById('loginResult');
-
-
-// Variabel to define the amount of wrong attempts you have
-var attempt = 3;
-// Gregor´s try to use local storage 
-
-// Function to go through the User Data to match Username/Password
-function getInfo() {
-  var username = document.getElementById("username").value
-  var password = document.getElementById("password").value
-
- 
-// Loop that goes through the User Data to idetify right or wrong Username/Password
-  for (let i = 0; i < users.length; i++) {
-      if (username == users[i].username && password == users[i].password) {
-        {console.log (username + " is logged in!");
-
-//Push username from logged in User in the local storage 
-        localStorage.setItem("loggedInUser", users[i].firstname);
-
-//redirect to new html side for logged in users 
-        window.location = "journeyOverview.html";
-
-//Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
-        aunthenticatedUserId = users[i].userId;
-        console.log (aunthenticatedUserId)
-        }
-
-// If Username or Password is not right than it counts down possibel attempts
-  } 
-}
-// Disabling fields after 3 attempts.
-if( attempt == 0){    
-    document.getElementById("username").disabled = true;
-    document.getElementById("password").disabled = true;
-    document.getElementById("submit").disabled = true;
-
-//Return false to get out of function
-return false;
-} else {
-
-//Drecrement amount of attemps and show in span "loginResult"
-  attempt--;
-  
-  resultSpan.innerText = "You've entered a wrong username or password. You have left "+attempt+" attempt(s).";
-  }    
-}
-function goToRegister () {
-    window.location = "registrationForm.html";
-  }
-
-function forgotPassword () {
-
-    window.location = "resetPassword.html";
-  }
-
-// Pushing new user into array Users and storing it using localStorage
-
-
-
-
-
-// var testObject = {regUsername: 'John', 'two':2, 'three': 3 };
-
-// Retrieve the object from storage
-
-//document.getElementById("btnSignUp").addEventListener("click", 
-
-document.getElementById("registerUser").addEventListener("click", function() {
-    username = document.getElementById("regUsername").value;
-    password = document.getElementById("regPassword").value;
-    firstname = document.getElementById("regFirstname").value;
-    surname = document.getElementById("regSurname").value;
-    country = document.getElementById("regCountry").value;
-    email = document.getElementById("regEmail").value;
-    gender = document.getElementById("regGender").value; 
-  
-    users.push(new User(username, password, firstname, surname, country, email, gender));
+ /* //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
+ aunthenticatedUserId = users[i].userId;
+ console.log (aunthenticatedUserId)
+ } 
+ users.push(new User(username, password, firstname, surname, country, email, gender));
     console.log(users);
     localStorage.setItem('users',JSON.stringify(users));
     window.location = "index.html";
       });
+ */
+
+// Add comments!!
+document.getElementById("submit").addEventListener("click", function(){
+  firstName = document.getElementById("regFirstName").value;
+  lastName = document.getElementById("regLastName").value;
+  userName = document.getElementById("regUserName").value;
+  email = document.getElementById("regEmail").value;
+  password = document.getElementById("regPassword").value;
+  phoneNumber = document.getElementById("regPhoneName").value;
+  dateOfBirth = document.getElementById("regDateOfBirth").value;
+  streetName = document.getElementById("regStreetName").value;
+  postalNumber = document.getElementById("regPostalNumber").value;
+  city = document.getElementById("regCity").value;
+
+});
