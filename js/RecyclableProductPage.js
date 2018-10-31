@@ -6,16 +6,16 @@
 var cart = [];
 
 //define item to show in cart
-var item = function(name, size, price, count) {
+var Item = function(name, size, price, count) {
     this.name = name
-    this.diaperSize = size
+    this.size = size
     this.price = price
     this.count = count
 };
 
 //Job of the function: create a new item and add it to the cart
 function addItemToCart(name, size, price, count) {
-    var item = new item(name, size, price, count);
+    var item = new Item(name, size, price, count);
     cart.push(item) //-> add new item
 }
 
