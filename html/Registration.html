@@ -27,13 +27,13 @@
 
             <!-- Defining the password and its requirements -->
            
-            <input type="password" placeholder="Password" name="p" id="regPsw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+            <input type="password" placeholder="Password" name="p" id="regPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
             title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
             required  minlength="8" maxlength="20" onkeyup='check();'/> 
 
             <!-- Check if the passwords match: confirmation password  -->
 
-            <input type="password" placeholder="Confirm Password" id="regConfirmPsw" onkeyup='check();' required>
+            <input type="password" placeholder="Confirm Password" id="regConfirmPassword" onkeyup='check();' required>
                 <span id="message2"></span> 
                 <!-- Span tag: to group inline-elements; a way to add to a part of a text or a part of a document-->
 
