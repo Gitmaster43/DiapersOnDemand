@@ -344,25 +344,6 @@ login.onclick = loggingIn
 4. ?
 */
 
-<<<<<<< HEAD
-function () {
-       Math.random().toString(36).substr(2, 9);
-    }
-    // Create function that assigns random userID, then it becomes a method. Create method instead. math.random 0 - 1 multiply it by a million 
-    // or detect number of users and add 1. 
-   }
- } 
-//  Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
- aunthenticatedUserId = users[i].userId;
- console.log (aunthenticatedUserId)
- } 
- users.push(new User(regFirstName,regLastName, regUserName, regEmail,regPassword, regPhoneNumber, regDateOfBirth, regStreetName, regPostalNumber, regCity));
-    console.log(users);
-    localStorage.setItem('users',JSON.stringify(users));
-    window.location = "index.html";
-      });
- 
-=======
 function registerUser() {
       Math.random().toString(36).substr(2, 9);
     
@@ -379,7 +360,6 @@ function registerUser() {
     localStorage.setItem('users',JSON.stringify(users));
     window.location = "../index.html";
 } 
->>>>>>> 0dc86b678e4f00d9a5fb2a5ace5bfb25cad06edd
 
 // Add comme
 document.getElementById("submit").addEventListener("click", function(){
