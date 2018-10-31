@@ -343,23 +343,23 @@ login.onclick = loggingIn
 3. Does not wait with the sleep function
 4. ?
 */
-//function () {
-     //   Math.random().toString(36).substr(2, 9);
-    //}
+
+function registerUser() {
+      Math.random().toString(36).substr(2, 9);
+    
     // Create function that assigns random userID, then it becomes a method. Create method instead. math.random 0 - 1 multiply it by a million 
     // or detect number of users and add 1. 
    // }
  // } 
- /* //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
+  //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
  aunthenticatedUserId = users[i].userId;
  console.log (aunthenticatedUserId)
- } 
- users.push(new User(username, password, firstname, surname, country, email, gender));
+  
+ users.push(new User(regFirstName, regLastName, regUserName, regEmail, regPsw, regPhoneNumber, regDateOfBirth, regStreetName, regPostalNumber, regCity));
     console.log(users);
     localStorage.setItem('users',JSON.stringify(users));
-    window.location = "index.html";
-      });
- */
+    window.location = "../index.html";
+} 
 
 // Add comments!!
 document.getElementById("submit").addEventListener("click", function(){
@@ -368,7 +368,7 @@ document.getElementById("submit").addEventListener("click", function(){
   userName = document.getElementById("regUserName").value;
   email = document.getElementById("regEmail").value;
   password = document.getElementById("regPassword").value;
-  phoneNumber = document.getElementById("regPhoneName").value;
+  phoneNumber = document.getElementById("regPhoneNumber").value;
   dateOfBirth = document.getElementById("regDateOfBirth").value;
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
