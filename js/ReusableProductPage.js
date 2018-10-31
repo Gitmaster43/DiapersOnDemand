@@ -7,20 +7,20 @@ function diaperSize() {
 }
 
 //create an empty array, because default cart is empty
-var cart = [];
+class lineItem {
+    constructor (name, size, price, count){
+        this.name = name
+        this.size = size
+        this.price = price
+        this.price = count
+    }
+}
 
-//define item to show in cart
-var Item = function(name, size, price, count) {
-    this.name = name
-    this.size = name
-    this.price = price
-    this.count = count
-};
 
 //Job of the function: create a new item and add it to the cart
 function addItemToCart(name, size, price, count) {
     var item = new Item(name, size, price, count);
-    cart.push(item) //-> add new item
+    lineItem.push(item) //-> add new item
 }
 
 addItemToCart("reuseable", 2, 20, 4);
