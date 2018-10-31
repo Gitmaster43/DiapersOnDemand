@@ -354,11 +354,7 @@ login.onclick = loggingIn
 */
 
 
-<<<<<<< HEAD
-// Here we get the elements by the ID, and say that the click should execute the function which sets the user?
-=======
 // Add comme
->>>>>>> 07ed588a719565e52443ef1bc522364208bfcd1b
 document.getElementById("submit").addEventListener("click", function(){
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
