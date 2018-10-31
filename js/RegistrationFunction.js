@@ -39,10 +39,10 @@ class User {
 }
 
 // Create array called users
-var users = JSON.parse(localStorage.getItem("users"));
+var users = JSON.parse(localStorage.getItem("users")); //A:  we are not creating? We are translating to and from the local storage?
 
-if(users === null){
-    // initialize empty user array
+if(users === null){ //A: if there are nothing within the localstorage, the variable "users" will be initialized 
+    // initialize empty user array 
     var users = [];
 
     // push user to the array
@@ -53,7 +53,7 @@ if(users === null){
 // Password (line 49-140): Depicts if the user matches the password requirements
 
 // Defining the variables 
-var myInput = document.getElementById("psw");
+var myInput = document.getElementById("psw"); //A: defines the variables for the password?
 var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
@@ -75,9 +75,9 @@ myInput.onblur = function() {
 myInput.onkeyup = function() {
   // Validate lowercase letters
   var lowerCaseLetters = /[a-z]/g;
-  if(myInput.value.match(lowerCaseLetters)) { 
-    letter.classList.remove("invalid");
-    letter.classList.add("valid");
+  if(myInput.value.match(lowerCaseLetters)) { //checks if the value(words) put into the psw field has lowercase letters
+    letter.classList.remove("invalid");       //What does "letter.classList.remove do?" 
+    letter.classList.add("valid");            //This function is validating whether or not there are lowercaseletters within the psw field.
   } else {
     letter.classList.remove("valid");
     letter.classList.add("invalid");
@@ -124,14 +124,14 @@ var check = function() {
     document.getElementById("message2").style.color = "green";
     document.getElementById("message2").innerHTML = "√ matching";
   } else {
-    document.getElementById("message2").style.color = "red";
-    document.getElementById("message2").innerHTML = "X not matching";
+    document.getElementById("message2").style.color = "red"; 
+    document.getElementById("message2").innerHTML = "X not matching"; //this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
   } 
   
 }
 
 
-// if passwords don't match, the user can not proceed
+// if passwords don't match, the user can not proceed                 //this code is shown when pressing "create"?
 
 
 var match = function() {
@@ -152,7 +152,6 @@ resultSpan.innerText = "Creation was successful"
 var enter = function(e) {
     
   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-    
 
     // Get all users from local storage
 
@@ -164,7 +163,7 @@ var enter = function(e) {
 
     // Save new list
 
-    console.log("running");
+    console.log("running");   
    return false;}
 }
 
