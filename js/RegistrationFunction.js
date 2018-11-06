@@ -301,28 +301,6 @@ async function loggingIn() {
 }
 } 
 
-/* 
-// Make the password visible
-// Declare the variables andconnect them to the password-button and eye-button
-var pwd = document.getElementById("pwd");
-var eye = document.getElementById("eye");
-
-// add a listener on the eye that responds to clicks and execute the function togglePass
-eye.addEventListener("click",togglePass);
-
-// 
-function togglePass(){
-
-  eye.classList.toggle("active");
-
-  (pwd.type == "password") ? pwd.type = "text" :
-  pwd.type = "password";
-
-  
-}
- */
-// Make a function that clicks the submit button when you press enter in the pwd box.
-
 var enter = function(e) {
   
  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
@@ -339,15 +317,6 @@ document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
 
 login.onclick = loggingIn
 // a lot of blank spaces 
-
-
-/* Errors:
-1. Cannot find the user Joe with password 1234 (but it does hash the password, and run the loginfunction)
-2. Will not redirect to index, but goes to a page that is not found..: "file:///C:/action_page.php?username=Joe&psw=1234"
-3. Does not wait with the sleep function
-4. ?
-*/
-
 
 
 
@@ -376,3 +345,23 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   localStorage.setItem('users', JSON.stringify(users));
   window.location = "../index.html";
 }); 
+
+
+
+
+/* Current errors:
+1. Cannot find the user Joe with password 1234 (but it does hash the password, and run the loginfunction)
+2. Will not redirect to index, but goes to a page that is not found..: "file:///C:/action_page.php?username=Joe&psw=1234"
+3. Does not wait with the sleep function
+4. ?
+*/
+
+/* 
+  1. We have a webshop for Diapers
+  2. Currently we are trying to combine the registration form and storage with the login function
+  3. Made the login, made the registration from scratch, made a cool web interface. Implemented local storage for the registration. Trying to merge.
+  
+  Review Qs: 
+  1. Improve use of Class?
+  2. Authetication of the user in the local storage? How can we do this most easily?
+*/
