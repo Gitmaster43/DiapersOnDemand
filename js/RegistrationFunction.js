@@ -39,6 +39,7 @@ class User {
     }
 }
 
+
 // Create array called users
 var users = JSON.parse(localStorage.getItem("users")); //A:  we are not creating? We are translating to and from the local storage?
 
@@ -59,6 +60,9 @@ var letter = document.getElementById("letter");
 var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
+
+
+// TODO: Set a function that checks if the user name is unique in the storage.
 
 
 // When the user clicks on the password field, show the message box
@@ -345,6 +349,12 @@ login.onclick = loggingIn
 */
 
 
+
+
+//function registerUser() {
+      
+  // Get all users from the database
+  
 // Here we get the elements by the ID, and say that the click should execute the function which sets the user?
 document.getElementById("submit").addEventListener("click", function(){
   firstName = document.getElementById("regFirstName").value;
@@ -358,24 +368,6 @@ document.getElementById("submit").addEventListener("click", function(){
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
 
-});
-
-function registerUser() {
-      
-  // Get all users from the database
-  
-
-
-  // Making a random-function that creates a random userId which we can push to the user.
-  Math.random().toString(36).substr(2, 9);
-  
-
-// 
-//Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value 
-// What will we use this for? Is the authenticatedUserId important to have?
-aunthenticatedUserId = users[i].userId;
-console.log (aunthenticatedUserId)
-
 
 // Take the user data and push it to the Class
 
@@ -383,4 +375,4 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   console.log(users);
   localStorage.setItem('users', JSON.stringify(users));
   window.location = "../index.html";
-} 
+}); 
