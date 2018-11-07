@@ -187,13 +187,13 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
       // We use a try-catch for the hash-password function, since something could go wrong.
       try {
 
-         /*  // We try to create a variable with the hashed version of the inputPassword
+          // We try to create a variable with the hashed version of the inputPassword
           var hashedInputPassword = user.hashPassword(inputPassword.value);
           console.log(hashedInputPassword);
       } catch (error) {
 
           // We console log any error that might have been thrown
-          console.log(error);  */
+          console.log(error);  
       }
         // Setting the maximum number of attempts to log in.
         attempt = 3;
