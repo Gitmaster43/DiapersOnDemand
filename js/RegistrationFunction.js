@@ -1,4 +1,3 @@
-
 // Adding class of users, with defined user characteristics
 
 class User {
@@ -323,7 +322,7 @@ myInput.onkeyup = function() {
   }
 
   // Validate length
-  if(myInput.value.length >= 8) {
+  if(myInput.value.length >= 😎 {
     length.classList.remove("invalid");
     length.classList.add("valid");
   } else {
@@ -363,5 +362,3 @@ var match = function() {
 //TODO: Make this message pop up when the user creation is successful
 var resultSpan = document.getElementById("creationResult");
 resultSpan.innerText = "Creation was successful"
-  
-
