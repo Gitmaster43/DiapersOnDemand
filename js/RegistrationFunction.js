@@ -132,7 +132,7 @@ var check = function() {
 }
 
 
-// if passwords don't match, the user can not proceed                 //this code is shown when pressing "create"?
+// if passwords don't match, the user can not proceed                 
 
 
 var match = function() {
@@ -140,11 +140,11 @@ var match = function() {
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
   // Otherwise it will depict the message "Creation was successfull"
   if  (document.getElementById("regPassword").value != document.getElementById("regConfirmPassword").value) {
-  alert ("Passwords don't match");
+  alert ("Passwords don't match");                      //we dont really need this alert, its fairly logic in the site that the passwords does not match
   } 
 } 
 
-
+//explain span here? 
 var resultSpan = document.getElementById("creationResult");
 resultSpan.innerText = "Creation was successful"
   
@@ -180,8 +180,8 @@ if (localStorage.clickcount) {
 } else {
   localStorage.clickcount = 1;
 }
-document.getElementById("result") +
-localStorage.clickcount + " time(s).";
+document.getElementById("result") +                         //can't find any ID called result?
+localStorage.clickcount + " time(s).";                      //why do we need to count the clicks on whatever button?
 
 //Local storage (domain specific): hardcoded version 
 
@@ -190,10 +190,10 @@ localStorage.clickcount + " time(s).";
 //first parameter in the parantheses is the name (unique; is in local storage)
 // Storing multiple types of information into a single local storage key value
 // In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts
-localStorage.setItem( "User", JSON.stringify( users ));
+localStorage.setItem( "User", JSON.stringify( users ));          
 
 // When we want to get item out we want to parse it back into a native JavaScript object
-localData = JSON.parse( localStorage.getItem("User"));
+localData = JSON.parse( localStorage.getItem("User"));          // LOCALDATA comes from where?
 
 // console.log(localData);
 console.log(users);
@@ -215,13 +215,13 @@ function sleep(ms) {
 var login = document.getElementById('login');
 
 // Setting the maximum number of attempts to log in.
-var attempt = 3;
+var attempt = 3;                                      //is "attempt" a function within JS?
 
-// Binding the resultspan to a textfield in html-file.
+// Binding the resultspan to a textfield in html-file.                            //So, the use of span is to show a message?
 var resultSpan = document.getElementById('loginResult')
 
 // The function that gets information from the users array and checks if it fits.
-// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- What does async mean?
+// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- What does async mean?      //what happens to the web page if the function is syncronized?
 async function loggingIn() {
 
   // Declaring the variables username and password, and connect them to the buttons in index.html.
@@ -234,7 +234,7 @@ async function loggingIn() {
   for(i = 0; i < users.length; i++) {
 
       // Declaring a user for easy use.
-      var user = users[i];
+      var user = users[i];            
 
       //Copied from Henriks login example
       // We use a try-catch for the hash-password function, since something could go wrong.
@@ -246,7 +246,7 @@ async function loggingIn() {
       } catch (error) {
 
           // We console log any error that might have been thrown
-          console.log(error); 
+          console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
       }
 
       // if username and password matches in users, the user is logged in.
@@ -281,7 +281,7 @@ async function loggingIn() {
       inputPassword.disabled = true;
       login.disabled = true;
       
-      // Return false to stop us from doing anything further.
+      // Return false to stop us from doing anything further.                   //why do we need to return false? If the disable proeperty is true it disables
       return false;
       } 
       else {
@@ -334,7 +334,7 @@ document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
 
 
 login.onclick = loggingIn
-// a lot of blank spaces 
+// a lot of blank spaces              //what does this do?
 
 
 /* Errors:
@@ -345,7 +345,7 @@ login.onclick = loggingIn
 */
 
 
-// Here we get the elements by the ID, and say that the click should execute the function which sets the user?
+// Here we get the elements by the ID, and say that the click should execute the function which sets the user?        //sets the user?
 document.getElementById("submit").addEventListener("click", function(){
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
