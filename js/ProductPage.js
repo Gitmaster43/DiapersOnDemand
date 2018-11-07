@@ -23,20 +23,33 @@ class lineItem {
     //Add a price-calculation function?
 }
 
+// Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
 
+// If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
+if(lineItems === null){
+    var lineItems = [];
+}
 
+// We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
     diaperSize = document.getElementById("diaperSize").value;
     diaperType = document.getElementById("typeOfDiaper").value;
     diapersADay = document.getElementById("diapersADay").value;
     
-
+// Push the values of the dropdown lists into the localStorage
 lineItems.push(new lineItem(diaperSize, diaperType, diapersADay));
     console.log(lineItems);
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
+
+
+/* TODO: 
+    1. Create something that gets the content of the localStorage and shows it as a cart
+    2. Create something that can remove things from localStorage
+    
+*/
 
 
 /* //Job of the function: create a new item and add it to the cart
