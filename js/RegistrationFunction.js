@@ -18,147 +18,32 @@ class User {
       this.userId = 0;
   }
 
-
     // Function copied from Henriks login-example. 
-    hashPassword(rawPassword){
-      var a = 1, c = 0, h, o;
-      if (rawPassword) {
-        a = 0;
-        //jshint plusplus:false bitwise:false <<-- Have no idea what this means
-        for (h = rawPassword.length - 1; h >= 0; h--) {
-          o = rawPassword.charCodeAt(h);
-          a = (a << 6 & 268435455) + o + (o << 14);
-          c = a & 266338304;
-          a = c !== 0 ? a ^ c >> 21 : a;
-        }
-      } else {    
-        // If the password is not valid, we'll throw an error we're able to catch
-        throw new Error("The password supplied is not valid");
+  hashPassword(rawPassword){
+    var a = 1, c = 0, h, o;
+    if (rawPassword) {
+      a = 0;
+      //jshint plusplus:false bitwise:false <<-- Have no idea what this means
+      for (h = rawPassword.length - 1; h >= 0; h--) {
+        o = rawPassword.charCodeAt(h);
+        a = (a << 6 & 268435455) + o + (o << 14);
+        c = a & 266338304;
+        a = c !== 0 ? a ^ c >> 21 : a;
       }
-      return String(a);
+    } else {    
+      // If the password is not valid, we'll throw an error we're able to catch
+      throw new Error("The password supplied is not valid");
     }
-
-
-
-      // Declare a function that makes the login pause for some ms to show a message
-      // TODO: google to find what New, Promise and Resolve means
-      sleep(ms) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-      }
-
-      /* 
-        Questions:
-        Why can I not use var = xx inside the Class?
-        Why does my loginfunction not work?
-        
-      */
+    return String(a);
+  }
 
     
-    
-    // The function that gets information from the users array and checks if it fits.
-    // Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
-    async loggingIn() {
-
-      // Declaring the variables username and password, and connect them to the buttons in index.html.
-      var inputUsername = document.getElementById("usernamebox")
-      var inputPassword = document.getElementById("loginpasswordbox")
-
-    
-
-      // Creating a for-loop to loop through the users array.
-      for(i = 0; i < users.length; i++) {
-
-          // Declaring a user for easy use.
-          var user = users[i];
-
-          //Copied from Henriks login example
-          // We use a try-catch for the hash-password function, since something could go wrong.
-          try {
-
-              // We try to create a variable with the hashed version of the inputPassword
-              var hashedInputPassword = user.hashPassword(inputPassword.value);
-              console.log(hashedInputPassword);
-          } catch (error) {
-
-              // We console log any error that might have been thrown
-              console.log(error); 
-          }
-            // Setting the maximum number of attempts to log in.
-            attempt = 3;
-
-            // Binding the resultspan to a textfield in html-file.
-            resultSpan = document.getElementById('loginResult');
-
-
-          // if username and password matches in users, the user is logged in.
-          if (inputUsername.value == users[i].username && inputPassword.value == hashedInputPassword) {
-              console.log(username + " is logged in!!!")
-              resultSpan.innerText = "Login was successful"; 
-              await sleep(2000);
-              window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-            // ../Index.html
-              return; 
-          }
-      
-          // else, decrement the attempts and alert the user that he has fewer attempts left
-          // user only have 3 attempts
-          // TODO: Trying to get the counter to stop at 0
-          else {
-              attempt --; 
-              alert ("You will die! "+ attempt +" attempt left");
-              //make a span in stead of alert (alert makes it jump out of the function)
-          }
-      
-          
-          if (attempt == 0) {
-          // Since the user has tried three times, we let the user know that he's been banned
-          resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
-
-          // You have tried too many times, you are now redirected to forgotten password?
-          // Or just redirect the user to the forgotten password site?
-
-          // Disable the two input fields and the button in order for the user to not make any trouble
-          inputUsername.disabled = true;
-          inputPassword.disabled = true;
-          login.disabled = true;
-          
-          // Return false to stop us from doing anything further.
-          return false;
-          } 
-          else {
-          // Since we did not find a match, we know that the user has typed a wrong password and username
-          resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
-
-          console.log("incorrect username or password")
-
-          // Return false, since we do not have anything more to do
-          return false;
-      };
-      
-    }
-    
-    var enter = function(e) {
-  
-      if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-       loggingIn();
-       console.log("running");
-       return false;}
-     }
-     
-     // if the user presses Enter while in the password box, it should trigger a click on the login button
-     // add an eventlistener for keypress on the enter button. function above.
-     // It only listens to the passwordbox, but can listen to anything if we use "document"
-     document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
-     
-     
-     login.onclick = loggingIn
-  } 
-
 
 }
 
 
-// Define users as "users" which is stored in the local storage.
+
+// Define users as "users" and get them from the local storage.
 var users = JSON.parse(localStorage.getItem("users")); 
 
 if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
@@ -231,8 +116,6 @@ console.log(users);
 // Get the modal
 var modal = document.getElementById('id01');
 
-
-
  // declare the variable 'login' and connect it to the button in Registration.html.
  var login = document.getElementById('login');
 
@@ -265,9 +148,119 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
 
 
 
+// Declare a function that makes the login pause for some ms to show a message
+// TODO: google to find what New, Promise and Resolve means
+/* function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+} */
+
+
+/* 
+  What does not work: 
+  1. ERROR: "user.hashpassword is not a function" for some reason.
+  2. It does not count downwards.
+*/
 
 
 
+// The function that gets information from the users array and checks if it fits.
+// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
+function loggingIn() {
+
+// Declaring the variables username and password, and connect them to the buttons in index.html.
+var inputUsername = document.getElementById("usernamebox")
+var inputPassword = document.getElementById("loginpasswordbox")
+
+if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
+  // We set the resultspan with a new text and return false to get out of this function
+  resultSpan.innerText = "You need to enter a username and password in order to use our system";
+  return false;
+}
+
+  // Creating a for-loop to loop through the users array.
+  for(i = 0; i < users.length; i++) {
+
+      // Declaring a user for easy use.
+      var user = users[i];
+
+      //Copied from Henriks login example
+      // We use a try-catch for the hash-password function, since something could go wrong.
+      try {
+
+         /*  // We try to create a variable with the hashed version of the inputPassword
+          var hashedInputPassword = user.hashPassword(inputPassword.value);
+          console.log(hashedInputPassword);
+      } catch (error) {
+
+          // We console log any error that might have been thrown
+          console.log(error);  */
+      }
+        // Setting the maximum number of attempts to log in.
+        attempt = 3;
+
+        // Binding the resultspan to a textfield in html-file.
+        resultSpan = document.getElementById('loginResult');
+
+
+      // if username and password matches in users, the user is logged in.
+      if (user.username == inputUsername.value && user.password == hashedInputPassword) {
+
+          console.log(username + " is logged in!!!")
+          resultSpan.innerText = "Login was successful"; 
+          //await sleep(2000);
+          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
+        // ../Index.html
+          return; 
+      }
+
+          
+      if (attempt == 0) {
+      // Since the user has tried three times, we let the user know that he's been banned
+      resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
+
+      // TODO: Or to discuss:
+      // You have tried too many times, you are now redirected to forgotten password?
+      // Or just redirect the user to the forgotten password site?
+
+      // Disable the two input fields and the button in order for the user to not make any trouble
+      inputUsername.disabled = true;
+      inputPassword.disabled = true;
+      login.disabled = true;
+      
+      // Return false to stop us from doing anything further.
+      return false;
+
+      } 
+      
+      // else, decrement the attempts     
+      else {
+          attempt --; 
+         
+          resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
+
+          console.log("incorrect username or password")
+
+      // Return false, since we do not have anything more to do
+      return false;
+     };
+  }
+}
+
+var enter = function(e) {
+
+if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+  loggingIn();
+  //console.log("running");
+  return false;}
+}
+
+// if the user presses Enter while in the password box, it should trigger a click on the login button
+// add an eventlistener for keypress on the enter button. function above.
+// It only listens to the passwordbox, but can listen to anything if we use "document"
+document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
+
+
+login.onclick = loggingIn
 
 
 
@@ -373,13 +366,3 @@ var resultSpan = document.getElementById("creationResult");
 resultSpan.innerText = "Creation was successful"
   
 
-
-
-
-/* Current errors:
-1. Cannot find the user Joe with password 1234 (it does hash the password, and have some error in running the loginfunction)
-2. Will not redirect to index, but goes directly to a page that is not found..: "file:///C:/action_page.php?username=Joe&psw=1234"
-3. Does not wait with the sleep function
-4. Does not run the login-function
-
-*/
