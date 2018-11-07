@@ -105,7 +105,7 @@ localStorage.setItem( "User", JSON.stringify( users ));
 
 // When we want to get item out we want to parse it back into a native JavaScript object
 
-localData = JSON.parse( localStorage.getItem("User"));          // LOCALDATA comes from where?
+localData = JSON.parse( localStorage.getItem("User"));          
 
 // console.log(localData);
 console.log(users);
