@@ -3,7 +3,7 @@
 
 //creates function for dropdown for diaperSize
 function diaperSize() {
-    var diaperSize=document.getElementById(diaperSize);
+    var diaperSize = document.getElementById("diaperSize"); // We need the .value here, to get the value of diaperSize?
 }
 
 //create an empty array, because default cart is empty
