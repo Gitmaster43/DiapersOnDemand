@@ -322,7 +322,7 @@ myInput.onkeyup = function() {
   }
 
   // Validate length
-  if(myInput.value.length >= 😎 {
+  if(myInput.value.length >= 8) {
     length.classList.remove("invalid");
     length.classList.add("valid");
   } else {
