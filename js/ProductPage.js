@@ -21,6 +21,10 @@ class lineItem {
         this.price = count
     }
     //Add a price-calculation function?
+
+    createHTML (){
+        return 
+    }
 }
 
 // Defining the localStorage for the lineItems, so that we can store it
