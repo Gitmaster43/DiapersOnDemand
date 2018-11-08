@@ -19,6 +19,8 @@ class User {
 
     // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
+
+    console.log(rawPassword);
     var a = 1, c = 0, h, o;
     if (rawPassword) {
       a = 0;
@@ -51,7 +53,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
     // push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
-
+    // Login with Anders does not work though; no idea why --> Joe works
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
 }
 
@@ -106,9 +108,6 @@ localStorage.setItem( "User", JSON.stringify( users ));
 
 localData = JSON.parse( localStorage.getItem("User"));          
 
-// console.log(localData);
-console.log(users);
-
 
 // By clicking the login-button the "modal" appears
 // Get the modal
@@ -137,9 +136,7 @@ document.getElementById("submit").addEventListener("click", function(){
 
 
 // Take the user data and push it to the Class
-
 users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
-  console.log(users);
   localStorage.setItem('users', JSON.stringify(users));
   window.location = "../index.html";
 }); 
@@ -179,7 +176,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
   for(i = 0; i < users.length; i++) {
 
       // Declaring a user for easy use.
-      var user = users[i];            
+      var user = new User(users[i].firstname, users[i].lastname,users[i].username, users[i].email, users[i].password, users[i].phonenumber, users[i].dateofbirth, users[i].streetname, users[i].postalnumber, users[i].city);            
 
       //Copied from Henriks login example
       // We use a try-catch for the hash-password function, since something could go wrong.
@@ -187,8 +184,11 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
 
           // We try to create a variable with the hashed version of the inputPassword
           var hashedInputPassword = user.hashPassword(inputPassword.value);
-          console.log(hashedInputPassword);
+          console.log(inputPassword.value);
+          //console.log(hashedInputPassword);
       } catch (error) {
+
+        
 
           // We console log any error that might have been thrown
           console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
@@ -199,15 +199,17 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
         // Binding the resultspan to a textfield in html-file.
         resultSpan = document.getElementById('loginResult');
 
-
+      console.log(user.username);
+      console.log(user.password);
+      console.log(hashedInputPassword);
       // if username and password matches in users, the user is logged in.
-      if (user.username == inputUsername.value && user.password == hashedInputPassword) {
+      if (user.username == inputUsername.value && users[i].password == hashedInputPassword) {
 
-          console.log(username + " is logged in!!!")
-          resultSpan.innerText = "Login was successful"; 
-          //await sleep(2000);
-          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-        // ../Index.html
+        //   console.log(username + " is logged in!!!")
+        //   resultSpan.innerText = "Login was successful"; 
+        //   //await sleep(2000);
+        //   window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
+        // // ../Index.html
           return; 
       }
 
@@ -236,7 +238,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
          
           resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
 
-          console.log("incorrect username or password")
+          console.log("incorrect username or password");
 
       // Return false, since we do not have anything more to do
       return false;
@@ -322,7 +324,7 @@ myInput.onkeyup = function() {
   }
 
   // Validate length
-  if(myInput.value.length >= 😎 {
+  if(myInput.value.length >= 8) {
     length.classList.remove("invalid");
     length.classList.add("valid");
   } else {
