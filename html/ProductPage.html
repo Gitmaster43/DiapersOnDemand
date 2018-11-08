@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+    <link href="../css/reusableStyle.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="header">
+    <!-- <h1>Diapers</h1>
+    <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
+     -->    <div class="selection">
+            <form>
+                <select name="typeOfDiaper" id="typeOfDiaper">
+                    <option value="choose" >Choose</option> <!-- TODO: How to add an error that requires the user to choose?? Same with size and quantity -->
+                    <option value="recyclable">Recyclable</option>
+                    <option value="reusable">Reusable</option>
+                </select>
+                <select id="diaperSize">
+                    <option>Select size</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+              </select>
+                        
+              <select id="diapersADay"> 
+                <option>Diapers a day</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+              </select>
+            </form>
+        </div>
+
+            <input placeholder="price" > <!-- Should show the price here or something -->
+
+            <button id="addItemToCart" name="addItemToCart" >Add Diapers to Cart</button> <!-- onclick="addItemToCart()" -->
+
+            </form>
+        </div>
+<br>
+    </div>
+        <div class="floatRight">
+            <!-- Create the cart, which gets information from the local storage -->
+            <!-- Table? -->
+            <table>
+                <thead>
+                    <tr class="header">
+                        <td>Type</td>
+                        <td>Size</td>
+                        <td>Quantity per day</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td class=""></td>
+                    </tr>
+                    <td></td>
+
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    <script src="../js/ProductPage.js"></script>
+</body>
