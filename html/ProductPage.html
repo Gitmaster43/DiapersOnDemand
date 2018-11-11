@@ -10,16 +10,35 @@
 
 </head>
 <body>
-    <div class="header">
+    <div id="left" class="header" style="width:51%; float: left;">
     <!-- <h1>Diapers</h1>
     <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
-     -->    <div class="selection">
+     -->    <div  class="selection" >
             <form>
-                <select name="typeOfDiaper" id="typeOfDiaper">
+                <select name="typeOfDiaper" id="typeOfDiaper" onchange="diaperPrice()">
+                    <!-- TODO: Find a way to make the dropdown list get the items from the Class product in stead of hardcoding -->
                     <option value="choose" >Choose</option> <!-- TODO: How to add an error that requires the user to choose?? Same with size and quantity -->
                     <option value="recyclable">Recyclable</option>
                     <option value="reusable">Reusable</option>
                 </select>
+                <br>
+                <span id="price"></span>
+                <script>
+
+                resultSpan = document.getElementById("price");
+              
+                function diaperPrice() {
+                if (document.getElementById("typeOfDiaper").value === "Choose") {
+                    resultSpan.innerText = "";
+                } else if (document.getElementById("typeOfDiaper").value === "recyclable") {
+                    resultSpan.innerText = 30;
+                } else (document.getElementById("typeOfDiaper").value === "reusable"); {
+                    resultSpan.innerText = 40;
+                } return false;
+                }
+                                
+                </script> <!-- Should show the price here or something -->
+            <br>    
                 <select id="diaperSize">
                     <option>Select size</option>
                     <option>1</option>
@@ -29,7 +48,7 @@
                     <option>5</option>
                     <option>6</option>
               </select>
-                        
+            <br>  
               <select id="diapersADay"> 
                 <option>Diapers a day</option>
                 <option>1</option>
@@ -41,16 +60,15 @@
               </select>
             </form>
         </div>
-
-            <input placeholder="price" > <!-- Should show the price here or something -->
-
+        <br>
+            
             <button id="addItemToCart" name="addItemToCart" >Add Diapers to Cart</button> <!-- onclick="addItemToCart()" -->
 
-            </form>
+           
         </div>
-<br>
+
     </div>
-        <div class="floatRight">
+        <div id="right" class="floatRight" style="width:49%; float: right;">
             <!-- Create the cart, which gets information from the local storage -->
             <!-- Table? -->
             <table>
