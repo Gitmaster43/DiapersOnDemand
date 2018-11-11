@@ -40,22 +40,75 @@ class User {
 
 }
 
-
+//LOCAL STORAGE:
 
 // Define users as "users" and get them from the local storage.
-var users = JSON.parse(localStorage.getItem("users")); 
+var users = JSON.parse(localStorage.getItem("users"));                //firstly we check to see if there are any users in the local storage
 
 if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
     // initialize empty user array 
-    var users = [];
+    var users = [];                                                   //If not, we create an empty array with users we can push later
 
-    // push user to the array
+    // Check code for our self, hardcoded users, push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
 
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
 }
 
 
+// When we want to get item out we want to parse it back into a native JavaScript object
+
+localData = JSON.parse(localStorage.getItem("User"));          
+
+// console.log(localData);
+console.log(users);
+
+
+// Show the number of times a button was clicked
+if (localStorage.clickcount) {
+  localStorage.clickcount = Number(localStorage.clickcount) + 1;
+} else {
+  localStorage.clickcount = 1;
+}
+document.getElementById("result") +                         //can't find any ID called result?
+localStorage.clickcount + " time(s).";                      //why do we need to count the clicks on whatever button?
+
+
+//function registerUser() {
+      
+  // Get all users from the database
+  
+// Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
+document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
+  firstName = document.getElementById("regFirstName").value;
+  lastName = document.getElementById("regLastName").value;
+  userName = document.getElementById("regUserName").value;
+  email = document.getElementById("regEmail").value;
+  password = document.getElementById("regPassword").value;
+  phoneNumber = document.getElementById("regPhoneNumber").value;
+  dateOfBirth = document.getElementById("regDateOfBirth").value;
+  streetName = document.getElementById("regStreetName").value;
+  postalNumber = document.getElementById("regPostalNumber").value;
+  city = document.getElementById("regCity").value;
+
+
+// Take the user data and push it to the Class
+// "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
+users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
+  console.log(users);                         //what is this for? It does not show in console.
+  //Local storage (domain specific): hardcoded version 
+  // turning our users into a JSON string and then set it into local storage
+  // first parameter in the parantheses is the name (unique; is in local storage)
+  // Storing multiple types of information into a single local storage key value
+  // In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts   
+  //we save the array "users" after we have stringified it, in the localstorage under the key "User" 
+  localStorage.setItem('users', JSON.stringify(users)); //And then we save this array as a string under the key users 
+  
+  window.location = "../index.html";
+}); 
+
+console.log("hi world");
+console.log(users);
 
 //TODO: Finalize the enter-function, with a link to the different lines below.
 
@@ -83,31 +136,6 @@ var enter = function(e) {
 }
 
 
-// Show the number of times a button was clicked
-if (localStorage.clickcount) {
-  localStorage.clickcount = Number(localStorage.clickcount) + 1;
-} else {
-  localStorage.clickcount = 1;
-}
-document.getElementById("result") +                         //can't find any ID called result?
-localStorage.clickcount + " time(s).";                      //why do we need to count the clicks on whatever button?
-
-
-//Local storage (domain specific): hardcoded version 
-
-// turning our users into a JSON string and then set it into local storage
-
-// first parameter in the parantheses is the name (unique; is in local storage)
-// Storing multiple types of information into a single local storage key value
-// In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts
-localStorage.setItem( "User", JSON.stringify( users ));          
-
-// When we want to get item out we want to parse it back into a native JavaScript object
-
-localData = JSON.parse( localStorage.getItem("User"));          
-
-// console.log(localData);
-console.log(users);
 
 
 // By clicking the login-button the "modal" appears
@@ -118,31 +146,6 @@ var modal = document.getElementById('id01');
  var login = document.getElementById('login');
 
  
-//function registerUser() {
-      
-  // Get all users from the database
-  
-// Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("click", function(){
-  firstName = document.getElementById("regFirstName").value;
-  lastName = document.getElementById("regLastName").value;
-  userName = document.getElementById("regUserName").value;
-  email = document.getElementById("regEmail").value;
-  password = document.getElementById("regPassword").value;
-  phoneNumber = document.getElementById("regPhoneNumber").value;
-  dateOfBirth = document.getElementById("regDateOfBirth").value;
-  streetName = document.getElementById("regStreetName").value;
-  postalNumber = document.getElementById("regPostalNumber").value;
-  city = document.getElementById("regCity").value;
-
-
-// Take the user data and push it to the Class
-
-users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
-  console.log(users);
-  localStorage.setItem('users', JSON.stringify(users));
-  window.location = "../index.html";
-}); 
 
 
 
