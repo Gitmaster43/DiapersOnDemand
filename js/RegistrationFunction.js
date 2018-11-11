@@ -137,6 +137,8 @@ document.getElementById("submit").addEventListener("click", function(){
 
 
 // Take the user data and push it to the Class
+// ERROR: If the date is wrong, it only sends you to index.html, and does not store in localstorage. Otherwise, it stores but does not redirect.
+// Could use actions and onsumbit="return signUp()" in the form. Important with the return.
 
 users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
   console.log(users);
