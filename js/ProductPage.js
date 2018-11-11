@@ -2,26 +2,51 @@
 //create class "product" - within dropdown bar of size, number of diapers, priceCalc
 
 class product {
-    constructor (diaperSize, diaperPrice, diaperDescription, diaperType) {
-        this.diaperSize = diaperSize;
-        this.diaperPrice = diaperPrice; // Add a function here, or just the two parameters?
-        this.diaperDescription = diaperDescription;
-        this.diaperType = diaperType;
+    constructor (/* diaperSize ,*/productID, productType, productPrice, productDescription) {
+        /* this.diaperSize = diaperSize; */
+        this.productID = productID;
+        this.productType = productType;
+        this.productPrice = productPrice; 
+        this.productDescription = productDescription;
+        
     }
 
 }
+
+var products = [];
+
+
+//Pushing the two products to the Class
+products.push(new product(0, "Reusable", 40,));
+products.push(new product(1, "Recyclable", 30,));
+
+//Checking if the pushing of products actually worked.
+//console.log(products);
+
+// Create a box in HTML that shows the price per diaper, which changes with which type the user chooses in the first dropdown
 
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class lineItem {
-    constructor (diaperSize, diaperPrice, diapersADay, count){
-        this.diaperSize = diaperSize;
-        this.diaperPrice = diaperPrice // Price calculation here??
-        this.diapersADay = diapersADay
-        this.price = count
+    constructor (type, size, price, numberADay, priceCalc){
+        this.diaperType = type;
+        this.diaperSize = size;
+        this.diaperPrice = price;
+        this.diapersADay = numberADay;
+       // this.price = this.function(priceCalc); //Or is this the calculation?
     }
-    //Add a price-calculation function?
-}
+    
+    
+
+    
+    //Creating a function that creates a table row with data from the lineItem?
+    createHTML(){
+        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" + this.diaperPrice + "</td><td>" + this.button + "</td></tr>";
+    }
+
+    
+
+} 
 
 // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
@@ -33,17 +58,45 @@ if(lineItems === null){
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
-    diaperSize = document.getElementById("diaperSize").value;
     diaperType = document.getElementById("typeOfDiaper").value;
-    diapersADay = document.getElementById("diapersADay").value;
+    diaperSize = document.getElementById("diaperSize").value;
+    diaperPrice = document.getElementById("price").value
+    diapersADay = document.getElementById("diapersADay").value; 
     
 // Push the values of the dropdown lists into the localStorage
-lineItems.push(new lineItem(diaperSize, diaperType, diapersADay));
+lineItems.push(new lineItem(diaperType, diaperSize, diaperPrice, diapersADay));
     console.log(lineItems);
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
 
+
+
+
+//Making a function that calculates the price of the order
+function priceCalc(price){
+    var price = products.productPrice * lineItems.numberADay;
+    console.log(price);
+} 
+
+
+
+// In order to get an item from localstorage you just need getItem('key'), i.e. you just need the key of the object
+
+// Use a forEach loop to iterate on the contents of the array, which you get into your code by the getItem () function
+
+// Marten:
+// Add a property of the user can be the shopping cart, which he can add or remove
+// Or you could 
+/* 
+shoppingcart = {
+    products: [],
+    totalAmount:XX,
+    amountOfProducts:XX,
+} */
+// Can have a class of shoppingCart and also have the properties within the object User.
+
+//Have a unique ID of a user, and a unique ID of the product
 
 /* TODO: 
     1. Create something that gets the content of the localStorage and shows it as a cart
@@ -52,13 +105,3 @@ lineItems.push(new lineItem(diaperSize, diaperType, diapersADay));
 */
 
 
-/* //Job of the function: create a new item and add it to the cart
-function addItemToCart(name, size, price, count) {
-    var item = new Item(name, size, price, count);
-    lineItem.push(item) //-> add new item
-}
-
-addItemToCart("reuseable", 2, 20, 4);
-console.log(cart);
-addItemToCart("recycable", 2, 30, 50);
-console.log(cart); */

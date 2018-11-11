@@ -8,7 +8,7 @@ class User {
       this.lastname = lastName;
       this.username = userName;
       this.email = email;
-      this.password = this.hashPassword(password);
+      this.password = password; // this.hashPassword(password);
       this.phonenumber = phoneNumber;
       this.dateofbirth = dateOfBirth;
       this.streetname = streetName;
@@ -17,7 +17,7 @@ class User {
       this.userId = 0;
   }
 
-    // Function copied from Henriks login-example. 
+    /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
 
     
@@ -35,29 +35,84 @@ class User {
       // If the password is not valid, we'll throw an error we're able to catch
       throw new Error("The password supplied is not valid");
     }
-    return String(a);
-  }
+    return String(a); 
+  }*/
 
     
 
 }
 
-
+//LOCAL STORAGE:
 
 // Define users as "users" and get them from the local storage.
-var users = JSON.parse(localStorage.getItem("users")); 
+var users = JSON.parse(localStorage.getItem("users"));                //firstly we check to see if there are any users in the local storage
 
 if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
     // initialize empty user array 
-    var users = [];
+    var users = [];                                                   //If not, we create an empty array with users we can push later
 
-    // push user to the array
+    // Check code for our self, hardcoded users, push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
     // Login with Anders does not work though; no idea why --> Joe works
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
+
+    localStorage.setItem('users', JSON.stringify(users));
+  }
+
+
+// When we want to get item out we want to parse it back into a native JavaScript object
+
+localData = JSON.parse(localStorage.getItem("User"));          
+
+// console.log(localData);
+console.log(users);
+
+
+// Show the number of times a button was clicked
+if (localStorage.clickcount) {
+  localStorage.clickcount = Number(localStorage.clickcount) + 1;
+} else {
+  localStorage.clickcount = 1;
 }
+document.getElementById("result") +                         //can't find any ID called result?
+localStorage.clickcount + " time(s).";                      //why do we need to count the clicks on whatever button?
 
 
+//function registerUser() {
+      
+  // Get all users from the database
+  
+// Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
+document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
+  firstName = document.getElementById("regFirstName").value;
+  lastName = document.getElementById("regLastName").value;
+  userName = document.getElementById("regUserName").value;
+  email = document.getElementById("regEmail").value;
+  password = document.getElementById("regPassword").value;
+  phoneNumber = document.getElementById("regPhoneNumber").value;
+  dateOfBirth = document.getElementById("regDateOfBirth").value;
+  streetName = document.getElementById("regStreetName").value;
+  postalNumber = document.getElementById("regPostalNumber").value;
+  city = document.getElementById("regCity").value;
+
+
+// Take the user data and push it to the Class
+// "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
+users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
+  console.log(users);                         //what is this for? It does not show in console.
+  //Local storage (domain specific): hardcoded version 
+  // turning our users into a JSON string and then set it into local storage
+  // first parameter in the parantheses is the name (unique; is in local storage)
+  // Storing multiple types of information into a single local storage key value
+  // In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts   
+  //we save the array "users" after we have stringified it, in the localstorage under the key "User" 
+  localStorage.setItem('users', JSON.stringify(users)); //And then we save this array as a string under the key users 
+  
+  window.location = "../index.html";
+}); 
+
+console.log("hi world");
+console.log(users);
 
 //TODO: Finalize the enter-function, with a link to the different lines below.
 
@@ -85,18 +140,6 @@ var enter = function(e) {
 }
 
 
-//Local storage (domain specific): hardcoded version 
-
-// turning our users into a JSON string and then set it into local storage
-
-// first parameter in the parantheses is the name (unique; is in local storage)
-// Storing multiple types of information into a single local storage key value
-// In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts
-localStorage.setItem( "User", JSON.stringify( users ));          
-
-// When we want to get item out we want to parse it back into a native JavaScript object
-
-localData = JSON.parse( localStorage.getItem("User"));          
 
 
 // By clicking the login-button the "modal" appears
@@ -107,29 +150,6 @@ var modal = document.getElementById('id01');
  var login = document.getElementById('login');
 
  
-//function registerUser() {
-      
-  // Get all users from the database
-  
-// Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("click", function(){
-  firstName = document.getElementById("regFirstName").value;
-  lastName = document.getElementById("regLastName").value;
-  userName = document.getElementById("regUserName").value;
-  email = document.getElementById("regEmail").value;
-  password = document.getElementById("regPassword").value;
-  phoneNumber = document.getElementById("regPhoneNumber").value;
-  dateOfBirth = document.getElementById("regDateOfBirth").value;
-  streetName = document.getElementById("regStreetName").value;
-  postalNumber = document.getElementById("regPostalNumber").value;
-  city = document.getElementById("regCity").value;
-
-
-// Take the user data and push it to the Class User
-users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
-  localStorage.setItem('users', JSON.stringify(users));
-  window.location = "../index.html";
-}); 
 
 
 
@@ -146,6 +166,106 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   2. It does not count downwards.
 */
 
+
+
+// The function that gets information from the users array and checks if it fits.
+// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
+function loggingIn() {
+
+// Declaring the variables username and password, and connect them to the buttons in index.html.
+var inputUsername = document.getElementById("usernamebox")
+var inputPassword = document.getElementById("loginpasswordbox")
+
+if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
+  // We set the resultspan with a new text and return false to get out of this function
+  resultSpan.innerText = "You need to enter a username and password in order to use our system";
+  return false;
+}
+
+  // Creating a for-loop to loop through the users array.
+  for(i = 0; i < users.length; i++) {
+
+      // Declaring a user for easy use.
+      var user = users[i];            
+
+     /*  //Copied from Henriks login example
+      // We use a try-catch for the hash-password function, since something could go wrong.
+      try {
+
+          // We try to create a variable with the hashed version of the inputPassword
+          var hashedInputPassword = user.hashPassword(inputPassword.value);
+          console.log(hashedInputPassword);
+      } catch (error) {
+
+          // We console log any error that might have been thrown
+          console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
+      } */
+        // Setting the maximum number of attempts to log in.
+        attempt = 3;
+
+        // Binding the resultspan to a textfield in html-file.
+        resultSpan = document.getElementById('loginResult');
+
+
+      // if username and password matches in users, the user is logged in.
+      if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
+
+          console.log(username + " is logged in!!!")
+          resultSpan.innerText = "Login was successful"; 
+          //await sleep(2000);
+          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
+        // ../Index.html
+          return; 
+      }
+
+          
+      if (attempt == 0) {
+      // Since the user has tried three times, we let the user know that he's been banned
+      resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
+
+      // TODO: Or to discuss:
+      // You have tried too many times, you are now redirected to forgotten password?
+      // Or just redirect the user to the forgotten password site?
+
+      // Disable the two input fields and the button in order for the user to not make any trouble
+      inputUsername.disabled = true;
+      inputPassword.disabled = true;
+      login.disabled = true;
+      
+      // Return false to stop us from doing anything further.                   //why do we need to return false? If the disable proeperty is true it disables
+      return false;
+
+      } 
+      
+      // else, decrement the attempts     
+      else {
+          attempt --; 
+         
+          resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
+
+          console.log("incorrect username or password")
+
+      // Return false, since we do not have anything more to do
+      return false;
+     };
+  }
+}
+
+var enter = function(e) {
+
+if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+  loggingIn();
+  //console.log("running");
+  return false;}
+}
+
+// if the user presses Enter while in the password box, it should trigger a click on the login button
+// add an eventlistener for keypress on the enter button. function above.
+// It only listens to the passwordbox, but can listen to anything if we use "document"
+document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
+
+
+login.onclick = loggingIn
 
 
 
