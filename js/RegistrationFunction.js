@@ -36,8 +36,6 @@ class User {
     return String(a);
   }
 
-    
-
 }
 
 //LOCAL STORAGE:
@@ -109,7 +107,6 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
 
 console.log("hi world");
 console.log(users);
-
 //TODO: Finalize the enter-function, with a link to the different lines below.
 
 // add an eventlistener for keypress on the enter button. function above.
@@ -140,7 +137,7 @@ var enter = function(e) {
 
 // By clicking the login-button the "modal" appears
 // Get the modal
-var modal = document.getElementById('id01');
+var modal = document.getElementById('id01');                        //what does this do?
 
  // declare the variable 'login' and connect it to the button in Registration.html.
  var login = document.getElementById('login');
@@ -182,7 +179,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
   for(i = 0; i < users.length; i++) {
 
       // Declaring a user for easy use.
-      var user = users[i];            
+      var user = new User(users[i].firstname, users[i].lastname, users[i].username, users[i].email, users[i].password, users[i].phonenumber, users[i].dateofbirth, users[i].streetname, users[i].postalnumber, users[i].city);            
 
       //Copied from Henriks login example
       // We use a try-catch for the hash-password function, since something could go wrong.
@@ -204,7 +201,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
 
 
       // if username and password matches in users, the user is logged in.
-      if (user.username == inputUsername.value && user.password == hashedInputPassword) {
+      if (user.username == inputUsername.value && users[i].password == hashedInputPassword) {
 
           console.log(username + " is logged in!!!")
           resultSpan.innerText = "Login was successful"; 

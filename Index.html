@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Diapers On Demand</title>
    
+    <!-- <link rel="stylesheet" href="../css/RegistrationFunction.css"> -->
     
 </head>
 
@@ -19,13 +20,45 @@
         <div class="row">
             <!-- Made the div for main navigation, and set the main nav. Then linked to the different pages. -->
         <ul class="main-nav">
-            <li><a href=""> SIGN UP </a></li>
+            <li><a type="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"></button>LOGIN</a> </li>
             <li><a href=""> CONTACT </a></li>
             <li><a href=""> NEWS </a></li>
             <li><a href=""> FAQ </a></li>
+            <li><a href="html/Registration.html"> SIGN UP </a></li> <!-- Redirected to the registration page -->
+            
             
         </ul>
         </div>
+        
+        <div id="id01" class="modal">
+                <!-- The class "modal-content animate allows us to open a new page by clicking on Login" -->
+                <div class="modal-content animate">
+                  <div class="imgcontainer">
+    
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                   
+                   <!-- Adding a profile picture or icon -->
+                    <!-- <img src="../Images/img_avatar2.png" alt="Avatar" class="avatar"> -->
+                  </div>
+                    <!--Login information on the Modal   -->
+                  <div class="container">
+                    
+                    <!-- Creating textboxes for username and password -->
+                    <input type="text" placeholder="Enter Username" name="username" id="usernamebox" required>
+                    <input type="password" placeholder="Enter Password" name="psw" id="loginpasswordbox" required>
+                    <button type="login" id="login">Login</button>
+                    
+                    <!-- Creating a span to show the message from ID -->
+                    <span id="loginResult"></span>
+                  </div>
+              
+                  
+                  </div>
+                </div>
+         </div>
+        
+
+
         <h1>Diapers On Demand</h1>
     
     <!-- Creates first link to product #1 -->
@@ -45,8 +78,6 @@
     </div>
 
     </header>
-    
-
 
 </body>
 </html>
