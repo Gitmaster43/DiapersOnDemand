@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     
-    <link href="../css/reusableStyle.css" rel="stylesheet">
+    <link href="../css/styleIndex.css" rel="stylesheet"> <!-- How to do a good style for the table? -->
 
 </head>
 <body>
@@ -15,32 +15,35 @@
     <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
      -->    <div  class="selection" >
             <form>
-                <select name="typeOfDiaper" id="typeOfDiaper" onchange="diaperPrice()">
+                <select name="typeOfDiaper" id="typeOfDiaper" onchange="itemPrice()">
                     <!-- TODO: Find a way to make the dropdown list get the items from the Class product in stead of hardcoding -->
-                    <option value="choose" >Choose</option> <!-- TODO: How to add an error that requires the user to choose?? Same with size and quantity -->
+                    <option value="choose" selected="" >Choose</option> <!-- TODO: How to add an error that requires the user to choose?? Same with size and quantity -->
                     <option value="recyclable">Recyclable</option>
                     <option value="reusable">Reusable</option>
                 </select>
                 <br>
                 <span id="price"></span>
                 <script>
+                // Tried to have this script in the .js file in stead, but failed.
 
+                // Bind the resultspan to the span "price" from right above
                 resultSpan = document.getElementById("price");
-              
-                function diaperPrice() {
+                
+                //Create a function that takes into account what value is in the typeOfDiaper and returns a text of the price
+                function itemPrice() {
                 if (document.getElementById("typeOfDiaper").value === "Choose") {
-                    resultSpan.innerText = "";
+                    resultSpan.innerText = undefined;
                 } else if (document.getElementById("typeOfDiaper").value === "recyclable") {
-                    resultSpan.innerText = 30;
-                } else (document.getElementById("typeOfDiaper").value === "reusable"); {
-                    resultSpan.innerText = 40;
+                    resultSpan.innerText = products[1].productPrice;
+                } else if (document.getElementById("typeOfDiaper").value === "reusable") { // You cannot have a ; within a if else then it will just have the last one.
+                    resultSpan.innerText = products[0].productPrice;
                 } return false;
                 }
                                 
-                </script> <!-- Should show the price here or something -->
+                </script> 
             <br>    
                 <select id="diaperSize">
-                    <option>Select size</option>
+                    <option selected="">Select size</option>
                     <option>1</option>
                     <option>2</option>
                     <option>3</option>
@@ -50,7 +53,7 @@
               </select>
             <br>  
               <select id="diapersADay"> 
-                <option>Diapers a day</option>
+                <option selected="">Diapers a day</option>
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -71,7 +74,7 @@
         <div id="right" class="floatRight" style="width:49%; float: right;">
             <!-- Create the cart, which gets information from the local storage -->
             <!-- Table? -->
-            <table>
+            <table id="tableCart">
                 <thead>
                     <tr class="header">
                         <td>Type</td>
@@ -81,9 +84,7 @@
                 </thead>
 
                 <tbody>
-                    <tr></tr>
-                    <td></td>
-                    <tr></tr>
+                    
 
                 </tbody>
 

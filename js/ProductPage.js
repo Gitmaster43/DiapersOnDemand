@@ -28,23 +28,20 @@ products.push(new product(1, "Recyclable", 30,));
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class lineItem {
-    constructor (type, size, price, numberADay, priceCalc){
+    constructor (type, size, numberADay, price,  ){
         this.diaperType = type;
         this.diaperSize = size;
-        this.diaperPrice = price;
         this.diapersADay = numberADay;
-       // this.price = this.function(priceCalc); //Or is this the calculation?
+        this.diaperPrice = price;
+        
+        this.price = []; //Can we have a price-function here?
     }
     
     
-
-    
-    //Creating a function that creates a table row with data from the lineItem?
-    createHTML(){
-        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" + this.diaperPrice + "</td><td>" + this.button + "</td></tr>";
+    //Creating a function that creates a table row with data from the lineItem
+    createHTML(subscription){
+        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" + this.diapersADay + "</td></tr>"; //<td>" + this.button + "</td>//BUtton to remove the item from the list
     }
-
-    
 
 } 
 
@@ -60,27 +57,81 @@ if(lineItems === null){
 document.getElementById("addItemToCart").addEventListener("click", function(){
     diaperType = document.getElementById("typeOfDiaper").value;
     diaperSize = document.getElementById("diaperSize").value;
+    diapersADay = document.getElementById("diapersADay").value;
     diaperPrice = document.getElementById("price").value
-    diapersADay = document.getElementById("diapersADay").value; 
+     
     
 // Push the values of the dropdown lists into the localStorage
-lineItems.push(new lineItem(diaperType, diaperSize, diaperPrice, diapersADay));
+lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, diaperPrice));
     console.log(lineItems);
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
+console.log(lineItems);
+// Creating an array fo
+var subscription = [];
+
+
+//for every object in the array the function creatHTML is called
+var html = "";
+
+for (i=0; i < lineItems.length; i++ ){
+    var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay);
+    html += cartLine.createHTML(subscription);
+}
+
+console.log(html);
+// The table body will contain the html plus objects that were run by the createHTML function
+table = document.getElementById('tableCart');
+tbody = table.getElementsByTagName('tbody');
+tbody[0].innerHTML = html;
+
+/* // Automatic reload when adding to cart
+addItemToCart.onclick=ManualRefresh()
+    function ManualRefresh(){
+        window.location.reload();
+       
+    }
+ */
+
+//TODO: Create a price calculation for the diaperprices
 
 
 
 
-//Making a function that calculates the price of the order
+
+
+
+/* // TODO: Create the remove button in HTML
+// Bind the buttons to remove from cart to the removeCartItemsButtons object.
+var removeCartItemsButtons = document.getElementById("removeFromCartButtons")
+
+// Loop through the buttons and console log Clicked whenever a button in clicked. Can change this later.
+for (var i = 0; i < removeCartItemsButtons.length; i++) {
+    var button = removeCartItemsButtons[i];
+
+    // Add an event-listener to look for the click on the button
+    button.addEventListener("click", function(event) {
+        // Bind the target of the event (aka. click)
+        var buttonClicked = event.target;
+        //Link the buttonClicked to the parent element (the div it is in, in HTML) and then to the parent element/div again with a remove function to take it away.
+        buttonClicked.parentElement.parentElement.remove();
+    })
+}
+ */
+
+
+
+/* //Making a function that calculates the price of the order
 function priceCalc(price){
     var price = products.productPrice * lineItems.numberADay;
     console.log(price);
-} 
+}  */
 
 
 
+
+//Notes from Marten Exercise
 // In order to get an item from localstorage you just need getItem('key'), i.e. you just need the key of the object
 
 // Use a forEach loop to iterate on the contents of the array, which you get into your code by the getItem () function
@@ -98,10 +149,10 @@ shoppingcart = {
 
 //Have a unique ID of a user, and a unique ID of the product
 
+
 /* TODO: 
     1. Create something that gets the content of the localStorage and shows it as a cart
     2. Create something that can remove things from localStorage
     
 */
-
 
