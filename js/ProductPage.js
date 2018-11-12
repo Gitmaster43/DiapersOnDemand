@@ -28,19 +28,20 @@ products.push(new product(1, "Recyclable", 30,));
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class lineItem {
-    constructor (type, size, numberADay, price,  ){
+    constructor (type, size, numberADay, price  ){
         this.diaperType = type;
         this.diaperSize = size;
         this.diapersADay = numberADay;
         this.diaperPrice = price;
         
-        this.price = []; //Can we have a price-function here?
+        this.totalDiaperPrice = []; //Can we have a price-function here? Or on the one above?
     }
     
     
     //Creating a function that creates a table row with data from the lineItem
     createHTML(subscription){
-        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" + this.diapersADay + "</td></tr>"; //<td>" + this.button + "</td>//BUtton to remove the item from the list
+        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" 
+        + this.diapersADay + "</td><td>" + this.diaperPrice + "</td></tr>"; //<td>" + this.button + "</td>//Button to remove the item from the list
     }
 
 } 
@@ -58,7 +59,7 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     diaperType = document.getElementById("typeOfDiaper").value;
     diaperSize = document.getElementById("diaperSize").value;
     diapersADay = document.getElementById("diapersADay").value;
-    diaperPrice = document.getElementById("price").value
+    diaperPrice = totalDiaperPrice();
      
     
 // Push the values of the dropdown lists into the localStorage
@@ -68,7 +69,8 @@ lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, diaperPrice));
 });
 
 console.log(lineItems);
-// Creating an array fo
+
+// Creating an array to have in the table
 var subscription = [];
 
 
@@ -77,26 +79,29 @@ var html = "";
 
 for (i=0; i < lineItems.length; i++ ){
     var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay);
-    html += cartLine.createHTML(subscription);
+    html += cartLine.createHTML(subscription); 
 }
 
-console.log(html);
 // The table body will contain the html plus objects that were run by the createHTML function
 table = document.getElementById('tableCart');
 tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
-/* // Automatic reload when adding to cart
-addItemToCart.onclick=ManualRefresh()
-    function ManualRefresh(){
-        window.location.reload();
-       
-    }
- */
+
+
 
 //TODO: Create a price calculation for the diaperprices
 
 
+// Take the value of Type, find the price in the object, and multiply it with the quantity of diapers
+// Need a loop to loop through the list
+
+
+//Questionable: Should we add to local storage while we add to cart, or after? 
+
+    
+    
+//console.log (diaperPrice);
 
 
 

@@ -32,7 +32,7 @@
                 //Create a function that takes into account what value is in the typeOfDiaper and returns a text of the price
                 function itemPrice() {
                 if (document.getElementById("typeOfDiaper").value === "Choose") {
-                    resultSpan.innerText = undefined;
+                    resultSpan.innerText = "";
                 } else if (document.getElementById("typeOfDiaper").value === "recyclable") {
                     resultSpan.innerText = products[1].productPrice;
                 } else if (document.getElementById("typeOfDiaper").value === "reusable") { // You cannot have a ; within a if else then it will just have the last one.
@@ -65,7 +65,7 @@
         </div>
         <br>
             
-            <button id="addItemToCart" name="addItemToCart" >Add Diapers to Cart</button> <!-- onclick="addItemToCart()" -->
+            <button id="addItemToCart" name="addItemToCart" onClick="window.location.reload()" >Add Diapers to Cart</button> <!-- onclick: reloads the page so that the pushed items get shown in the table -->
 
            
         </div>
@@ -80,6 +80,7 @@
                         <td>Type</td>
                         <td>Size</td>
                         <td>Quantity per day</td>
+                        <td>Total price</td>
                     </tr>
                 </thead>
 
@@ -89,7 +90,23 @@
                 </tbody>
 
             </table>
-
+            <div>
+             <section class="container content-section">
+                    <h2 class="section-header">CART</h2>
+                    <div class="cart-row">
+                        <span class="cart-item cart-header cart-column">ITEM</span>
+                        <span class="cart-price cart-header cart-column">PRICE</span>
+                        <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+                    </div>
+                    <div class="cart-items">
+                    </div>
+                    <div class="cart-total">
+                        <strong class="cart-total-title">Total</strong>
+                        <span class="cart-total-price">$0</span>
+                    </div>
+                    <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
+                </section>
+            </div>
         </div>
 
     <script src="../js/ProductPage.js"></script>
