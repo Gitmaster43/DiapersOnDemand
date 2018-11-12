@@ -142,37 +142,6 @@ var modal = document.getElementById('id01');
 
  
 
-
-
-// Declare a function that makes the login pause for some ms to show a message
-// TODO: google to find what New, Promise and Resolve means
-/* function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-} */
-
-
-/* 
-  What does not work: 
-  1. ERROR: "user.hashpassword is not a function" for some reason.
-  2. It does not count downwards.
-*/
-
-
-
-// The function that gets information from the users array and checks if it fits.
-// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
-function loggingIn() {
-
-// Declaring the variables username and password, and connect them to the buttons in index.html.
-var inputUsername = document.getElementById("usernamebox")
-var inputPassword = document.getElementById("loginpasswordbox")
-
-if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
-  // We set the resultspan with a new text and return false to get out of this function
-  resultSpan.innerText = "You need to enter a username and password in order to use our system";
-  return false;
-}
-
   // Creating a for-loop to loop through the users array.
   for(i = 0; i < users.length; i++) {
 
@@ -191,56 +160,8 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
           // We console log any error that might have been thrown
           console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
       } */
-        // Setting the maximum number of attempts to log in.
-        attempt = 3;
-
-        // Binding the resultspan to a textfield in html-file.
-        // resultSpan = document.getElementById('loginResult');
-
-
-      // if username and password matches in users, the user is logged in.
-      if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
-
-          console.log(username + " is logged in!!!")
-          resultSpan.innerText = "Login was successful"; 
-          //await sleep(2000);
-          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-        // ../Index.html
-          return; 
-      }
-
-          
-      if (attempt == 0) {
-      // Since the user has tried three times, we let the user know that he's been banned
-      resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
-
-      // TODO: Or to discuss:
-      // You have tried too many times, you are now redirected to forgotten password?
-      // Or just redirect the user to the forgotten password site?
-
-      // Disable the two input fields and the button in order for the user to not make any trouble
-      inputUsername.disabled = true;
-      inputPassword.disabled = true;
-      login.disabled = true;
-      
-      // Return false to stop us from doing anything further.                   //why do we need to return false? If the disable proeperty is true it disables
-      return false;
-
-      } 
-      
-      // else, decrement the attempts     
-      else {
-          attempt --; 
-         
-          resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
-
-          console.log("incorrect username or password")
-
-      // Return false, since we do not have anything more to do
-      return false;
-     };
-  }
-}
+       
+  
 
 var enter = function(e) {
 
@@ -341,7 +262,8 @@ var check = function() {
     document.getElementById("message2").innerHTML = "√ matching";
   } else {
     document.getElementById("message2").style.color = "red"; 
-    document.getElementById("message2").innerHTML = "X not matching"; //TODO: this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
+    document.getElementById("message2").innerHTML = "X not matching"; 
+    //TODO: this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
   } 
   
 }
@@ -354,9 +276,9 @@ var match = function() {
   // Otherwise it will depict the message "Creation was successfull"
   if  (document.getElementById("regPassword").value != document.getElementById("regConfirmPassword").value) {
   alert ("Passwords don't match");
-  } 
-} 
-
+      } 
+    } 
+  }
 //TODO: Make this message pop up when the user creation is successful
-var resultSpan = document.getElementById("creationResult");
-resultSpan.innerText = "Creation was successful"
+// var resultSpan = document.getElementById("creationResult");
+// resultSpan.innerText = "Creation was successful"
