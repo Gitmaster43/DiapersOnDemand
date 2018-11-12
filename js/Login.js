@@ -6,21 +6,16 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     var users = [];
      // push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
-    // Login with Anders does not work though; no idea why --> Joe works
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-
-
-
- // declare the variable 'login', "attempt and "resultSpan" and connect it to the button in Registration.html.
+// declare the variable 'login', "attempt and "resultSpan" and connect it to the button in Registration.html.
  var login = document.getElementById("login");
  var attempt = 3;
  var resultSpan = document.getElementById("loginResult");
  
- 
-// Function to go through the User Data to match Username/Password
+ // Function to go through the User Data to match Username/Password
   function getInfo() {
    
     var username = document.getElementById("loggedUser").value
@@ -36,7 +31,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
           localStorage.setItem("loggedInUser", users[i].lastname);
   
 // //   redirect to new html side for logged in users 
-window.location = "http://127.0.0.1:5500/html/ProductPage.html"; // Use general name that everyone can reacht the page
+window.location = "ProductPage.html"; 
   
 //   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
           aunthenticatedUserId = users[i].userId;
@@ -48,7 +43,6 @@ window.location = "http://127.0.0.1:5500/html/ProductPage.html"; // Use general 
       document.getElementById("loggedUser").disabled = true;
       document.getElementById("loggedPassword").disabled = true;
       document.getElementById("login").disabled = true; 
-    
     return false;
   } else {
 
@@ -57,6 +51,19 @@ window.location = "http://127.0.0.1:5500/html/ProductPage.html"; // Use general 
   }
 }
 
+// if the user presses Enter while in the password box or Username box, it should trigger a click on the login button
+
+var enter = function(e) {
+  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+    getInfo();
+    //console.log("running");
+    return false;}
+  }
+  
+  document.getElementById("loggedUser").addEventListener("keyup", enter);
+  document.getElementById("loggedPassword").addEventListener("keyup", enter);
+  
+  login.onclick = getInfo
 
 // The function that gets information from the users array and checks if it fits.
 // Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
@@ -95,20 +102,21 @@ window.location = "http://127.0.0.1:5500/html/ProductPage.html"; // Use general 
 //         }
 //           
   
-  var enter = function(e) {
+
+// //Trigger Login button by clicking Enter
+// document.getElementById("loggedUser").addEventListener("keyup", function(event) {
+//   event.preventDefault();
+//   if (event.keyCode == 13)
+//       login.onclick();
+// });
+// document.getElementById("loggedPassword").addEventListener("keyup", function(event) {
+//   event.preventDefault();
+//   if (event.keyCode == 13)
+//       login.onclick();
+// });
+
+
+
   
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-    loggingIn();
-    //console.log("running");
-    return false;}
-  }
   
-  // if the user presses Enter while in the password box, it should trigger a click on the login button
-  // add an eventlistener for keypress on the enter button. function above.
-  // It only listens to the passwordbox, but can listen to anything if we use "document"
-  document.getElementById("loggedPassword").addEventListener("keyup", enter);
-  
-  
-  login.onclick = getInfo
-  
-  
+

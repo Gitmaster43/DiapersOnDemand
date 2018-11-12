@@ -118,23 +118,23 @@ console.log(users);
 // document.getElementById("pws").addEventListener("keyup", enter);
 
 // By clicking enter, you will automatically click "Create"
-var enter = function(e) {
+// var enter = function(e) {
     
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
 
-    // Get all users from local storage
+//     // Get all users from local storage
 
-    // Create new user object
+//     // Create new user object
 
-    // Add object to users array
+//     // Add object to users array
 
-    // Use JSON stringify
+//     // Use JSON stringify
 
-    // Save new list
+//     // Save new list
 
-    console.log("running");   
-   return false;}
-}
+//     console.log("running");   
+//    return false;}
+// }
 
 
 
@@ -165,19 +165,19 @@ var modal = document.getElementById('id01');                        //what does 
 
 
 
-// The function that gets information from the users array and checks if it fits.
-// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
-function loggingIn() {
+// // The function that gets information from the users array and checks if it fits.
+// // Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
+// function loggingIn() {
 
-// Declaring the variables username and password, and connect them to the buttons in index.html.
-var inputUsername = document.getElementById("usernamebox")
-var inputPassword = document.getElementById("loginpasswordbox")
+// // Declaring the variables username and password, and connect them to the buttons in index.html.
+// var inputUsername = document.getElementById("usernamebox")
+// var inputPassword = document.getElementById("loginpasswordbox")
 
-if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
-  // We set the resultspan with a new text and return false to get out of this function
-  resultSpan.innerText = "You need to enter a username and password in order to use our system";
-  return false;
-}
+// if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
+//   // We set the resultspan with a new text and return false to get out of this function
+//   resultSpan.innerText = "You need to enter a username and password in order to use our system";
+//   return false;
+// }
 
   // Creating a for-loop to loop through the users array.
   for(i = 0; i < users.length; i++) {
@@ -205,64 +205,34 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
 
 
       // if username and password matches in users, the user is logged in.
-      if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
+      // if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
 
-          console.log(username + " is logged in!!!")
-          resultSpan.innerText = "Login was successful"; 
-          //await sleep(2000);
-          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-        // ../Index.html
-          return; 
-      }
+      //     console.log(username + " is logged in!!!")
+      //     resultSpan.innerText = "Login was successful"; 
+      //     //await sleep(2000);
+      //     window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
+      //   // ../Index.html
+      //     return; 
+      // }
 
           
-      if (attempt == 0) {
-      // Since the user has tried three times, we let the user know that he's been banned
-      resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
-
-      // TODO: Or to discuss:
-      // You have tried too many times, you are now redirected to forgotten password?
-      // Or just redirect the user to the forgotten password site?
-
-      // Disable the two input fields and the button in order for the user to not make any trouble
-      inputUsername.disabled = true;
-      inputPassword.disabled = true;
-      login.disabled = true;
       
-      // Return false to stop us from doing anything further.                   //why do we need to return false? If the disable proeperty is true it disables
-      return false;
 
-      } 
-      
-      // else, decrement the attempts     
-      else {
-          attempt --; 
-         
-          resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
+// var enter = function(e) {
 
-          console.log("incorrect username or password")
-
-      // Return false, since we do not have anything more to do
-      return false;
-     };
-  }
-}
-
-var enter = function(e) {
-
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-    loggingIn();
-    //console.log("running");
-    return false;}
-  }
+//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+//     loggingIn();
+//     //console.log("running");
+//     return false;}
+//   }
   
 // if the user presses Enter while in the password box, it should trigger a click on the login button
 // add an eventlistener for keypress on the enter button. function above.
 // It only listens to the passwordbox, but can listen to anything if we use "document"
-document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
+// document.getElementById("loggedPassword").addEventListener("keyup", enter);
 
 
-login.onclick = loggingIn
+// login.onclick = document.getElementById("getInfo");
 
 
 
@@ -353,7 +323,7 @@ var check = function() {
 }
 
 // if passwords don't match, the user will be stopped from creating              
-
+var resultSpan = document.getElementById("creationResult")
 var match = function() {
 
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
@@ -361,8 +331,11 @@ var match = function() {
   if  (document.getElementById("regPassword").value != document.getElementById("regConfirmPassword").value) {
   alert ("Passwords don't match");
   } 
-} 
+else {
 
 //TODO: Make this message pop up when the user creation is successful
-var resultSpan = document.getElementById("creationResult");
+
 resultSpan.innerText = "Creation was successful"
+    }
+}
+ } 
