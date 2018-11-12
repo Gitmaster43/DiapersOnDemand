@@ -102,13 +102,13 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   window.location = "../index.html";
 }); 
 
-console.log("hi world");
-console.log(users);
 
-//TODO: Finalize the enter-function, with a link to the different lines below.
+
+
 
 // add an eventlistener for keypress on the enter button. function above.
-// It only listens to the passwordbox, but can listen to anything if we use "document"
+
+
 // document.getElementById("pws").addEventListener("keyup", enter);
 
 // By clicking enter, you will automatically click "Create"
@@ -158,26 +158,23 @@ var modal = document.getElementById('id01');
       } catch (error) {
 
           // We console log any error that might have been thrown
-          console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
+          console.log(error);                                    
       } */
        
   
 
-var enter = function(e) {
+// var enter = function(e) {
 
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-    loggingIn();
-    //console.log("running");
-    return false;}
-  }
+//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+//     loggingIn();
+//     //console.log("running");
+//     return false;}
+//   }
   
-// if the user presses Enter while in the password box, it should trigger a click on the login button
-// add an eventlistener for keypress on the enter button. function above.
-// It only listens to the passwordbox, but can listen to anything if we use "document"
-document.getElementById("log").addEventListener("keyup", enter);
+// document.getElementById("l").addEventListener("keyup", enter);
 
 
-login.onclick = loggingIn
+// login.onclick = loggingIn
 
 
 
