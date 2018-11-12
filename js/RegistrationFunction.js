@@ -8,7 +8,7 @@ class User {
       this.lastname = lastName;
       this.username = userName;
       this.email = email;
-      this.password = this.hashPassword(password);
+      this.password = password; // this.hashPassword(password);
       this.phonenumber = phoneNumber;
       this.dateofbirth = dateOfBirth;
       this.streetname = streetName;
@@ -17,8 +17,10 @@ class User {
       this.userId = 0;
   }
 
-    // Function copied from Henriks login-example. 
+    /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
+
+    
     var a = 1, c = 0, h, o;
     if (rawPassword) {
       a = 0;
@@ -33,8 +35,8 @@ class User {
       // If the password is not valid, we'll throw an error we're able to catch
       throw new Error("The password supplied is not valid");
     }
-    return String(a);
-  }
+    return String(a); 
+  }*/
 
 }
 
@@ -49,9 +51,11 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
     // Check code for our self, hardcoded users, push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
-
+    // Login with Anders does not work though; no idea why --> Joe works
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
-}
+
+    localStorage.setItem('users', JSON.stringify(users));
+  }
 
 
 // When we want to get item out we want to parse it back into a native JavaScript object
@@ -181,7 +185,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
       // Declaring a user for easy use.
       var user = new User(users[i].firstname, users[i].lastname, users[i].username, users[i].email, users[i].password, users[i].phonenumber, users[i].dateofbirth, users[i].streetname, users[i].postalnumber, users[i].city);            
 
-      //Copied from Henriks login example
+     /*  //Copied from Henriks login example
       // We use a try-catch for the hash-password function, since something could go wrong.
       try {
 
@@ -192,7 +196,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
 
           // We console log any error that might have been thrown
           console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
-      }
+      } */
         // Setting the maximum number of attempts to log in.
         attempt = 3;
 
@@ -201,7 +205,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
 
 
       // if username and password matches in users, the user is logged in.
-      if (user.username == inputUsername.value && users[i].password == hashedInputPassword) {
+      if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
 
           console.log(username + " is logged in!!!")
           resultSpan.innerText = "Login was successful"; 
