@@ -14,55 +14,46 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
 
 
- // declare the variable 'login' and connect it to the button in Registration.html.
+ // declare the variable 'login', "attempt and "resultSpan" and connect it to the button in Registration.html.
  var login = document.getElementById("login");
  var attempt = 3;
-
+ var resultSpan = document.getElementById("loginResult");
  
-
+ 
 // Function to go through the User Data to match Username/Password
   function getInfo() {
    
     var username = document.getElementById("loggedUser").value
-  
     var password = document.getElementById("loggedPassword").value
-   console.log(password, username);
+  
   // Loop that goes through the User Data to idetify right or wrong Username/Password
     for (var i = 0; i < users.length; i++) {
         
-   console.log(users[i]);
-    
         if (username == users[i].username && password == users[i].password) 
             {console.log (username + " is logged in!");
  
 //   //Push username from logged in User in the local storage 
-          localStorage.setItem("loggedInUser", users[i].firstName);
+          localStorage.setItem("loggedInUser", users[i].lastname);
   
 // //   redirect to new html side for logged in users 
-window.location = "http://127.0.0.1:5500/html/ProductPage.html";
+window.location = "http://127.0.0.1:5500/html/ProductPage.html"; // Use general name that everyone can reacht the page
   
 //   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
           aunthenticatedUserId = users[i].userId;
           console.log (aunthenticatedUserId)
-          }
-     
+          }   
   }
- 
-  
-  // resultspan = document.getElementById("loginResult");
-  // Disabling fields after 3 attempts.
+ // Disabling fields after 3 attempts.
   if( attempt == 0){    
       document.getElementById("loggedUser").disabled = true;
-      document.getElementById("regPassword").disabled = true;
+      document.getElementById("loggedPassword").disabled = true;
       document.getElementById("login").disabled = true; 
-      
+    
     return false;
   } else {
 
     attempt--;
-    console.log(attempt);
-    // resultSpan.innerText = "You have entered a wrong password. You have left"+attempt+" attempt(s)"
-    alert = "Fucked";
+    resultSpan.innerText = "You've entered a wrong username or password. You have left "+attempt+" attempt(s)."
   }
 }
 
@@ -102,64 +93,15 @@ window.location = "http://127.0.0.1:5500/html/ProductPage.html";
 //             // We console log any error that might have been thrown
 //             console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
 //         }
-//           // Setting the maximum number of attempts to log in.
-//           attempt = 3;
+//           
   
-//           // Binding the resultspan to a textfield in html-file.
-//           resultSpan = document.getElementById('loginResult');
+  var enter = function(e) {
   
-     
-//         // if username and password matches in users, the user is logged in.
-//         if (user.username == inputUsername.value && users[i].password == hashedInputPassword) {
-  
-//           //   console.log(username + " is logged in!!!")
-//           //   resultSpan.innerText = "Login was successful"; 
-//           //   //await sleep(2000);
-//           //   window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-//           // // ../Index.html
-//             return; 
-//         }
-  
-            
-//         if (attempt == 0) {
-//         // Since the user has tried three times, we let the user know that he's been banned
-//         resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
-  
-//         // TODO: Or to discuss:
-//         // You have tried too many times, you are now redirected to forgotten password?
-//         // Or just redirect the user to the forgotten password site?
-  
-//         // Disable the two input fields and the button in order for the user to not make any trouble
-//         inputUsername.disabled = true;
-//         inputPassword.disabled = true;
-//         login.disabled = true;
-        
-//         // Return false to stop us from doing anything further.                   //why do we need to return false? If the disable proeperty is true it disables
-//         return false;
-  
-//         } 
-        
-//         // else, decrement the attempts     
-//         else {
-//             attempt --; 
-           
-//             resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
-  
-//             console.log("incorrect username or password");
-  
-//         // Return false, since we do not have anything more to do
-//         return false;
-//        };
-//     }
-//   }
-  
-//   var enter = function(e) {
-  
-//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-//     loggingIn();
-//     //console.log("running");
-//     return false;}
-//   }
+  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+    loggingIn();
+    //console.log("running");
+    return false;}
+  }
   
   // if the user presses Enter while in the password box, it should trigger a click on the login button
   // add an eventlistener for keypress on the enter button. function above.

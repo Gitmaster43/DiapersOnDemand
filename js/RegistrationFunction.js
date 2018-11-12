@@ -201,7 +201,7 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
         attempt = 3;
 
         // Binding the resultspan to a textfield in html-file.
-        resultSpan = document.getElementById('loginResult');
+        // resultSpan = document.getElementById('loginResult');
 
 
       // if username and password matches in users, the user is logged in.
@@ -250,12 +250,12 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
 
 var enter = function(e) {
 
-if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-  loggingIn();
-  //console.log("running");
-  return false;}
-}
-
+  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+    loggingIn();
+    //console.log("running");
+    return false;}
+  }
+  
 // if the user presses Enter while in the password box, it should trigger a click on the login button
 // add an eventlistener for keypress on the enter button. function above.
 // It only listens to the passwordbox, but can listen to anything if we use "document"
