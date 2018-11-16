@@ -38,7 +38,9 @@ class User {
     return String(a); 
   }*/
 
-    
+    //To make the login work with hashing of password, you need to hash it and theen check it to the localstorage.
+
+    //TODO: Create a CurrentUserID thing in local storage, so that you always know who is logged in.
 
 }
 
@@ -53,7 +55,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
     // Check code for our self, hardcoded users, push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
-    // Login with Anders does not work though; no idea why --> Joe works
+    
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
 
     localStorage.setItem('users', JSON.stringify(users));
@@ -66,16 +68,6 @@ localData = JSON.parse(localStorage.getItem("User"));
 
 // console.log(localData);
 console.log(users);
-
-
-// Show the number of times a button was clicked
-if (localStorage.clickcount) {
-  localStorage.clickcount = Number(localStorage.clickcount) + 1;
-} else {
-  localStorage.clickcount = 1;
-}
-document.getElementById("result") +                         //can't find any ID called result?
-localStorage.clickcount + " time(s).";                      //why do we need to count the clicks on whatever button?
 
 
 //function registerUser() {
@@ -251,18 +243,18 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
   }
 }
 
-var enter = function(e) {
+/* var enter = function(e) {
 
 if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
   loggingIn();
   //console.log("running");
   return false;}
-}
+} */
 
 // if the user presses Enter while in the password box, it should trigger a click on the login button
 // add an eventlistener for keypress on the enter button. function above.
 // It only listens to the passwordbox, but can listen to anything if we use "document"
-document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
+//document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
 
 
 login.onclick = loggingIn

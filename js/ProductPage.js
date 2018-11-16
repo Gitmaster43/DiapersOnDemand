@@ -1,3 +1,11 @@
+// Create a  function that waits for the page to render before aaall the content has finished loading.
+
+if (document.readyState == "loading") {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    //Run the page function of some sort?? Source: https://www.youtube.com/watch?v=YeFzkC2awTM at 41st minute
+}
+
 
 //create class "product" - within dropdown bar of size, number of diapers, priceCalc
 
@@ -87,8 +95,28 @@ table = document.getElementById('tableCart');
 tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
+//Addeventlistener('input') makes it trigger every time the input changes
+//Using the function ".include" you can query on letters in a filter
+// Setting the html = '' inside the loop, resets the table every time the eventlistener executes.
+
+// How to add to cart: 
+
+function addToCart () {
+    // Binding the logged in user to a item, which needs a function to declare who is logged in.
+    var loggedIn = localStorage.getItem('loggedIn');
 
 
+    // Loop through the users to check if the logged in is a user, and then push what is in the cart to the class of the specific user.
+    for(i=0; i < users.length; i++) {
+        if(loggedIn.firstName == users[i].firstName) {
+            users[i].cartLine.push(subscription);
+        }
+    }
+
+}
+
+//Trigger the function
+addToCart(subscription[0]);
 
 //TODO: Create a price calculation for the diaperprices
 
