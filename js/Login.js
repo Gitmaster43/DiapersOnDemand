@@ -39,13 +39,15 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
    
     var username = document.getElementById("loggedUser").value
     var password = document.getElementById("loggedPassword").value
-  
+    
+    
+    
   // Loop that goes through the User Data to idetify right or wrong Username/Password
     for (var i = 0; i < users.length; i++) {
         
         if (username == users[i].username && hashPassword(password) == users[i].password) 
             {console.log (username + " is logged in!");
- 
+
 //   //Push username from logged in User in the local storage 
           localStorage.setItem("loggedInUser", users[i].lastname);
   
