@@ -8,7 +8,7 @@ class User {
       this.lastname = lastName;
       this.username = userName;
       this.email = email;
-      this.password = password; // this.hashPassword(password);
+      this.password = this.hashPassword(password);
       this.phonenumber = phoneNumber;
       this.dateofbirth = dateOfBirth;
       this.streetname = streetName;
@@ -17,7 +17,7 @@ class User {
       this.userId = 0;
   }
 
-    /* // Function copied from Henriks login-example. 
+    // /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
 
     
@@ -36,7 +36,7 @@ class User {
       throw new Error("The password supplied is not valid");
     }
     return String(a); 
-  }*/
+  }
 
     //To make the login work with hashing of password, you need to hash it and theen check it to the localstorage.
 
@@ -45,7 +45,7 @@ class User {
 }
 
 //LOCAL STORAGE:
-
+// localStorage.clear();
 // Define users as "users" and get them from the local storage.
 var users = JSON.parse(localStorage.getItem("users"));                //firstly we check to see if there are any users in the local storage
 
@@ -60,7 +60,6 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
     localStorage.setItem('users', JSON.stringify(users));
   }
-
 
 // When we want to get item out we want to parse it back into a native JavaScript object
 
@@ -87,7 +86,6 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
 
-
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
 users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
@@ -103,13 +101,11 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   window.location = "../index.html";
 }); 
 
-console.log("hi world");
-console.log(users);
 
-//TODO: Finalize the enter-function, with a link to the different lines below.
+
 
 // add an eventlistener for keypress on the enter button. function above.
-// It only listens to the passwordbox, but can listen to anything if we use "document"
+
 // document.getElementById("pws").addEventListener("keyup", enter);
 
 // By clicking enter, you will automatically click "Create"
@@ -133,7 +129,6 @@ var enter = function(e) {
 
 
 
-
 // By clicking the login-button the "modal" appears
 // Get the modal
 var modal = document.getElementById('id01');
@@ -142,37 +137,6 @@ var modal = document.getElementById('id01');
  var login = document.getElementById('login');
 
  
-
-
-
-// Declare a function that makes the login pause for some ms to show a message
-// TODO: google to find what New, Promise and Resolve means
-/* function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-} */
-
-
-/* 
-  What does not work: 
-  1. ERROR: "user.hashpassword is not a function" for some reason.
-  2. It does not count downwards.
-*/
-
-
-
-// The function that gets information from the users array and checks if it fits.
-// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
-function loggingIn() {
-
-// Declaring the variables username and password, and connect them to the buttons in index.html.
-var inputUsername = document.getElementById("usernamebox")
-var inputPassword = document.getElementById("loginpasswordbox")
-
-if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
-  // We set the resultspan with a new text and return false to get out of this function
-  resultSpan.innerText = "You need to enter a username and password in order to use our system";
-  return false;
-}
 
   // Creating a for-loop to loop through the users array.
   for(i = 0; i < users.length; i++) {
@@ -190,75 +154,22 @@ if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
       } catch (error) {
 
           // We console log any error that might have been thrown
-          console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
+          console.log(error);                                    
       } */
-        // Setting the maximum number of attempts to log in.
-        attempt = 3;
+       
+  
 
-        // Binding the resultspan to a textfield in html-file.
-        resultSpan = document.getElementById('loginResult');
+// var enter = function(e) {
 
+//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+//     loggingIn();
+//     //console.log("running");
+//     return false;}
+//   }
+  
+// document.getElementById("l").addEventListener("keyup", enter);
 
-      // if username and password matches in users, the user is logged in.
-      if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
-
-          console.log(username + " is logged in!!!")
-          resultSpan.innerText = "Login was successful"; 
-          //await sleep(2000);
-          window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-        // ../Index.html
-          return; 
-      }
-
-          
-      if (attempt == 0) {
-      // Since the user has tried three times, we let the user know that he's been banned
-      resultSpan.innerText = "You've entered the wrong username and password three times. You've been banned from our system";
-
-      // TODO: Or to discuss:
-      // You have tried too many times, you are now redirected to forgotten password?
-      // Or just redirect the user to the forgotten password site?
-
-      // Disable the two input fields and the button in order for the user to not make any trouble
-      inputUsername.disabled = true;
-      inputPassword.disabled = true;
-      login.disabled = true;
-      
-      // Return false to stop us from doing anything further.                   //why do we need to return false? If the disable proeperty is true it disables
-      return false;
-
-      } 
-      
-      // else, decrement the attempts     
-      else {
-          attempt --; 
-         
-          resultSpan.innerText = "You've entered a username or password that does not match our stored credentials";
-
-          console.log("incorrect username or password")
-
-      // Return false, since we do not have anything more to do
-      return false;
-     };
-  }
-}
-
-/* var enter = function(e) {
-
-if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-  loggingIn();
-  //console.log("running");
-  return false;}
-} */
-
-// if the user presses Enter while in the password box, it should trigger a click on the login button
-// add an eventlistener for keypress on the enter button. function above.
-// It only listens to the passwordbox, but can listen to anything if we use "document"
-//document.getElementById("loginpasswordbox").addEventListener("keyup", enter);
-
-
-login.onclick = loggingIn
-
+// login.onclick = loggingIn
 
 
 
@@ -273,15 +184,12 @@ var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
-
 // TODO: Set a function that checks if the user name is unique in the storage.
-
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {
   document.getElementById("message").style.display = "block";
 } 
-
 
 // When the user clicks outside of the password field, hide the message box
 myInput.onblur = function() {
@@ -342,7 +250,8 @@ var check = function() {
     document.getElementById("message2").innerHTML = "√ matching";
   } else {
     document.getElementById("message2").style.color = "red"; 
-    document.getElementById("message2").innerHTML = "X not matching"; //TODO: this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
+    document.getElementById("message2").innerHTML = "X not matching"; 
+    //TODO: this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
   } 
   
 }
@@ -355,9 +264,9 @@ var match = function() {
   // Otherwise it will depict the message "Creation was successfull"
   if  (document.getElementById("regPassword").value != document.getElementById("regConfirmPassword").value) {
   alert ("Passwords don't match");
-  } 
-} 
-
+      } 
+    } 
+  }
 //TODO: Make this message pop up when the user creation is successful
-var resultSpan = document.getElementById("creationResult");
-resultSpan.innerText = "Creation was successful"
+// var resultSpan = document.getElementById("creationResult");
+// resultSpan.innerText = "Creation was successful"
