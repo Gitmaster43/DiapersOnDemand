@@ -68,7 +68,7 @@ localData = JSON.parse(localStorage.getItem("User"));
   // Get all users from the database
   
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
+document.getElementById("submit").addEventListener("onclick", function(){   //we get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
   userName = document.getElementById("regUserName").value;
@@ -101,13 +101,14 @@ console.log(users);
 //TODO: Finalize the enter-function, with a link to the different lines below.
 
 // add an eventlistener for keypress on the enter button. function above.
-// It only listens to the passwordbox, but can listen to anything if we use "document"
+
+
 // document.getElementById("pws").addEventListener("keyup", enter);
 
 // By clicking enter, you will automatically click "Create"
-// var enter = function(e) {
+var enter = function(e) {
     
-//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
 
 
 
@@ -163,28 +164,10 @@ var modal = document.getElementById('id01');                        //what does 
       } catch (error) {
 
           // We console log any error that might have been thrown
-          console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
+          console.log(error);                                    
       } */
-        // Setting the maximum number of attempts to log in.
-        attempt = 3;
-
-        // Binding the resultspan to a textfield in html-file.
-        // resultSpan = document.getElementById('loginResult');
-
-
-      // if username and password matches in users, the user is logged in.
-      // if (user.username == inputUsername.value && user.password == inputPassword /* hashedInputPassword */) {
-
-      //     console.log(username + " is logged in!!!")
-      //     resultSpan.innerText = "Login was successful"; 
-      //     //await sleep(2000);
-      //     window.location.href = "C:\Users\Anders\OneDrive\Skule\CBS\IT\Progs\Project\DiapersOnDemand\Index.html";  //redirecting to the home-page
-      //   // ../Index.html
-      //     return; 
-      // }
-
-          
-      
+       
+  
 
 // var enter = function(e) {
 
@@ -194,13 +177,10 @@ var modal = document.getElementById('id01');                        //what does 
 //     return false;}
 //   }
   
-// if the user presses Enter while in the password box, it should trigger a click on the login button
-// add an eventlistener for keypress on the enter button. function above.
-// It only listens to the passwordbox, but can listen to anything if we use "document"
-// document.getElementById("loggedPassword").addEventListener("keyup", enter);
+// document.getElementById("l").addEventListener("keyup", enter);
 
 
-// login.onclick = document.getElementById("getInfo");
+// login.onclick = loggingIn
 
 
 
@@ -285,25 +265,23 @@ var check = function() {
     document.getElementById("message2").innerHTML = "√ matching";
   } else {
     document.getElementById("message2").style.color = "red"; 
-    document.getElementById("message2").innerHTML = "X not matching"; //TODO: this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
+    document.getElementById("message2").innerHTML = "X not matching"; 
+    //TODO: this code ONLY shows if the passwords are not matching, this does not stop the user from proceeding
   } 
   
 }
 
 // if passwords don't match, the user will be stopped from creating              
-var resultSpan = document.getElementById("creationResult")
+
 var match = function() {
 
   // if the string of the passwords don't match (indicated by !=), it will depict the alert "Passwords don't match"
   // Otherwise it will depict the message "Creation was successfull"
   if  (document.getElementById("regPassword").value != document.getElementById("regConfirmPassword").value) {
   alert ("Passwords don't match");
-  } 
-else {
-
+      } 
+    } 
+  }
 //TODO: Make this message pop up when the user creation is successful
-
-resultSpan.innerText = "Creation was successful"
-    }
-}
- } 
+// var resultSpan = document.getElementById("creationResult");
+// resultSpan.innerText = "Creation was successful"
