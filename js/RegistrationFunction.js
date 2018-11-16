@@ -8,7 +8,7 @@ class User {
       this.lastname = lastName;
       this.username = userName;
       this.email = email;
-      this.password = password; // this.hashPassword(password);
+      this.password = this.hashPassword(password); // this.hashPassword(password);
       this.phonenumber = phoneNumber;
       this.dateofbirth = dateOfBirth;
       this.streetname = streetName;
@@ -17,10 +17,8 @@ class User {
       this.userId = 0;
   }
 
-    /* // Function copied from Henriks login-example. 
+    // /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
-
-    
     var a = 1, c = 0, h, o;
     if (rawPassword) {
       a = 0;
@@ -36,7 +34,7 @@ class User {
       throw new Error("The password supplied is not valid");
     }
     return String(a); 
-  }*/
+  }
 
 }
 
@@ -57,23 +55,12 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     localStorage.setItem('users', JSON.stringify(users));
   }
 
-
+console.log(users);
 // When we want to get item out we want to parse it back into a native JavaScript object
 
 localData = JSON.parse(localStorage.getItem("User"));          
 
 // console.log(localData);
-console.log(users);
-
-
-// Show the number of times a button was clicked
-if (localStorage.clickcount) {
-  localStorage.clickcount = Number(localStorage.clickcount) + 1;
-} else {
-  localStorage.clickcount = 1;
-}
-document.getElementById("result") +                         //can't find any ID called result?
-localStorage.clickcount + " time(s).";                      //why do we need to count the clicks on whatever button?
 
 
 //function registerUser() {
@@ -122,20 +109,6 @@ console.log(users);
     
 //   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
 
-//     // Get all users from local storage
-
-//     // Create new user object
-
-//     // Add object to users array
-
-//     // Use JSON stringify
-
-//     // Save new list
-
-//     console.log("running");   
-//    return false;}
-// }
-
 
 
 
@@ -157,11 +130,6 @@ var modal = document.getElementById('id01');                        //what does 
 } */
 
 
-/* 
-  What does not work: 
-  1. ERROR: "user.hashpassword is not a function" for some reason.
-  2. It does not count downwards.
-*/
 
 
 

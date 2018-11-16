@@ -15,6 +15,25 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
  var attempt = 3;
  var resultSpan = document.getElementById("loginResult");
  
+ function hashPassword(rawPassword){
+  var a = 1, c = 0, h, o;
+  if (rawPassword) {
+    a = 0;
+    //jshint plusplus:false bitwise:false <<-- Have no idea what this means
+    for (h = rawPassword.length - 1; h >= 0; h--) {
+      o = rawPassword.charCodeAt(h);
+      a = (a << 6 & 268435455) + o + (o << 14);
+      c = a & 266338304;
+      a = c !== 0 ? a ^ c >> 21 : a;
+    }
+  } else {    
+    // If the password is not valid, we'll throw an error we're able to catch
+    throw new Error("The password supplied is not valid");
+  }
+  return String(a); 
+}
+
+
  // Function to go through the User Data to match Username/Password
   function getInfo() {
    
@@ -24,7 +43,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
   // Loop that goes through the User Data to idetify right or wrong Username/Password
     for (var i = 0; i < users.length; i++) {
         
-        if (username == users[i].username && password == users[i].password) 
+        if (username == users[i].username && hashPassword(password) == users[i].password) 
             {console.log (username + " is logged in!");
  
 //   //Push username from logged in User in the local storage 
