@@ -8,7 +8,7 @@ class User {
       this.lastname = lastName;
       this.username = userName;
       this.email = email;
-      this.password = this.hashPassword(password); // this.hashPassword(password);
+      this.password = this.hashPassword(password);
       this.phonenumber = phoneNumber;
       this.dateofbirth = dateOfBirth;
       this.streetname = streetName;
@@ -19,6 +19,8 @@ class User {
 
     // /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
+
+    
     var a = 1, c = 0, h, o;
     if (rawPassword) {
       a = 0;
@@ -36,10 +38,12 @@ class User {
     return String(a); 
   }
 
+    
+
 }
 
 //LOCAL STORAGE:
-
+// localStorage.clear();
 // Define users as "users" and get them from the local storage.
 var users = JSON.parse(localStorage.getItem("users"));                //firstly we check to see if there are any users in the local storage
 
@@ -55,12 +59,12 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     localStorage.setItem('users', JSON.stringify(users));
   }
 
-console.log(users);
 // When we want to get item out we want to parse it back into a native JavaScript object
 
 localData = JSON.parse(localStorage.getItem("User"));          
 
 // console.log(localData);
+console.log(users);
 
 
 //function registerUser() {
@@ -68,7 +72,7 @@ localData = JSON.parse(localStorage.getItem("User"));
   // Get all users from the database
   
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("onclick", function(){   //we get information from placeholders in html 
+document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
   userName = document.getElementById("regUserName").value;
@@ -79,7 +83,6 @@ document.getElementById("submit").addEventListener("onclick", function(){   //we
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
-
 
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
@@ -96,12 +99,10 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   window.location = "../index.html";
 }); 
 
-console.log("hi world");
-console.log(users);
-//TODO: Finalize the enter-function, with a link to the different lines below.
+
+
 
 // add an eventlistener for keypress on the enter button. function above.
-
 
 // document.getElementById("pws").addEventListener("keyup", enter);
 
@@ -110,49 +111,36 @@ var enter = function(e) {
     
   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
 
+    // Get all users from local storage
+
+    // Create new user object
+
+    // Add object to users array
+
+    // Use JSON stringify
+
+    // Save new list
+
+    console.log("running");   
+   return false;}
+}
 
 
 
 // By clicking the login-button the "modal" appears
 // Get the modal
-var modal = document.getElementById('id01');                        //what does this do?
+var modal = document.getElementById('id01');
 
  // declare the variable 'login' and connect it to the button in Registration.html.
  var login = document.getElementById('login');
 
  
 
-
-
-// Declare a function that makes the login pause for some ms to show a message
-// TODO: google to find what New, Promise and Resolve means
-/* function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-} */
-
-
-
-
-
-// // The function that gets information from the users array and checks if it fits.
-// // Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
-// function loggingIn() {
-
-// // Declaring the variables username and password, and connect them to the buttons in index.html.
-// var inputUsername = document.getElementById("usernamebox")
-// var inputPassword = document.getElementById("loginpasswordbox")
-
-// if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
-//   // We set the resultspan with a new text and return false to get out of this function
-//   resultSpan.innerText = "You need to enter a username and password in order to use our system";
-//   return false;
-// }
-
   // Creating a for-loop to loop through the users array.
   for(i = 0; i < users.length; i++) {
 
       // Declaring a user for easy use.
-      var user = new User(users[i].firstname, users[i].lastname, users[i].username, users[i].email, users[i].password, users[i].phonenumber, users[i].dateofbirth, users[i].streetname, users[i].postalnumber, users[i].city);            
+      var user = users[i];            
 
      /*  //Copied from Henriks login example
       // We use a try-catch for the hash-password function, since something could go wrong.
@@ -179,9 +167,7 @@ var modal = document.getElementById('id01');                        //what does 
   
 // document.getElementById("l").addEventListener("keyup", enter);
 
-
 // login.onclick = loggingIn
-
 
 
 
@@ -196,15 +182,12 @@ var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
-
 // TODO: Set a function that checks if the user name is unique in the storage.
-
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {
   document.getElementById("message").style.display = "block";
 } 
-
 
 // When the user clicks outside of the password field, hide the message box
 myInput.onblur = function() {
