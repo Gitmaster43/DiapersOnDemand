@@ -50,7 +50,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
           localStorage.setItem("loggedInUser", users[i].lastname);
   
 // //   redirect to new html side for logged in users 
-window.location = "ProductPage.html"; 
+window.location = "../index.html"; 
   
 //   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
           aunthenticatedUserId = users[i].userId;
