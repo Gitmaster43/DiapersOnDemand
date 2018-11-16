@@ -8,7 +8,7 @@ class User {
       this.lastname = lastName;
       this.username = userName;
       this.email = email;
-      this.password = password; // this.hashPassword(password);
+      this.password = this.hashPassword(password);
       this.phonenumber = phoneNumber;
       this.dateofbirth = dateOfBirth;
       this.streetname = streetName;
@@ -17,7 +17,7 @@ class User {
       this.userId = 0;
   }
 
-    /* // Function copied from Henriks login-example. 
+    // /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
 
     
@@ -36,14 +36,14 @@ class User {
       throw new Error("The password supplied is not valid");
     }
     return String(a); 
-  }*/
+  }
 
     
 
 }
 
 //LOCAL STORAGE:
-
+// localStorage.clear();
 // Define users as "users" and get them from the local storage.
 var users = JSON.parse(localStorage.getItem("users"));                //firstly we check to see if there are any users in the local storage
 
@@ -74,7 +74,7 @@ console.log(users);
   // Get all users from the database
   
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("onclick", function(){   //we get information from placeholders in html 
+document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
   userName = document.getElementById("regUserName").value;
