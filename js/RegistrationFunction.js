@@ -38,7 +38,9 @@ class User {
     return String(a); 
   }
 
-    
+    //To make the login work with hashing of password, you need to hash it and theen check it to the localstorage.
+
+    //TODO: Create a CurrentUserID thing in local storage, so that you always know who is logged in.
 
 }
 
@@ -53,12 +55,11 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
     // Check code for our self, hardcoded users, push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
-    // Login with Anders does not work though; no idea why --> Joe works
+    
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
 
     localStorage.setItem('users', JSON.stringify(users));
   }
-
 
 // When we want to get item out we want to parse it back into a native JavaScript object
 
@@ -66,7 +67,6 @@ localData = JSON.parse(localStorage.getItem("User"));
 
 // console.log(localData);
 console.log(users);
-
 
 
 //function registerUser() {
@@ -86,7 +86,6 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
 
-
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
 users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
@@ -105,9 +104,7 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
 
 
 
-
 // add an eventlistener for keypress on the enter button. function above.
-
 
 // document.getElementById("pws").addEventListener("keyup", enter);
 
@@ -129,7 +126,6 @@ var enter = function(e) {
     console.log("running");   
    return false;}
 }
-
 
 
 
@@ -173,9 +169,7 @@ var modal = document.getElementById('id01');
   
 // document.getElementById("l").addEventListener("keyup", enter);
 
-
 // login.onclick = loggingIn
-
 
 
 
@@ -190,15 +184,12 @@ var capital = document.getElementById("capital");
 var number = document.getElementById("number");
 var length = document.getElementById("length");
 
-
 // TODO: Set a function that checks if the user name is unique in the storage.
-
 
 // When the user clicks on the password field, show the message box
 myInput.onfocus = function() {
   document.getElementById("message").style.display = "block";
 } 
-
 
 // When the user clicks outside of the password field, hide the message box
 myInput.onblur = function() {
