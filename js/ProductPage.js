@@ -23,7 +23,7 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     diaperType = document.getElementById("typeOfDiaper").value;
     diaperSize = document.getElementById("diaperSize").value;
     diapersADay = document.getElementById("diapersADay").value;
-    totalDiaperPrice = totalDiaperPrice();
+   // totalDiaperPrice = totalDiaperPrice();
      
     
 // Push the values of the dropdown lists into the localStorage
@@ -38,6 +38,8 @@ console.log(lineItems);
 var subscription = [];
 
 
+
+
 //for every object in the array lineItems, the function creatHTML is called and use the subscription array for showing it in HTML.
 var html = "";
 
@@ -50,8 +52,6 @@ for (i=0; i < lineItems.length; i++ ){
 table = document.getElementById('tableCart');
 tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
-
-
 
 
 
