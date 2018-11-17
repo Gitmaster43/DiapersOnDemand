@@ -49,17 +49,17 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
             {console.log (username + " is logged in!");
 
 //   //Push username from logged in User in the local storage 
-          localStorage.setItem("loggedInUser", users[i].lastname);
+          localStorage.setItem("loggedInUser", users[i].userId);
   
 // //   redirect to new html side for logged in users 
 window.location = "../index.html"; 
   
 //   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
-          aunthenticatedUserId = users[i].userId;
-          console.log (aunthenticatedUserId)
+          // aunthenticatedUserId = users[i].userId;
+          // console.log (aunthenticatedUserId)
           }   
   }
- // Disabling fields after 3 attempts.
+  // Disabling fields after 3 attempts.
   if( attempt == 0){    
       document.getElementById("loggedUser").disabled = true;
       document.getElementById("loggedPassword").disabled = true;

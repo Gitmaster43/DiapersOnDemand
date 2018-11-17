@@ -14,7 +14,7 @@ class User {
       this.streetname = streetName;
       this.postalnumber = postalNumber;
       this.city = city;
-      this.userId = 0;
+      this.userId = userId;
   }
 
     // /* // Function copied from Henriks login-example. 
@@ -85,6 +85,7 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
+  userId = '_' + Math.random().toString(36).substr(2, 9);
 
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
