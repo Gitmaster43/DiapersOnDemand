@@ -22,21 +22,17 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
      
     
 // Push the values of the dropdown lists into the localStorage
-lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, totalDiaperPrice));
+lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, /* totalDiaperPrice */));
     console.log(lineItems);
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
 console.log(lineItems);
 
-resultSpan.innerHTML = document.getElementById("chooseDiaper").value;
-
-if 
 
 // Creating an array to have in the table
 var subscription = [];
 
-var lineItems = JSON.parse(localStorage.getItem("lineItems"));
 
 
 //for every object in the array lineItems, the function creatHTML is called and use the subscription array for showing it in HTML.

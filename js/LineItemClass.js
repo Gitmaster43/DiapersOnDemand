@@ -5,7 +5,7 @@
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class lineItem {
-    constructor (type, size, numberADay, price, removeButton ){
+    constructor (type,, size, numberADay, price, removeButton ){
         this.diaperType = type;
         this.diaperPrice = products[i].productPrice
         this.diaperSize = size;
