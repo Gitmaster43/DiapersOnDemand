@@ -8,7 +8,7 @@ if(lineItems === null){
     var lineItems = [];
 } 
 
-console.log(lineItems);
+console.log(diaperSize);
 
 
 //Can we make this into a function?
@@ -29,7 +29,7 @@ lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, /* totalDiaperP
 
 console.log(lineItems);
 
-
+//console.log(lineitems[i].diaperSize);
 // Creating an array to have in the table
 var subscription = [];
 
@@ -49,6 +49,8 @@ tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
 
+console.log(lineItems);
+//console.log(lineitems[i].diaperSize);
 //Have a unique ID of a user, and a unique ID of the product - Or lineItem?
 
 //Need to calculate the price first, then can do the function under.
@@ -216,7 +218,7 @@ for (var i = 0; i < removeCartItemsButtons.length; i++) {
 
 // Stolen from Isabella, not sure why it doesn't work.
 
-var buttons = document.getElementsByClassName('removeFromList');
+/* var buttons = document.getElementsByClassName('removeFromList');
 
 // On click, wish is removed from the list by updating the lineItems variable which is then updated in the local storage
 for (u=0; u < buttons.length; u++){
@@ -246,6 +248,6 @@ for (u=0; u < buttons.length; u++){
 
     
    
-};
-
+}; */
+console.log(lineItems);
 
