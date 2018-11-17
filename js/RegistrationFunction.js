@@ -1,5 +1,29 @@
+  //LOCAL STORAGE of users:
+// localStorage.clear();
+// Define users as "users" and either push them or get them from local storage:    
 
-  
+if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
+    // initialize empty user array 
+    var users = [];                                                   //If not, we create an empty array with users we can push later
+
+    // Check code for our self, hardcoded users, push user to the array
+    users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
+    
+    users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
+
+    localStorage.setItem('users', JSON.stringify(users));
+
+  } else {
+    var users = JSON.parse(localStorage.getItem("users")); // else, we get the users from local storage.
+  }
+
+
+  // When we want to get item out we want to parse it back into a native JavaScript object
+
+//Console our users so that we can see what is in there.
+console.log(users);
+
+
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
 document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
@@ -17,17 +41,20 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
 users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
-  console.log(users);                         //what is this for? It does not show in console.
+  
+
   //Local storage (domain specific): hardcoded version 
   // turning our users into a JSON string and then set it into local storage
   // first parameter in the parantheses is the name (unique; is in local storage)
   // Storing multiple types of information into a single local storage key value
   // In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts   
-  //we save the array "users" after we have stringified it, in the localstorage under the key "User" 
+  //we save the array "users" after we have stringified it, in the localstorage under the key "users" 
   localStorage.setItem('users', JSON.stringify(users)); //And then we save this array as a string under the key users 
   
-  window.location = "../index.html";
+  //window.location = "../index.html";
 }); 
+
+
 
 
  //TODO: Make the message pop up when the user creation is successful, and not all the time.

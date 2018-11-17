@@ -7,10 +7,11 @@
 class lineItem {
     constructor (type, size, numberADay, price, removeButton ){
         this.diaperType = type;
+        this.diaperPrice = products[i].productPrice
         this.diaperSize = size;
         this.diapersADay = numberADay;
         //this.diaperPrice = price;
-        this.removeButton = removeButton
+        this.button = "<input type='button' class='removeFromList' name='remove from list' data-object='" + JSON.stringify(this) + "' value='Remove'></input>";
         this.totalDiaperPrice = []; //Can we have a price-function here? Or on the one above?
     }
     
@@ -18,16 +19,9 @@ class lineItem {
     
     //Creating a function that creates a table row with data from the lineItem
     createHTML(subscription){
-        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" 
-        + this.diapersADay + "</td><td>" + this.diaperPrice + "</td><td>" + this.removeButton + "</td></tr>" //Button to remove the item from the list
+        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperPrice + "</td><td>" + this.diaperSize + "</td><td>" 
+        + this.diapersADay + "</td><td>" + this.diaperPrice + "</td><td>" + this.button + "</td></tr>" //Button to remove the item from the list
     }
 
 } 
 
-// Defining the localStorage for the lineItems, so that we can store it
-var lineItems = JSON.parse(localStorage.getItem("lineItems"));
-
-// If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
-if(lineItems === null){
-    var lineItems = [];
-}

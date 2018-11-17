@@ -3,8 +3,8 @@
 //create class "product" - within dropdown bar of size, number of diapers, priceCalc
 
 class product {
-    constructor (/* diaperSize ,*/productID, productType, productPrice, productDescription) {
-        /* this.diaperSize = diaperSize; */
+    constructor (productID, productType, productPrice, productDescription) {
+        
         this.productID = productID;
         this.productType = productType;
         this.productPrice = productPrice; 

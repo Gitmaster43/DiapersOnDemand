@@ -15,12 +15,11 @@
     <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
         <div  class="selection" >
             <form>
-                <select name="typeOfDiaper" id="typeOfDiaper" > <!-- onchange="itemPrice()" -->
-                    <!-- TODO: Find a way to make the dropdown list get the items from the Class product in stead of hardcoding -->
-                    <option value="choose" selected="" >Choose</option> <!-- TODO: How to add an error that requires the user to choose?? Same with size and quantity -->
-                    <option value="recyclable">Recyclable</option>
-                    <option value="reusable">Reusable</option>
-                </select>
+                <p type="ChooseDiaper">Choose Diaper</p>
+                <input type="radio" name="chooseDiaper" id="chooseDiaper" value="Recyclable">Recyclable</input>
+                <br>
+                <input type="radio" name="chooseDiaper" id="chooseDiaper" value="Reusable">Reusable</input>
+                
                 <br>
                 <span id="price"></span>
                  
@@ -61,6 +60,7 @@
                 <thead>
                     <tr class="header">
                         <th>Type</th>
+                        <th>Price</th>
                         <th>Size</th>
                         <th>Quantity per day</th>
                         <th>Total price</th>
