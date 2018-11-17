@@ -17,6 +17,8 @@ class User {
       this.userId = userId;
   }
 
+
+
     // /* // Function copied from Henriks login-example. 
   hashPassword(rawPassword){
 
