@@ -15,7 +15,7 @@
     <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
         <div  class="selection" >
             <form>
-                <select name="typeOfDiaper" id="typeOfDiaper" onchange="itemPrice()">
+                <select name="typeOfDiaper" id="typeOfDiaper" > <!-- onchange="itemPrice()" -->
                     <!-- TODO: Find a way to make the dropdown list get the items from the Class product in stead of hardcoding -->
                     <option value="choose" selected="" >Choose</option> <!-- TODO: How to add an error that requires the user to choose?? Same with size and quantity -->
                     <option value="recyclable">Recyclable</option>
@@ -93,5 +93,7 @@
             </div> -->
         </div>
 
+    <script src="../js/ProductClass.js"></script>
+    <script src="../js/LineItemClass.js"></script>
     <script src="../js/ProductPage.js"></script>
 </body>
