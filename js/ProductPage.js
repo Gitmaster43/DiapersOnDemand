@@ -1,77 +1,33 @@
-// Create a  function that waits for the page to render before aaall the content has finished loading.
-
-if (document.readyState == "loading") {
-    document.addEventListener('DOMContentLoaded', ready)
-} else {
-    //Run the page function of some sort?? Source: https://www.youtube.com/watch?v=YeFzkC2awTM at 41st minute
-}
 
 
-//create class "product" - within dropdown bar of size, number of diapers, priceCalc
 
-class product {
-    constructor (/* diaperSize ,*/productID, productType, productPrice, productDescription) {
-        /* this.diaperSize = diaperSize; */
-        this.productID = productID;
-        this.productType = productType;
-        this.productPrice = productPrice; 
-        this.productDescription = productDescription;
-        
-    }
+// Bind the resultspan to the span "price" from HTML
+resultSpan = document.getElementById("price");
 
-}
+//Create a function that takes into account what value is in the typeOfDiaper and returns a text of the price
+function totalDiaperPrice() {
 
-var products = [];
+    document.getElementById("price").addEventListener
 
-
-//Pushing the two products to the Class
-products.push(new product(0, "Reusable", 40,));
-products.push(new product(1, "Recyclable", 30,));
-
-//Checking if the pushing of products actually worked.
-//console.log(products);
-
-// Create a box in HTML that shows the price per diaper, which changes with which type the user chooses in the first dropdown
-
-
-//create an class for lineItem to define the attributes the lineItem can have.
-class lineItem {
-    constructor (type, size, numberADay, price  ){
-        this.diaperType = type;
-        this.diaperSize = size;
-        this.diapersADay = numberADay;
-        this.diaperPrice = price;
-        
-        this.totalDiaperPrice = []; //Can we have a price-function here? Or on the one above?
-    }
+    //Declare a function that gets the value from the price and multiplies it with the quantity    
     
-    
-    //Creating a function that creates a table row with data from the lineItem
-    createHTML(subscription){
-        return "<tr><td>"+ this.diaperType + "</td><td>" + this.diaperSize + "</td><td>" 
-        + this.diapersADay + "</td><td>" + this.diaperPrice + "</td></tr>"; //<td>" + this.button + "</td>//Button to remove the item from the list
-    }
-
-} 
-
-// Defining the localStorage for the lineItems, so that we can store it
-var lineItems = JSON.parse(localStorage.getItem("lineItems"));
-
-// If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
-if(lineItems === null){
-    var lineItems = [];
+    var totalPrice = products[i].diaperPrice * products[i].diapersADay;
+        
+        console.log(totalPrice) 
 }
+
+
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
     diaperType = document.getElementById("typeOfDiaper").value;
     diaperSize = document.getElementById("diaperSize").value;
     diapersADay = document.getElementById("diapersADay").value;
-    diaperPrice = totalDiaperPrice();
+   // totalDiaperPrice = totalDiaperPrice();
      
     
 // Push the values of the dropdown lists into the localStorage
-lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, diaperPrice));
+lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, totalDiaperPrice));
     console.log(lineItems);
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
@@ -82,7 +38,9 @@ console.log(lineItems);
 var subscription = [];
 
 
-//for every object in the array the function creatHTML is called
+
+
+//for every object in the array lineItems, the function creatHTML is called and use the subscription array for showing it in HTML.
 var html = "";
 
 for (i=0; i < lineItems.length; i++ ){
@@ -95,13 +53,27 @@ table = document.getElementById('tableCart');
 tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
+
+
+
+function calculateTotalCart() {
+    var total = 0
+    for(i=0; i<this.shoppingCart.length; i++) {
+        total += this.shoppingCart[i].price
+    }
+    return "<tr><td>Total Amount:</td><td></td><td></td><td>" + total + "</td></tr>";
+}
+
+
+
+
 //Addeventlistener('input') makes it trigger every time the input changes
-//Using the function ".include" you can query on letters in a filter
+//Using the function ".includes" you can query on letters in a filter
 // Setting the html = '' inside the loop, resets the table every time the eventlistener executes.
 
 // How to add to cart: 
 
-function addToCart () {
+/* function addToCart () {
     // Binding the logged in user to a item, which needs a function to declare who is logged in.
     var loggedIn = localStorage.getItem('loggedIn');
 
@@ -116,7 +88,7 @@ function addToCart () {
 }
 
 //Trigger the function
-addToCart(subscription[0]);
+addToCart(subscription[0]); */
 
 //TODO: Create a price calculation for the diaperprices
 
@@ -183,9 +155,5 @@ shoppingcart = {
 //Have a unique ID of a user, and a unique ID of the product
 
 
-/* TODO: 
-    1. Create something that gets the content of the localStorage and shows it as a cart
-    2. Create something that can remove things from localStorage
-    
-*/
+
 

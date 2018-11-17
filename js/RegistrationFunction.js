@@ -1,5 +1,5 @@
-// Adding class of users, with defined user characteristics
 
+<<<<<<< HEAD
 class User {
 
   // The constructor defines the values that each object can have, and makes us able to make more objects
@@ -74,6 +74,8 @@ console.log(users);
 //function registerUser() {
       
   // Get all users from the database
+=======
+>>>>>>> cab1bbf048964d0b9e7aa42b9fad88ccf917cb30
   
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
 document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
@@ -87,7 +89,7 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
-  userId = '_' + Math.random().toString(36).substr(2, 9);
+  userId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
 
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
@@ -105,79 +107,13 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
 }); 
 
 
-
-
-// add an eventlistener for keypress on the enter button. function above.
-
-// document.getElementById("pws").addEventListener("keyup", enter);
-
-// By clicking enter, you will automatically click "Create"
-var enter = function(e) {
-    
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-
-    // Get all users from local storage
-
-    // Create new user object
-
-    // Add object to users array
-
-    // Use JSON stringify
-
-    // Save new list
-
-    console.log("running");   
-   return false;}
-}
+ //TODO: Make the message pop up when the user creation is successful, and not all the time.
 
 
 
-// By clicking the login-button the "modal" appears
-// Get the modal
-var modal = document.getElementById('id01');
 
- // declare the variable 'login' and connect it to the button in Registration.html.
- var login = document.getElementById('login');
 
  
-
-  // Creating a for-loop to loop through the users array.
-  for(i = 0; i < users.length; i++) {
-
-      // Declaring a user for easy use.
-      var user = users[i];            
-
-     /*  //Copied from Henriks login example
-      // We use a try-catch for the hash-password function, since something could go wrong.
-      try {
-
-          // We try to create a variable with the hashed version of the inputPassword
-          var hashedInputPassword = user.hashPassword(inputPassword.value);
-          console.log(hashedInputPassword);
-      } catch (error) {
-
-          // We console log any error that might have been thrown
-          console.log(error);                                    
-      } */
-       
-  
-
-// var enter = function(e) {
-
-//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-//     loggingIn();
-//     //console.log("running");
-//     return false;}
-//   }
-  
-// document.getElementById("l").addEventListener("keyup", enter);
-
-// login.onclick = loggingIn
-
-
-
-
-
 // Password (line now to line+91): Depicts if the user matches the password requirements
 
 // Defining the variables 
@@ -269,7 +205,6 @@ var match = function() {
   alert ("Passwords don't match");
       } 
     } 
-  }
-//TODO: Make this message pop up when the user creation is successful
-// var resultSpan = document.getElementById("creationResult");
-// resultSpan.innerText = "Creation was successful"
+  
+
+ 
