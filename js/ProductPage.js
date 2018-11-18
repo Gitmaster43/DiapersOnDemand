@@ -1,17 +1,7 @@
 
-// Defining the localStorage for the lineItems, so that we can store it
-var lineItems = JSON.parse(localStorage.getItem("lineItems"));
 
 
-// If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
-if(lineItems === null){
-    var lineItems = [];
-} 
-
-console.log(diaperSize);
-
-
-//Can we make this into a function?
+// TODO: Can we make this into a function? Or do it inside the Class lineItem?
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
@@ -27,9 +17,8 @@ lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, /* totalDiaperP
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
-console.log(lineItems);
 
-//console.log(lineitems[i].diaperSize);
+
 // Creating an array to have in the table
 var subscription = [];
 
@@ -38,19 +27,25 @@ var subscription = [];
 //for every object in the array lineItems, the function creatHTML is called and use the subscription array for showing it in HTML.
 var html = "";
 
+// Loop through the lineItems
 for (i=0; i < lineItems.length; i++ ){
-    var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperPrice, lineItems[i].diaperSize, lineItems[i].diapersADay);
+
+    //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
+    var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice);
+
+    //Then we add the cartline that we created above to the html-string.
     html += cartLine.createHTML(subscription); 
 }
 
-// The table body will contain the html plus objects that were run by the createHTML function
+
+// Then we get the table from the HTML and bind the html-string from above to it. 
 table = document.getElementById('tableCart');
 tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
 
-console.log(lineItems);
-//console.log(lineitems[i].diaperSize);
+
+
 //Have a unique ID of a user, and a unique ID of the product - Or lineItem?
 
 //Need to calculate the price first, then can do the function under.
@@ -58,8 +53,8 @@ console.log(lineItems);
 //console.log(lineItems[i].diapersADay)
 
 
-
-/* function calculate(){
+/* 
+function calculate(){
     var table = document.getElementById('tableCart');
     var count = table.getElementsByTagName('tr').length;
     if (count > 0)

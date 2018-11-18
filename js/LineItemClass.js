@@ -46,3 +46,12 @@ class lineItem {
 
 } 
 
+
+// Defining the localStorage for the lineItems, so that we can store it
+var lineItems = JSON.parse(localStorage.getItem("lineItems"));
+
+
+// If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
+if(lineItems === null){
+    var lineItems = [];
+} 
