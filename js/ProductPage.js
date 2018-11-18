@@ -1,22 +1,33 @@
+/*
+Problem1: When adding to cart, the values is not stored in localStorage with the key we have defined, the values is only shown as a key.
+*/
 
 
+// Defining the localStorage for the lineItems, so that we can store it
+var lineItems = JSON.parse(localStorage.getItem("lineItems"));
 
-// TODO: Can we make this into a function? Or do it inside the Class lineItem?
+
+// If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
+if(lineItems === null){
+    var lineItems = [];
+}
+
+// TODO: Can we make this into a function? Or do it inside the Class lineItem? Would that be wise?
+
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
     diaperType = document.getElementById("chooseDiaper").value;
     diaperSize = document.getElementById("diaperSize").value;
     diapersADay = document.getElementById("diapersADay").value;
-   // totalDiaperPrice = totalDiaperPrice();
-     
+// totalDiaperPrice = totalDiaperPrice();
+    
     
 // Push the values of the dropdown lists into the localStorage
-lineItems.push(new lineItem(diaperType, diaperSize, diapersADay, /* totalDiaperPrice */));
-    console.log(lineItems);
+lineItems.push(new lineItem(diaperType, diaperSize, diapersADay,));
+    
     localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
-
 
 
 // Creating an array to have in the table
@@ -31,7 +42,7 @@ var html = "";
 for (i=0; i < lineItems.length; i++ ){
 
     //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
-    var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice);
+    var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice,);
 
     //Then we add the cartline that we created above to the html-string.
     html += cartLine.createHTML(subscription); 
@@ -44,84 +55,39 @@ tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
 
+ 
+
+console.log(lineItems);
+
+
+/*
+Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
+from the first item in products-array and we then push that price to the cart. When we then add a second item to the cart, it takes the 
+second price from products-array. If we would want to add a third product, we only get the error that there is no more Prices to take from.
+
+Problem3: The diaperType is only Recyclable when you add it to the cart (Could be related to the one above)
+*/
+
 
 
 //Have a unique ID of a user, and a unique ID of the product - Or lineItem?
 
 //Need to calculate the price first, then can do the function under.
 
-//console.log(lineItems[i].diapersADay)
 
-
-/* 
-function calculate(){
-    var table = document.getElementById('tableCart');
-    var count = table.getElementsByTagName('tr').length;
-    if (count > 0)
-      {
-        var total = 0;
-        for(var i = 1; i < count; i++)
-          {
-            total += table.rows[i].cells[1].innerHTML * table.rows[i].cells[2].children[0].value;
-          }
-      }
-    
-    alert(total);
-    }
-
- */
-
-
-
-/* // getCakeSizePrice() finds the price based on the size of the cake.
-// Here, we need to take user's the selection from radio button selection
-function getDiaperTypePrice(){
-
-    var diaperTypePrice=0;
-    //Get a reference to the form id="cakeform"
-    //var theForm = document.forms["cakeform"];
-    //Get a reference to the cake the user Chooses name=selectedCake":
-    var selectedType = document.getElementsByName("chooseDiaper");
-    //Here since there are 4 radio buttons selectedCake.length = 4
-    //We loop through each radio buttons
-    for(var i = 0; i < selectedType.length; i++) {
-        //if the radio button is checked
-        if(selectedType[i].checked) {
-
-            //we set cakeSizePrice to the value of the selected radio button
-            //i.e. if the user choose the 8" cake we set it to 25
-            //by using the cake_prices array
-            //We get the selected Items value
-            //For example cake_prices["Round8".value]"
-            diaperTypePrice = diaper_Price[selectedType[i].value];
-            //If we get a match then we break out of this loop
-            //No reason to continue if we get a match
-            break;
-        }
-    }
-    //We return the cakeSizePrice
-    return diaperTypePrice;
-}
-console.log() */
-
-/* 
-function calculatePrice() {
-    var price = 0
-    for (i=0; i < this.lineItems.length; i++) {
-        price += this.diapersADay * this.products[i].productPrice
-    }
-    return 
-}
-*/
-/* 
-function calculateTotalCart() {
+/* function calculateTotalCart() {
     var total = 0
     for(i=0; i < this.lineItems.length; i++) {
         total += this.lineItems[i].price
     }
     return "<tr><td>Total Amount:</td><td></td><td></td><td>" + total + "</td></tr>";
 }
- */
+ 
+
+calculateTotalCart(); */
+
+
+
 
 
 
@@ -244,5 +210,5 @@ for (u=0; u < buttons.length; u++){
     
    
 }; */
-console.log(lineItems);
+
 
