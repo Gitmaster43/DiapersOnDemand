@@ -59,6 +59,7 @@ function showTable(user) {
     userInfo.appendChild(table);
 }
 
+// Calling the function in order to execute it 
     displayUserInformation();
 
 
