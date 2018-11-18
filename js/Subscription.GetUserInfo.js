@@ -1,19 +1,27 @@
+// We are getting the user's information from the local storage
 var users = JSON.parse(localStorage.getItem("users"));   
 
+// We are creating a function which depicts the loggedInUser's personal inforamtion in a table
 function displayUserInformation() {
    
-   
+   // We are looping through all our registered users and pick the loggedInUser by comparing it with his unique userID
         for (i=0; i < users.length; i++){
             if(users[i].userId == localStorage.getItem('loggedInUser')){
-               
+
+               // We are storing this information in the variable activeUser
                 var activeUser = users[i]
+
+                // Calling the function "showTable" with the information of the activeUser (=loggedInUser)
                 showTable(activeUser);
-                console.log(users[i]['lastname']);
+
+                // Echoing the information to see if it is the right user
+                console.log(users[i].userID);
                 console.log(localStorage.getItem('loggedInUser'));
             }          
         }     
     }
 
+// We are creating the function for our Table in which the loggedInUser's information will be shown
 function showTable(user) {
 
     //Create Table reference
@@ -51,6 +59,7 @@ function showTable(user) {
     userInfo.appendChild(table);
 }
 
+// Calling the function in order to execute it 
     displayUserInformation();
 
 

@@ -7,9 +7,9 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     var users = [];                                                   //If not, we create an empty array with users we can push later
 
     // Check code for our self, hardcoded users, push user to the array
-    users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", "1"));
+    users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", ""));
     
-    users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
+    users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", ""));
 
     localStorage.setItem('users', JSON.stringify(users));
 
@@ -40,9 +40,8 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
 
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
-users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city));
-  
-
+users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city, userId));
+  console.log(users);                         //what is this for? It does not show in console.
   //Local storage (domain specific): hardcoded version 
   // turning our users into a JSON string and then set it into local storage
   // first parameter in the parantheses is the name (unique; is in local storage)
