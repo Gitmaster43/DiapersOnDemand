@@ -3,7 +3,7 @@
 class User {
 
     // The constructor defines the values that each object can have, and makes us able to make more objects
-    constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city) {
+    constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city, userId) {
         this.firstname = firstName;
         this.lastname = lastName;
         this.username = userName;
@@ -14,7 +14,7 @@ class User {
         this.streetname = streetName;
         this.postalnumber = postalNumber;
         this.city = city;
-        this.userId = 0;
+        this.userId = userId;
         this.shoppingCart = [];
     }
   

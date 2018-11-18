@@ -14,6 +14,7 @@
 <link href="css/styleIndex.css" rel="stylesheet">
 <script src="js/Index.js"></script>
 
+
 <body>
     <header>
         <!-- <img class="baby" src="Images/Baby_diaper.jpg"> -->
@@ -49,9 +50,9 @@
                   <div class="container">
                     
                     <!-- Creating textboxes for username and password -->
-                    <input type="text" placeholder="Enter Username" name="username" id="usernamebox" required>
-                    <input type="password" placeholder="Enter Password" name="psw" id="loginpasswordbox" required>
-                    <button type="login" id="login">Login</button>
+                    <input type="text" placeholder="Enter Username" name="username" id="loggedUser" required>
+                    <input type="password" placeholder="Enter Password" name="psw" id="loggedPassword" required>
+                    <button type="login" id="login" onclick="getInfo()">Login</button>
                     
                     <!-- Creating a span to show the message from ID -->
                     <span id="loginResult"></span>
@@ -83,6 +84,6 @@
     </div>
 
     </header>
-
+    <script src="js/Login.js"></script>
 </body>
 </html>
