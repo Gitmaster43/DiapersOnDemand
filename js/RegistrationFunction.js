@@ -1,53 +1,6 @@
-// Adding class of users, with defined user characteristics
-
-class User {
-
-  // The constructor defines the values that each object can have, and makes us able to make more objects
-  constructor (firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city, userId) {
-      this.firstname = firstName;
-      this.lastname = lastName;
-      this.username = userName;
-      this.email = email;
-      this.password = this.hashPassword(password);
-      this.phonenumber = phoneNumber;
-      this.dateofbirth = dateOfBirth;
-      this.streetname = streetName;
-      this.postalnumber = postalNumber;
-      this.city = city;
-      this.userId = userId;
-  }
-
-    // /* // Function copied from Henriks login-example. 
-  hashPassword(rawPassword){
-
-    var a = 1, c = 0, h, o;
-    if (rawPassword) {
-      a = 0;
-      //jshint plusplus:false bitwise:false <<-- Have no idea what this means
-      for (h = rawPassword.length - 1; h >= 0; h--) {
-        o = rawPassword.charCodeAt(h);
-        a = (a << 6 & 268435455) + o + (o << 14);
-        c = a & 266338304;
-        a = c !== 0 ? a ^ c >> 21 : a;
-      }
-    } else {    
-      // If the password is not valid, we'll throw an error we're able to catch
-      throw new Error("The password supplied is not valid");
-    }
-    return String(a); 
-  }
-
-    //To make the login work with hashing of password, you need to hash it and theen check it to the localstorage.
-
-    //TODO: Create a CurrentUserID thing in local storage, so that you always know who is logged in.
-
-}
-
-//LOCAL STORAGE:
+  //LOCAL STORAGE of users:
 // localStorage.clear();
-// Define users as "users" and get them from the local storage.
-
-var users = JSON.parse(localStorage.getItem("users"));                //firstly we check to see if there are any users in the local storage
+// Define users as "users" and either push them or get them from local storage:    
 
 if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
     // initialize empty user array 
@@ -59,20 +12,18 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", ""));
 
     localStorage.setItem('users', JSON.stringify(users));
+
+  } else {
+    var users = JSON.parse(localStorage.getItem("users")); // else, we get the users from local storage.
   }
 
-// When we want to get item out we want to parse it back into a native JavaScript object
 
-localData = JSON.parse(localStorage.getItem("User"));          
+  // When we want to get item out we want to parse it back into a native JavaScript object
 
-// console.log(localData);
+//Console our users so that we can see what is in there.
 console.log(users);
 
 
-//function registerUser() {
-      
-  // Get all users from the database
-  
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
 document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
@@ -85,7 +36,7 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
-  userId = '_' + Math.random().toString(36).substr(2, 9);
+  userId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
 
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
@@ -96,86 +47,22 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
   // first parameter in the parantheses is the name (unique; is in local storage)
   // Storing multiple types of information into a single local storage key value
   // In order for local storage to store the information it needs to be stored as a string: JSON objects are strings of texts   
-  //we save the array "users" after we have stringified it, in the localstorage under the key "User" 
+  //we save the array "users" after we have stringified it, in the localstorage under the key "users" 
   localStorage.setItem('users', JSON.stringify(users)); //And then we save this array as a string under the key users 
   
-  window.location = "../index.html";
+  //window.location = "../index.html";
 }); 
 
 
 
 
-// add an eventlistener for keypress on the enter button. function above.
-
-// document.getElementById("pws").addEventListener("keyup", enter);
-
-// By clicking enter, you will automatically click "Create"
-var enter = function(e) {
-    
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-
-    // Get all users from local storage
-
-    // Create new user object
-
-    // Add object to users array
-
-    // Use JSON stringify
-
-    // Save new list
-
-    console.log("running");   
-   return false;}
-}
+ //TODO: Make the message pop up when the user creation is successful, and not all the time.
 
 
 
-// By clicking the login-button the "modal" appears
-// Get the modal
-var modal = document.getElementById('id01');
 
- // declare the variable 'login' and connect it to the button in Registration.html.
- var login = document.getElementById('login');
 
  
-
-  // Creating a for-loop to loop through the users array.
-  for(i = 0; i < users.length; i++) {
-
-      // Declaring a user for easy use.
-      var user = users[i];            
-
-     /*  //Copied from Henriks login example
-      // We use a try-catch for the hash-password function, since something could go wrong.
-      try {
-
-          // We try to create a variable with the hashed version of the inputPassword
-          var hashedInputPassword = user.hashPassword(inputPassword.value);
-          console.log(hashedInputPassword);
-      } catch (error) {
-
-          // We console log any error that might have been thrown
-          console.log(error);                                    
-      } */
-       
-  
-
-// var enter = function(e) {
-
-//   if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
-//     loggingIn();
-//     //console.log("running");
-//     return false;}
-//   }
-  
-// document.getElementById("l").addEventListener("keyup", enter);
-
-// login.onclick = loggingIn
-
-
-
-
-
 // Password (line now to line+91): Depicts if the user matches the password requirements
 
 // Defining the variables 
@@ -267,7 +154,6 @@ var match = function() {
   alert ("Passwords don't match");
       } 
     } 
-  }
-//TODO: Make this message pop up when the user creation is successful
-// var resultSpan = document.getElementById("creationResult");
-// resultSpan.innerText = "Creation was successful"
+  
+
+ 

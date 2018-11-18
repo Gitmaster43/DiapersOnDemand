@@ -1,3 +1,11 @@
+// By clicking the login-button the "modal" appears
+// Get the modal
+var modal = document.getElementById('id01');
+
+ // declare the variable 'login' and connect it to the button in Registration.html.
+ var login = document.getElementById('login');
+
+
 // Define users as "users" and get them from the local storage.
 var users = JSON.parse(localStorage.getItem("users")); 
 
@@ -15,21 +23,21 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
  var attempt = 3;
  var resultSpan = document.getElementById("loginResult");
  
+
+ // Insert the hashPassword function from Henriks example in order to hash the inputted password when the user logs in, to match with the stored hashed password.
  function hashPassword(rawPassword){
   var a = 1, c = 0, h, o;
   if (rawPassword) {
     a = 0;
     //jshint plusplus:false bitwise:false <<-- Have no idea what this means
+    // Loops through the password and replaces specific letters with numbers.
     for (h = rawPassword.length - 1; h >= 0; h--) {
       o = rawPassword.charCodeAt(h);
       a = (a << 6 & 268435455) + o + (o << 14);
       c = a & 266338304;
       a = c !== 0 ? a ^ c >> 21 : a;
     }
-  } else {    
-    // If the password is not valid, we'll throw an error we're able to catch
-    throw new Error("The password supplied is not valid");
-  }
+  } 
   return String(a); 
 }
 
@@ -72,10 +80,11 @@ window.location = "../index.html";
   }
 }
 
+
 // if the user presses Enter while in the password box or Username box, it should trigger a click on the login button
 
 var enter = function(e) {
-  if (e.keyCode == 13) { //Always remember brackets. If you want more than one thing in a if-statement: brackets.
+  if (e.keyCode == 13) {
     getInfo();
     //console.log("running");
     return false;}
@@ -86,55 +95,8 @@ var enter = function(e) {
   
   login.onclick = getInfo
 
-// The function that gets information from the users array and checks if it fits.
-// Using "async" in order to make it 'await (milliseconds)' before the redirection <-- TODO: Google what is async
-// function loggingIn() {
 
-//   // Declaring the variables username and password, and connect them to the buttons in index.html.
-//   var inputUsername = document.getElementById("loggedUser")
-//   var inputPassword = document.getElementById("loggedPassword")
-  
-//   if(inputUsername.value.length == 0 || inputPassword.value.length == 0){
-//     // We set the resultspan with a new text and return false to get out of this function
-//     resultSpan.innerText = "You need to enter a username and password in order to use our system";
-//     return false;
-//   }
-  
-//     // Creating a for-loop to loop through the users array.
-//     for(i = 0; i < users.length; i++) {
-  
-//         // Declaring a user for easy use.
-//         var user = new User(users[i].firstname, users[i].lastname,users[i].username, users[i].email, users[i].password, users[i].phonenumber, users[i].dateofbirth, users[i].streetname, users[i].postalnumber, users[i].city);            
-  
-//         //Copied from Henriks login example
-//         // We use a try-catch for the hash-password function, since something could go wrong.
-//         try {
-  
-//             // We try to create a variable with the hashed version of the inputPassword
-//             var hashedInputPassword = user.hashPassword(inputPassword.value);
-            
-//             //console.log(hashedInputPassword);
-//         } catch (error) {
-  
-          
-  
-//             // We console log any error that might have been thrown
-//             console.log(error);                                     //for what reason? If there is a error, what can use that information to? 
-//         }
-//           
-  
 
-// //Trigger Login button by clicking Enter
-// document.getElementById("loggedUser").addEventListener("keyup", function(event) {
-//   event.preventDefault();
-//   if (event.keyCode == 13)
-//       login.onclick();
-// });
-// document.getElementById("loggedPassword").addEventListener("keyup", function(event) {
-//   event.preventDefault();
-//   if (event.keyCode == 13)
-//       login.onclick();
-// });
 
 
 
