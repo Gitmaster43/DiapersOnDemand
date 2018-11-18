@@ -1,3 +1,8 @@
+/*
+Problem1: When adding to cart, the values is not stored in localStorage with the key we have defined, the values is only shown as a key.
+*/
+
+
 // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
 
@@ -53,6 +58,17 @@ tbody[0].innerHTML = html;
  
 
 console.log(lineItems);
+
+
+/*
+Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
+from the first item in products-array and we then push that price to the cart. When we then add a second item to the cart, it takes the 
+second price from products-array. If we would want to add a third product, we only get the error that there is no more Prices to take from.
+
+Problem3: The diaperType is only Recyclable when you add it to the cart (Could be related to the one above)
+*/
+
+
 
 //Have a unique ID of a user, and a unique ID of the product - Or lineItem?
 
