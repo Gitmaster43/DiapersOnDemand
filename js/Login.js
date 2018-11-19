@@ -59,8 +59,8 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 //   //Push username from logged in User in the local storage 
           localStorage.setItem("loggedInUser", users[i].userId);
   
-// //   redirect to new html side for logged in users 
-window.location = "../index.html"; 
+//   redirect to new html side for logged in users 
+            window.location = "../Index.html"; 
   
 //   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
           // aunthenticatedUserId = users[i].userId;
