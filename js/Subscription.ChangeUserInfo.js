@@ -1,39 +1,31 @@
-var activeUser = JSON.parse(localStorage.getItem("users"));
+// We are declaring a new variable containing all the registered users from the local storage
+var users = JSON.parse(localStorage.getItem("users"));
 
-
-// localStorage.setItem('users', JSON.stringify(users));
-
-
+// We are initiating a function called "editUser". It is triggerd by a onclick in Subscription.html
 function editUser () {
     
-    activeUser.username = document.getElementById("userName").value;
-    activeUser.firstname = document.getElementById("firstName").value;
-    activeUser.lastname = document.getElementById("lastName").value;
-    activeUser.email = document.getElementById("email").value;
-    
-    
-   
+
+   // We are looping through all our users
     for (i=0; i < users.length; i++){
-        if(users[i].userId == localStorage.getItem('loggedInUser')){
+
+        // We are identifiying the loggedInUser by matching it with his unique userId
+        // the Loop stops when it found the loggedInUser in the array with our registered users
+         if(users[i].userId == localStorage.getItem('loggedInUser')){
             
-            users[i] = activeUser;
-
-
-        } 
-    
+            // When we have found the loggedInUser in our registered users array, we asign that user with new information
+            users[i].username = document.getElementById('userName').value
+            users[i].firstname = document.getElementById('firstName').value
+            users[i].lastname = document.getElementById('lastName').value
+            users[i].email = document.getElementById('email').value
+        }   
+    }
+    // Saves the new  user information in the localstorage
     localStorage.setItem("users", JSON.stringify(users));
-
-    //store updated loggedInUser object in local storage, make sure keyName is always String! 
-    //keyName --> you need it to recall it later!
-    // localStorage.setItem("activeUser", JSON.stringify(activeUser));
-
-    //Show message in result Span, to user can see that changes are saved.
-    alert("Your changes have been saved!");
-
     
+    alert("Your User Information has been changed!");
 
-    // window.location="../Index.html";
-
-}
-
+    // Triggers the function (declared in Subscription.GetUserInfo) which updates the information in the table
+    displayUserInformation()
+    
+    window.location = "../html/Subscription.html"; 
 }
