@@ -13,6 +13,7 @@ function logOut() {
         document.getElementById("logout").disabled = true; 
 
         // Sets value of key loggedInUserName empty in localStorage
+        // Automatically removes Username from index page
         localStorage.setItem("loggedInUserName", "");
 
         window.location = "index.html"; 

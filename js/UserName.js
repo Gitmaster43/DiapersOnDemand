@@ -1,4 +1,6 @@
-// Shows Username on index in the left corner when Users logs in //
+// Shows Username on index.html in the left corner when Users logs in //
+// Function is also executed when user logs out and therefore removes username from index.html automatically. 
+// Reason: by clicking logout, loggedInUserName (line10) within local storage gets empty and overwrites the username with an empty string
 function showUserName() {
 
     // Defines variable showUserName. Gets information by id "showUserName" from index.html
@@ -14,25 +16,11 @@ function showUserName() {
 // Calling the function
 showUserName();
 
-// UserName disappears when Users logsout //
-function hideUserName() {
-
-    var hideUserName = document.getElementById("hideUserName");
-    username = localStorage.getItem("loggedInUserName")
-    hideUserName.textContent = `${username}`
-    
-
-}
-// Calling the function
-hideUserName();
-
-
 // Redirect Users to Subscription when he clicks on his Username // 
 
 // Function is triggerd by onclick which is defined in index.html
 function redirctSubscription () {
 
     window.location = "Subscription.html"; 
-
 }
 
