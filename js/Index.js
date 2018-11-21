@@ -14,7 +14,7 @@ function logOut() {
 
         
         localStorage.setItem("loggedInUserName", "");
-        // showerUserName ();
+        window.location = "index.html"; 
     }  
     return false;
     }
