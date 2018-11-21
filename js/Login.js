@@ -58,7 +58,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
           localStorage.setItem("loggedInUserName", users[i].username);
           // showUserName ();
 //   redirect to new html side for logged in users 
-            window.location = "../Index.html"; 
+            window.location = "index.html"; 
             
           }   
     }
