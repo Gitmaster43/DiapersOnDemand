@@ -11,6 +11,10 @@ function logOut() {
         localStorage.setItem('loggedInUser', JSON.stringify(currentUserId));
         alert("You are now logged out")
         document.getElementById("logout").disabled = true; 
+
+        
+        localStorage.setItem("loggedInUserName", "");
+        // showerUserName ();
     }  
     return false;
     }

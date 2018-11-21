@@ -1,21 +1,44 @@
 // Only show Username if user is logged in
-logIn () ;{
 
-// Display Username
-// console.log("Hello")
-createHTML(loggedInUser) {}
 
-return "<div>"+
-    "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
+function showUserName () {
+var showUserName = document.getElementById("showUserName");
 
+username = localStorage.getItem("loggedInUserName")
+showUserName.textContent = `${username}`
+
+}
+
+showUserName ();
+
+function hideUserName () {
 
 
 
 }
-// Click on it --> Redirection to Subscription Page
 
 
+
+
+
+
+// logIn () ;{
+
+// // Display Username
+// // console.log("Hello")
 // createHTML(loggedInUser) {
+
+// return "<div>"+
+//     "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
+
+
+// }
+
+// }
+// // Click on it --> Redirection to Subscription Page
+
+
+// // createHTML(loggedInUser) {
 
 //     return "<div>"+
 //     "<p id='firstname'> First name: " + loggedInUser.firstname + "<p>"+
