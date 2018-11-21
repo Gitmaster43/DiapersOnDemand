@@ -3,13 +3,14 @@
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class LineItem {
-    constructor (currentUserId, type, size, numberADay, price){
-        this.id = currentUserId;
+    constructor (itemId, currentUserId, type, size, numberADay, price, /* cartlinePrice */){    
+        this.itemId = itemId;
+        this.currentUserId = currentUserId;
         this.diaperType = type;
         this.diaperSize = size;
         this.diapersADay = numberADay;
         this.diaperPrice = price;
-       
+        /* this.cartLinePrice = cartlinePrice; */
         //this.diaperPrice = price;
         this.button = "<input type='button' class='removeFromList' name='remove from list' data-object='" + JSON.stringify(this) + "' value='Remove'></input>";
      //  this.totalDiaperPrice = totalDiaperPrice(); //Can we have a price-function here? Or on the one above? 

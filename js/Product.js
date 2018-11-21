@@ -1,22 +1,19 @@
 // Could also write the defining of things in localStorage as:
-// var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
+var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
 
-// Defining the localStorage for the lineItems, so that we can store it
+/* // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
 
 
 // If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
 if(lineItems === null){
     var lineItems = [];
-}
+} */
 
+// Setting the currentUserId to the loggedInUser, or setting it as No User.
 var currentUserId = localStorage.getItem("loggedInUser") !== null ? JSON.parse(localStorage.getItem("loggedInUser")) : 'No User';
-    var noUser = 'No User';
-    console.log(currentUserId);
-    console.log(noUser);
-    console.log(currentUserId!==noUser);
-// TODO: Can we make this into a function? Or do it inside the Class lineItem? Would that be wise?
 
+console.log(currentUserId);
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
@@ -25,24 +22,26 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     var diapersADay = document.getElementById("diapersADay").value;
     // totalDiaperPrice = totalDiaperPrice();
         
-    
+    var itemId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
 
 
     // Could do a for-loop if we want to add more products and prices, but if we only have two it would make sense to only do it hardcoded.
     // Set an if-statement to get the price of the diapers
     if (diaperType === 'Reusable') {
-        var diaperPrice = products[0].productPrice;
+        var diaperPrice = 40 /* products[0].productPrice */;
     } else if (diaperType === 'Recyclable') {
-        var diaperPrice = products[1].productPrice;
+        var diaperPrice = 30 /* products[1].productPrice */;
     }
 
+    
+
     // Push the values of the dropdown lists into the localStorage
-    lineItems.push(new LineItem(currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
-        
+    lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice,));
+    
         localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
-console.log(lineItems);
+
 //Make sure that the information is correctly stored in the local-storage, with the calculatePrice as well.
 
 
@@ -56,23 +55,20 @@ for (i=0; i < lineItems.length; i++ ){
     //Try to create an item in lineItems in stead for a new array, and add that to the html
 
     //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
-    var cartLine = new LineItem (lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice,);
+    var lineItems = new LineItem (lineItems[i].itemId, lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice, lineItems[i].cartlinePrice, );
 
     //Then we add the cartline that we created above to the html-string.
-    html += cartLine.createHTML(); 
+    html += lineItems.createHTML(); 
    
 }
 
 
-// Then we get the table from the HTML and bind the html-string from above to it. 
+// Get the table from the product.html, and push the html string to the page HTML table. 
 table = document.getElementById('tableCart');
 tbody = table.getElementsByTagName('tbody');
 tbody[0].innerHTML = html;
 
 
- 
-
-console.log(lineItems);
 
 
 
@@ -91,23 +87,92 @@ Registration todo:
 2. Check if the user already exists
 `
 
-var buttons = document.getElementsByClassName('removeFromList');
+/* 
 
-for (j=0; j < buttons.length; j++) {
-    buttons[j].addEventListener('click', function(e) {
-        var name = JSON.parse(this.dataset.object).name
+THE REMOVE BUTTON:
+
+*/
+
+var removeFromCartButtons = document.getElementsByClassName('removeFromList');
+
+console.log(removeFromCartButtons);
+
+//Add a lineCounter to see where we are, and then increment it later on if it is not equal to i.
+// Problem is, that i always is the last lineItem on the list.
+var lineCounter = 0;
+
+// Loops through the buttons and find the clicked
+for (var i = 0; i < removeFromCartButtons.length; i++) {
+    removeFromCartButtons[i].addEventListener("click", function(){
+
+// Do the removal of the item through a splice. 
+    // Find the index of clicked element
+    alert(this.itemId);
+    var index = lineItems.prototype.indexOf(this.itemId);
+
+    console.log(index);
+    console.log(lineCounter+ " and the id of removeFromCart: "+i);
+    // Check if the ID is included at all (-1 means not included) otherwise there's nothing to be removed)
+   
+    if(lineCounter === i)  {
+        // splice it out of the picks list and store new array to local storage
+        lineItems.splice(index, 1);
+    } else {
+        return false;
     }
+
+
+    console.log(lineItems);
+    localStorage.setItem("lineItems", JSON.stringify(lineItems));
+    alert("This item has been removed from cart");
     
-    )
+    //automatically refresh after click
+    // onClick = ManualRefresh()
+    })  
+    lineCounter++;
 }
 
 
-var name = JSON.parse(this.dataset.object).name
+/* function ManualRefresh(){
+    window.location.reload();
+} */
 
-console.log(name);
+console.log(lineItems);
+
+/* //Make a for-loop that loops over the items in the cart
+for (i=0; i < removeFromCartButtons.length; i++) {
+    removeFromCartButtons[i].addEventListener('click', function() {
+        
+        // Create a filterfunction that filter out the element that we want to remove.
+        lineitems = lineItems.filter(function (lineItems){
+            if (lineItems.id[0].userName == currentUserId[0].userName) {
+                return lineItems.diaperType !== diaperType;
+            } else {
+                return lineItems
+            }
+        });
+
+        // Override the current shoppingcart with the ones that are filtered.
+        var listString = JSON.stringify(lineItems);
+        localStorage.setItem('lineitems', listString);
+
+        //automatically refresh after click
+        onClick=ManualRefresh()
+        function ManualRefresh(){
+            window.location.reload();
+        } 
+
+        // Save list to localstorage, but remember to parse it to json first
+        console.log(this);
+
+    })
+} */
 
 
-// On click, cartline is removed from the list by updating the lineItems variable which is then updated in the local storage
+
+
+
+/* // On click, cartline is removed from the list by updating the lineItems variable which is then updated in the local storage
 for (j=0; j < buttons.length; j++){
     buttons[j].addEventListener('click', function(e){
         var name = JSON.parse(this.dataset.object).name;
@@ -133,7 +198,7 @@ for (j=0; j < buttons.length; j++){
         console.log(this);
     });  
    
-};
+}; */
 
 /*
 Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
