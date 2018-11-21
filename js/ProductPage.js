@@ -1,7 +1,5 @@
-/*
-Problem1: When adding to cart, the values is not stored in localStorage with the key we have defined, the values is only shown as a key.
-*/
-
+// Could also write the defining of things in localStorage as:
+// var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
 
 // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
@@ -12,26 +10,40 @@ if(lineItems === null){
     var lineItems = [];
 }
 
+var currentUserId = localStorage.getItem("loggedInUser") !== null ? JSON.parse(localStorage.getItem("loggedInUser")) : 'No User';
+    var noUser = 'No User';
+    console.log(currentUserId);
+    console.log(noUser);
+    console.log(currentUserId!==noUser);
 // TODO: Can we make this into a function? Or do it inside the Class lineItem? Would that be wise?
 
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
-    diaperType = document.getElementById("chooseDiaper").value;
-    diaperSize = document.getElementById("diaperSize").value;
-    diapersADay = document.getElementById("diapersADay").value;
-// totalDiaperPrice = totalDiaperPrice();
+    var diaperType = document.getElementById("chooseDiaper").value;
+    var diaperSize = document.getElementById("diaperSize").value;
+    var diapersADay = document.getElementById("diapersADay").value;
+    // totalDiaperPrice = totalDiaperPrice();
+        
     
-    
-// Push the values of the dropdown lists into the localStorage
-lineItems.push(new lineItem(diaperType, diaperSize, diapersADay,));
-    
-    localStorage.setItem('lineItems', JSON.stringify(lineItems));
+
+
+    // Could do a for-loop if we want to add more products and prices, but if we only have two it would make sense to only do it hardcoded.
+    // Set an if-statement to get the price of the diapers
+    if (diaperType === 'Reusable') {
+        var diaperPrice = products[0].productPrice;
+    } else if (diaperType === 'Recyclable') {
+        var diaperPrice = products[1].productPrice;
+    }
+
+    // Push the values of the dropdown lists into the localStorage
+    lineItems.push(new LineItem(currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
+        
+        localStorage.setItem('lineItems', JSON.stringify(lineItems));
 });
 
-
-// Creating an array to have in the table
-var subscription = [];
+console.log(lineItems);
+//Make sure that the information is correctly stored in the local-storage, with the calculatePrice as well.
 
 
 
@@ -41,11 +53,14 @@ var html = "";
 // Loop through the lineItems
 for (i=0; i < lineItems.length; i++ ){
 
+    //Try to create an item in lineItems in stead for a new array, and add that to the html
+
     //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
-    var cartLine = new lineItem (lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice,);
+    var cartLine = new LineItem (lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice,);
 
     //Then we add the cartline that we created above to the html-string.
-    html += cartLine.createHTML(subscription); 
+    html += cartLine.createHTML(); 
+   
 }
 
 
@@ -59,6 +74,66 @@ tbody[0].innerHTML = html;
 
 console.log(lineItems);
 
+
+
+
+
+`/ To do: 
+1. Make the remove-button work. 
+Comments from Bella: Instead of having a function that removes the lineItem, you have a function that filters the list to the ones you want to 
+leave, and then override the current localStorage lineItems with these two. 
+I.e. Two ways of doing it.
+2. Create a purchase-button that sends you to subscription site (or a purchase site?) 
+3. Make an if statement connected to the purchase button: If lineitem ID is "No User", you have to log in and this should change the currentUserId to the math.random thing
+ 
+Registration todo:
+1. User cannot create if the requirements is not met
+2. Check if the user already exists
+`
+
+var buttons = document.getElementsByClassName('removeFromList');
+
+for (j=0; j < buttons.length; j++) {
+    buttons[j].addEventListener('click', function(e) {
+        var name = JSON.parse(this.dataset.object).name
+    }
+    
+    )
+}
+
+
+var name = JSON.parse(this.dataset.object).name
+
+console.log(name);
+
+
+// On click, cartline is removed from the list by updating the lineItems variable which is then updated in the local storage
+for (j=0; j < buttons.length; j++){
+    buttons[j].addEventListener('click', function(e){
+        var name = JSON.parse(this.dataset.object).name;
+        lineItems = lineItems.filter(function (item) {
+            if(item.id[0].userName == loggedIn[0].userName) {
+                return item.name !== name;
+            } else {
+                return item
+            }
+        
+        });
+        
+        var listString = JSON.stringify(lineItems);
+        localStorage.setItem('lineItems', listString);
+
+        //automatically refresh after click
+        onClick=ManualRefresh()
+        function ManualRefresh(){
+            window.location.reload();
+        }
+
+        // Save list to localstorage, but remember to parse it to json first
+        console.log(this);
+    });  
+   
+};
 
 /*
 Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
@@ -123,22 +198,6 @@ addToCart(subscription[0]); */
 
 //Questionable: Should we add to local storage while we add to cart, or after? 
 
-    
-    
-//console.log (diaperPrice);
-
-
-
-
-
-
-/* //Making a function that calculates the price of the order
-function priceCalc(price){
-    var price = products.productPrice * lineItems.numberADay;
-    console.log(price);
-}  */
-
-
 
 
 //Notes from Marten Exercise
@@ -177,38 +236,8 @@ for (var i = 0; i < removeCartItemsButtons.length; i++) {
 }
  */
 
-// Stolen from Isabella, not sure why it doesn't work.
 
-/* var buttons = document.getElementsByClassName('removeFromList');
 
-// On click, wish is removed from the list by updating the lineItems variable which is then updated in the local storage
-for (u=0; u < buttons.length; u++){
-    buttons[u].addEventListener('click', function(e){
-        var name = JSON.parse(this.dataset.object).name;
-        lineItems = lineItems.filter(function (item) {
-            if(item.id[0].userName == loggedIn[0].userName) {
-                return item.name !== name;
-            } else {
-                return item
-            }
-        
-        });
-        
-        var listString = JSON.stringify(lineItems);
-        localStorage.setItem('lineItems', listString);
 
-        //automatically refresh after click
-        onClick=ManualRefresh()
-        function ManualRefresh(){
-            window.location.reload();
-        }
-
-        // Save list to localstorage, but remember to parse it to json first
-        console.log(this);
-    }); 
-
-    
-   
-}; */
 
 
