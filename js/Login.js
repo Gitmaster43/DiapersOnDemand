@@ -43,7 +43,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
 
  // Function to go through the User Data to match Username/Password
-  function getInfo() {
+  function getInfo(e) {
    
     var username = document.getElementById("loggedUser").value
     var password = document.getElementById("loggedPassword").value
@@ -55,12 +55,24 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
         
         if (username == users[i].username && hashPassword(password) == users[i].password) 
             {console.log (username + " is logged in!");
-
-//   //Push username from logged in User in the local storage 
-          localStorage.setItem("loggedInUser", users[i].userId);
+            
+            //   //Push username from logged in User in the local storage 
+            localStorage.setItem("loggedInUser", users[i].userId);
+            
+            //This if statement 
+//             if(e.target.baseURI.includes('index.html')) {
+              
+//               window.location.href = "html/Subscription.html"; 
+//             } else if (e.target.baseURI.includes('Registration.html')) {
+//               window.location.href = "Subscription.html"
+//             } else {
+//               return true
+//             }
+// console.log(addEventListener);
+            // debugger
+            window.location.href = "Subscription.html"; 
   
 // //   redirect to new html side for logged in users 
-window.location = "../index.html"; 
   
 //   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
           // aunthenticatedUserId = users[i].userId;
