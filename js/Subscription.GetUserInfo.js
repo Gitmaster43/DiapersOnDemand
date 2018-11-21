@@ -15,7 +15,7 @@ function displayUserInformation() {
                 showTable(activeUser);
 
                 // Echoing the information to see if it is the right user
-                console.log(users[i].userID);
+                console.log(users[i].userId);
                 console.log(localStorage.getItem('loggedInUser'));
             }          
         }     

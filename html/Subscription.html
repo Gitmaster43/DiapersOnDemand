@@ -5,12 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Subscription</title>
+    <link rel="stylesheet" href="../css/SubscriptionChangeUserInfo.css">
 </head>
 <body>
         
 <div id="userInfo"></div>
 
-<!-- <ls id="uI"></ls> -->
+
+<button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Edit User Information</button>
+
+<div id="id02" class="modal">
+   
+    <div class="modal-content animate">
+      <div class="imgcontainer">
+
+        <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+       
+      </div>
+
+      <div class="container">
+
+    <div>
+        <label for="username"> Username: </label>
+        <input type="text" id="userName" name="username"  >
+    </div>
+
+    <div>
+        <label for="firstname"> Firstname: </label>
+        <input type="text" id="firstName" name="firstname"  >
+    </div>
+
+    <div>
+        <label for="lastname"> Lastname: </label>
+        <input type="text" id="lastName" name="lastname"  >
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" >
+    </div>
+
+    <button type="edit" id="edit" onclick="editUser()"> Edit </button>
+             </div>
+  
+      
+      </div>
+    </div>
+</div>
+
+
 
 
 
