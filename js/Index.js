@@ -2,9 +2,7 @@
 
 var currentUserId = localStorage.getItem("loggedInUser");
 var noUser = '"No User"';
-console.log(currentUserId);
-console.log(noUser);
-console.log(currentUserId!==noUser);
+
 
 //function that clears the value within in the localStorage under the key "loggedInUser"
 function logOut() {
@@ -13,6 +11,10 @@ function logOut() {
         localStorage.setItem('loggedInUser', JSON.stringify(currentUserId));
         alert("You are now logged out")
         document.getElementById("logout").disabled = true; 
+
+        
+        localStorage.setItem("loggedInUserName", "");
+        // showerUserName ();
     }  
     return false;
     }
@@ -24,14 +26,14 @@ var usersInLocalStorage = JSON.parse(localStorage.getItem("users"));
 
 for (i = 0; i < usersInLocalStorage.length; i++) {
     if (usersInLocalStorage[i].userId == currentUserId){ //det er kun når denne statement er sand, det skal være muligt at logge af, ellers skal den sige "du er ikke logget på"
-            console.log("userID matches")
+            // console.log("userID matches")
             
     }  
 }
 
 for (i = 0; i < usersInLocalStorage.length; i++) {
     if ((usersInLocalStorage[i].userId !== currentUserId)){
-    console.log("not logged in");
+    // console.log("not logged in");
     break;
 }
 }

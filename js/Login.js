@@ -43,42 +43,26 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
 
  // Function to go through the User Data to match Username/Password
-  function getInfo(e) {
+  function logIn() {
    
     var username = document.getElementById("loggedUser").value
     var password = document.getElementById("loggedPassword").value
     
-    
-    
-  // Loop that goes through the User Data to idetify right or wrong Username/Password
+  // Loop that goes through the User Data to identify right or wrong Username/Password
     for (var i = 0; i < users.length; i++) {
         
-        if (username == users[i].username && hashPassword(password) == users[i].password) 
-            {console.log (username + " is logged in!");
+        if (username == users[i].username && hashPassword(password) == users[i].password)  {
+
+//   //Push username from logged in User in the local storage 
+          localStorage.setItem("loggedInUser", users[i].userId);
+          localStorage.setItem("loggedInUserName", users[i].username);
+          showerUserName ();
+//   redirect to new html side for logged in users 
+            window.location = "../Index.html"; 
             
-            //   //Push username from logged in User in the local storage 
-            localStorage.setItem("loggedInUser", users[i].userId);
-            
-            //This if statement 
-//             if(e.target.baseURI.includes('index.html')) {
-              
-//               window.location.href = "html/Subscription.html"; 
-//             } else if (e.target.baseURI.includes('Registration.html')) {
-//               window.location.href = "Subscription.html"
-//             } else {
-//               return true
-//             }
-// console.log(addEventListener);
-            // debugger
-            window.location.href = "Subscription.html"; 
-  
-// //   redirect to new html side for logged in users 
-  
-//   //Set authenticatedUserId to userId to enable to change aunthenticatedUserId = null into new value
-          // aunthenticatedUserId = users[i].userId;
-          // console.log (aunthenticatedUserId)
           }   
-  }
+    }
+
   // Disabling fields after 3 attempts.
   if( attempt == 0){    
       document.getElementById("loggedUser").disabled = true;
@@ -97,7 +81,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
 var enter = function(e) {
   if (e.keyCode == 13) {
-    getInfo();
+    logIn();
     //console.log("running");
     return false;}
   }
@@ -105,7 +89,7 @@ var enter = function(e) {
   document.getElementById("loggedUser").addEventListener("keyup", enter);
   document.getElementById("loggedPassword").addEventListener("keyup", enter);
   
-  login.onclick = getInfo
+  login.onclick = logIn
 
 
 
