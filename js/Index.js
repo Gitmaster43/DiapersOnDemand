@@ -12,8 +12,9 @@ function logOut() {
         alert("You are now logged out")
         document.getElementById("logout").disabled = true; 
 
-        
+        // Sets value of key loggedInUserName empty in localStorage
         localStorage.setItem("loggedInUserName", "");
+
         window.location = "index.html"; 
     }  
     return false;

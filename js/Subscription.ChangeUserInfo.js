@@ -28,5 +28,5 @@ function editUser () {
     // Triggers the function (declared in Subscription.GetUserInfo) which updates the information in the table
     displayUserInformation()
     
-    window.location = "../html/Subscription.html"; 
+    window.location = "index.html"; 
 }
