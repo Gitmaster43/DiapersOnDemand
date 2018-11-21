@@ -53,10 +53,10 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
         
         if (username == users[i].username && hashPassword(password) == users[i].password)  {
 
-//   //Push username from logged in User in the local storage 
+//   //Push username and userId from logged in User in the local storage 
           localStorage.setItem("loggedInUser", users[i].userId);
           localStorage.setItem("loggedInUserName", users[i].username);
-          // showUserName ();
+
 //   redirect to new html side for logged in users 
             window.location = "index.html"; 
             

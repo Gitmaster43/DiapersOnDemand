@@ -18,14 +18,15 @@ function editUser () {
             users[i].lastname = document.getElementById('lastName').value
             users[i].email = document.getElementById('email').value
         }   
-    }
+    } 
     // Saves the new  user information in the localstorage
     localStorage.setItem("users", JSON.stringify(users));
-    
+    // localStorage.setItem("loggedInUserName", users[i].username);
+
     alert("Your User Information has been changed!");
 
     // Triggers the function (declared in Subscription.GetUserInfo) which updates the information in the table
     displayUserInformation()
     
-    window.location = "../html/Subscription.html"; 
+    window.location = "index.html"; 
 }
