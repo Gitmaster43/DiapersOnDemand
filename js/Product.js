@@ -59,7 +59,6 @@ tbody[0].innerHTML = html;
 
 console.log(lineItems);
 
-
 /*
 Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
 from the first item in products-array and we then push that price to the cart. When we then add a second item to the cart, it takes the 
