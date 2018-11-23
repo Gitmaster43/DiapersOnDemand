@@ -5,9 +5,10 @@ var users = JSON.parse(localStorage.getItem("users"));
 function editUser () {
     
     
+    
    // We are looping through all our users
     for (i=0; i < users.length; i++){
-
+        
         // We are identifiying the loggedInUser by matching it with his unique userId
         // the Loop stops when it found the loggedInUser in the array with our registered users
          if(users[i].userId == localStorage.getItem('loggedInUser')){
@@ -18,8 +19,21 @@ function editUser () {
             users[i].firstname = document.getElementById('firstName').value
             users[i].lastname = document.getElementById('lastName').value
             users[i].email = document.getElementById('email').value
+            
         }   
-    } 
+   
+                
+    } if (document.getElementById('userName').value == "", 
+          document.getElementById('firstName').value == "" ,
+          document.getElementById('lastName').value == "",
+          document.getElementById('email').value =="") 
+        {
+
+            alert("Type in your information");
+            return;
+        
+        }
+
     // Saves the new  user information in the localstorage
     localStorage.setItem("users", JSON.stringify(users));
     localStorage.setItem("loggedInUserName", changeUserName);
