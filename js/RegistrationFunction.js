@@ -21,7 +21,6 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
   // When we want to get item out we want to parse it back into a native JavaScript object
 
 //Console our users so that we can see what is in there.
-console.log(users);
 
 
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
@@ -40,6 +39,23 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
 
 // Take the user data and push it to the Class
 // "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
+
+//checks if these inputs are not created you can continue and push them, otherwise return false
+
+//loops through the already existing users, and check if the username input already exist. If it does, user is stopped
+for (var i = 0; i < users.length; i++) {
+      if (users[i].username == userName) {
+      alert("Username already exists");
+      return false;               
+      }}
+  
+      
+//loops through the already existing users, and check if the password input already exist. If it does, user is stopped
+
+
+        
+
+
 users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city, userId));
   console.log(users);                         //what is this for? It does not show in console.
   //Local storage (domain specific): hardcoded version 

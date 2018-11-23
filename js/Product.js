@@ -133,67 +133,6 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
 
 console.log(lineItems);
 
-/* //Make a for-loop that loops over the items in the cart
-for (i=0; i < removeFromCartButtons.length; i++) {
-    removeFromCartButtons[i].addEventListener('click', function() {
-        
-        // Create a filterfunction that filter out the element that we want to remove.
-        lineitems = lineItems.filter(function (lineItems){
-            if (lineItems.id[0].userName == currentUserId[0].userName) {
-                return lineItems.diaperType !== diaperType;
-            } else {
-                return lineItems
-            }
-        });
-
-        // Override the current shoppingcart with the ones that are filtered.
-        var listString = JSON.stringify(lineItems);
-        localStorage.setItem('lineitems', listString);
-
-        //automatically refresh after click
-        onClick=ManualRefresh()
-        function ManualRefresh(){
-            window.location.reload();
-        } 
-
-        // Save list to localstorage, but remember to parse it to json first
-        console.log(this);
-
-    })
-} */
-
-
-
-
-
-/* // On click, cartline is removed from the list by updating the lineItems variable which is then updated in the local storage
-for (j=0; j < buttons.length; j++){
-    buttons[j].addEventListener('click', function(e){
-        var name = JSON.parse(this.dataset.object).name;
-        lineItems = lineItems.filter(function (item) {
-            if(item.id[0].userName == loggedIn[0].userName) {
-                return item.name !== name;
-            } else {
-                return item
-            }
-        
-        });
-        
-        var listString = JSON.stringify(lineItems);
-        localStorage.setItem('lineItems', listString);
-
-        //automatically refresh after click
-        onClick=ManualRefresh()
-        function ManualRefresh(){
-            window.location.reload();
-        }
-
-        // Save list to localstorage, but remember to parse it to json first
-        console.log(this);
-    });  
-   
-}; */
-
 /*
 Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
 from the first item in products-array and we then push that price to the cart. When we then add a second item to the cart, it takes the 
