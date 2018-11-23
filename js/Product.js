@@ -20,9 +20,8 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     var diaperType = document.getElementById("chooseDiaper").value;
     var diaperSize = document.getElementById("diaperSize").value;
     var diapersADay = document.getElementById("diapersADay").value;
-    // totalDiaperPrice = totalDiaperPrice();
         
-    var itemId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
+    //var itemId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
 
 
     // Could do a for-loop if we want to add more products and prices, but if we only have two it would make sense to only do it hardcoded.
@@ -33,12 +32,10 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
         var diaperPrice = 30 /* products[1].productPrice */;
     }
 
-    
-
     // Push the values of the dropdown lists into the localStorage
     lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice,));
     
-        localStorage.setItem('lineItems', JSON.stringify(lineItems));
+    localStorage.setItem('lineItems', JSON.stringify(lineItems)); 
 });
 
 
@@ -95,8 +92,6 @@ THE REMOVE BUTTON:
 
 var removeFromCartButtons = document.getElementsByClassName('removeFromList');
 
-console.log(removeFromCartButtons);
-
 //Add a lineCounter to see where we are, and then increment it later on if it is not equal to i.
 // Problem is, that i always is the last lineItem on the list.
 var lineCounter = 0;
@@ -107,8 +102,8 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
 
 // Do the removal of the item through a splice. 
     // Find the index of clicked element
-    alert(this.itemId);
-    var index = lineItems.prototype.indexOf(this.itemId);
+    alert(i);
+    var index = lineItems.prototype.indexOf(i);
 
     console.log(index);
     console.log(lineCounter+ " and the id of removeFromCart: "+i);
@@ -121,13 +116,12 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
         return false;
     }
 
-
     console.log(lineItems);
     localStorage.setItem("lineItems", JSON.stringify(lineItems));
     alert("This item has been removed from cart");
     
     //automatically refresh after click
-    // onClick = ManualRefresh()
+    onClick = ManualRefresh()
     })  
     lineCounter++;
 }
