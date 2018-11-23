@@ -28,6 +28,17 @@
         background-position: center;
     }
 
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 40%;
+    }
+    
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: middle;
+        padding: 8px;
+    }
     .main-nav {
     float: right;
     list-style: none;

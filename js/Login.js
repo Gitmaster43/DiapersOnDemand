@@ -58,7 +58,14 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
           localStorage.setItem("loggedInUserName", users[i].username);
 
 //   redirect to new html side for logged in users 
-            window.location = "index.html"; 
+            
+      /*   if (window.location.host === "Index.html" || window.location.host === "Registration.html"){
+          window.location = "index.html";
+        } else if (window.location.host === "Product.html") {
+          window.location.reload;
+        } */
+
+/* window.location = "index.html";  */
             
           }   
     }
