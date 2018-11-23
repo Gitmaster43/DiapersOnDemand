@@ -4,7 +4,7 @@ var users = JSON.parse(localStorage.getItem("users"));
 // We are initiating a function called "editUser". It is triggerd by a onclick in Subscription.html
 function editUser () {
     
-
+    
    // We are looping through all our users
     for (i=0; i < users.length; i++){
 
@@ -14,6 +14,7 @@ function editUser () {
             
             // When we have found the loggedInUser in our registered users array, we asign that user with new information
             users[i].username = document.getElementById('userName').value
+            changeUserName = document.getElementById('userName').value
             users[i].firstname = document.getElementById('firstName').value
             users[i].lastname = document.getElementById('lastName').value
             users[i].email = document.getElementById('email').value
@@ -21,12 +22,14 @@ function editUser () {
     } 
     // Saves the new  user information in the localstorage
     localStorage.setItem("users", JSON.stringify(users));
-    // localStorage.setItem("loggedInUserName", users[i].username);
+    localStorage.setItem("loggedInUserName", changeUserName);
 
     alert("Your User Information has been changed!");
 
     // Triggers the function (declared in Subscription.GetUserInfo) which updates the information in the table
-    displayUserInformation()
-    
+    displayUserInformation();
+  
     window.location = "index.html"; 
 }
+
+
