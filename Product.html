@@ -16,11 +16,14 @@
         <div  class="selection" >
             <form>
                 <p type="ChooseDiaper">Choose Diaper</p>
-                <input type="radio" name="chooseDiaper" id="chooseDiaper" value="Recyclable">Recyclable</input>
                 <br>
-                <input type="radio" name="chooseDiaper" id="chooseDiaper" value="Reusable">Reusable</input>
+                <select name="chooseDiaper" id="chooseDiaper">
+                    <option value="Choose"  >Choose</option>
+                    <option value="Recyclable">Recyclable</option>
+                    <option value="Reusable">Reusable</option>
+                </select>
+                <br>
                 
-                <br>
                 <span id="price"></span>
                  
             <br>    
