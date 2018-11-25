@@ -1,10 +1,7 @@
-// By clicking the login-button the "modal" appears
-// Get the modal
-var modal = document.getElementById('id01');
 
- // declare the variable 'login' and connect it to the button in Registration.html.
- var login = document.getElementById('login');
 
+//______________________________________________________________________________________________________
+// BIND USERS TO LOCALSTORAGE OR INITIALIZE EMPTY ARRAY AND PUSH USERS
 
 // Define users as "users" and get them from the local storage.
 var users = JSON.parse(localStorage.getItem("users")); 
@@ -18,57 +15,57 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-// declare the variable 'login', "attempt and "resultSpan" and connect it to the button in Registration.html.
- var login = document.getElementById("login");
- var attempt = 3;
- var resultSpan = document.getElementById("loginResult");
- 
+//______________________________________________________________________________________________________________________
+// DECLARE VARIABLES AND HASHPASSWORD FUNCTION
 
- // Insert the hashPassword function from Henriks example in order to hash the inputted password when the user logs in, to match with the stored hashed password.
- function hashPassword(rawPassword){
-  var a = 1, c = 0, h, o;
-  if (rawPassword) {
-    a = 0;
-    //jshint plusplus:false bitwise:false <<-- Have no idea what this means
-    // Loops through the password and replaces specific letters with numbers.
-    for (h = rawPassword.length - 1; h >= 0; h--) {
-      o = rawPassword.charCodeAt(h);
-      a = (a << 6 & 268435455) + o + (o << 14);
-      c = a & 266338304;
-      a = c !== 0 ? a ^ c >> 21 : a;
-    }
-  } 
-  return String(a); 
+// declare the variable 'login', "attempt and "resultSpan" and connect it to the button in Registration.html.
+var login = document.getElementById("login");
+var attempt = 3;
+var resultSpan = document.getElementById("loginResult");
+
+
+// Insert the hashPassword function from Henriks example in order to hash the inputted password when the user logs in, to match with the stored hashed password.
+function hashPassword(rawPassword){
+var a = 1, c = 0, h, o;
+if (rawPassword) {
+  a = 0;
+  
+  // Loops through the password and replaces letters with numbers.
+  for (h = rawPassword.length - 1; h >= 0; h--) {
+    o = rawPassword.charCodeAt(h);
+    a = (a << 6 & 268435455) + o + (o << 14);
+    c = a & 266338304;
+    a = c !== 0 ? a ^ c >> 21 : a;
+  }
+} 
+return String(a); 
 }
 
 
- // Function to go through the User Data to match Username/Password
-  function logIn() {
+// Function to go through the User Data to match Username/Password
+function logIn() {
    
-    var username = document.getElementById("loggedUser").value
-    var password = document.getElementById("loggedPassword").value
-    
-  // Loop that goes through the User Data to identify right or wrong Username/Password
-    for (var i = 0; i < users.length; i++) {
-        
-        if (username == users[i].username && hashPassword(password) == users[i].password)  {
+  var username = document.getElementById("loggedUser").value
+  var password = document.getElementById("loggedPassword").value
+  
+// Loop that goes through the User Data to identify right or wrong Username/Password
+  for (var i = 0; i < users.length; i++) {
+      
+      if (username == users[i].username && hashPassword(password) == users[i].password)  {
 
-//   //Push username and userId from logged in User in the local storage 
-          localStorage.setItem("loggedInUser", users[i].userId);
-          localStorage.setItem("loggedInUserName", users[i].username);
+   //Push username and userId from logged in User in the local storage 
+      localStorage.setItem("loggedInUser", users[i].userId);
+      localStorage.setItem("loggedInUserName", users[i].username);
 
-//   redirect to new html side for logged in users 
-            
-        if (window.location.host === "Index.html" || window.location.host === "Registration.html"){
-          window.location = "index.html";
-        } else if (window.location.host === "Product.html") {
-          window.location.reload;
-        }
-
-/* window.location = "index.html";  */
-            
-          }   
-    }
+    // redirect to new html side for logged in users 
+      if (window.location.host === "Index.html" || window.location.host === "Registration.html"){
+        window.location = "index.html";
+      } else if (window.location.host === "Product.html") {
+        window.location.reload;
+      }
+          
+    }   
+  }
 
   // Disabling fields after 3 attempts.
   if( attempt == 0){    
@@ -88,9 +85,10 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 
 var enter = function(e) {
   if (e.keyCode == 13) {
+    // Run function logIn and return false.
     logIn();
-    //console.log("running");
-    return false;}
+    return false;
+    }
   }
   
   document.getElementById("loggedUser").addEventListener("keyup", enter);

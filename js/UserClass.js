@@ -1,4 +1,9 @@
-// Adding class of users, with defined user characteristics
+
+/*
+_____________________________________________________________________________________________________________
+CLASS OF USER, WITH METHODS:
+Adding class of users, with defined user characteristics
+*/
 
 class User {
 
@@ -21,11 +26,10 @@ class User {
      // Method copied from Henriks login-example. 
     hashPassword(rawPassword){
   
-      
       var a = 1, c = 0, h, o;
       if (rawPassword) {
+
         a = 0;
-        //jshint plusplus:false bitwise:false <<-- Have no idea what this means
         for (h = rawPassword.length - 1; h >= 0; h--) {
           o = rawPassword.charCodeAt(h);
           a = (a << 6 & 268435455) + o + (o << 14);
@@ -35,12 +39,6 @@ class User {
       } 
       return String(a); 
     }
-    
-    
-    //Create a price-calculation that can be pushed to User
-
-
-
 
 }
 
