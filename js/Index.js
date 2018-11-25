@@ -42,8 +42,23 @@ for (i = 0; i < usersInLocalStorage.length; i++) {
 // console.log(currentUsersId); //this gives me the password of the user
 
 
+// __________________________________________________________________________ //
+// Only see subscription button on index.html when user is logged in
 
+var users = JSON.parse(localStorage.getItem("users"));
 
-// if (localStorage.getItem(LoggedInUser) == ) {
-    
-// // }
+function displaySubscriptionButton() {
+   
+
+    for (i=0; i < users.length; i++){
+
+ 
+        if (users[i].userId == localStorage.getItem('loggedInUser')) {
+            document.getElementById('subscription').style.display = "block";
+        } 
+     }
+       
+}
+
+displaySubscriptionButton();
+
