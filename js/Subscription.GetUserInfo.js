@@ -1,5 +1,10 @@
-// We are getting the user's information from the local storage
+
+//______________________________________________________________________________________________________
+// Bind users from localStorage to a variable
 var users = JSON.parse(localStorage.getItem("users"));   
+
+//______________________________________________________________________________________________________
+// DISPLAY USER INFORMATION
 
 // We are creating a function which depicts the loggedInUser's personal inforamtion in a table
 function displayUserInformation() {
@@ -14,12 +19,13 @@ function displayUserInformation() {
                 // Calling the function "showTable" with the information of the activeUser (=loggedInUser)
                 showTable(activeUser);
 
-                // Echoing the information to see if it is the right user
-                console.log(users[i].userId);
-                console.log(localStorage.getItem('loggedInUser'));
             }          
         }     
     }
+
+
+//_______________________________________________________________________________________________________
+// FUNCTION FOR SHOWING THE TABLE
 
 // We are creating the function for our Table in which the loggedInUser's information will be shown
 function showTable(user) {
