@@ -6,14 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     
-    <link href="css/Productpage.css" rel="stylesheet"> <!-- How to do a good style for the table? -->
+   <!--  <link href="css/Productpage.css" rel="stylesheet"> --> <!-- How to do a good style for the table? -->
+    <!-- Next we link the css file to this html -->
+    <link href="css/styleIndex.css" rel="stylesheet">
 
 </head>
 <body>
-    <div id="left" class="header" style="width:51%; float: left;">
+
+    <p id="showUserName"  onclick="redirctSubscription()"></p>
+
+    <header>
+        <!-- <img class="baby" src="Images/Baby_diaper.jpg"> -->
+        <!-- <div class="baby"></div> -->
+        <div class="row">
+            <!-- Made the div for main navigation, and set the main nav. Then linked to the different pages. -->
+        <ul class="main-nav">
+            <li><a type="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"></button>LOGIN</a> </li>
+            <li><a type="button" onclick="logOut()" id="logout"> LOGOUT </a></li>
+            <li><a href="Registration.html"> SIGN UP </a></li> <!-- Redirected to the registration page -->
+            <li><a href="Product.html"> PRODUCTS </a></li>
+            <li><a href="Subscription.html"> SUBSCRIPTION </a></li>
+            <li><a href="Product.html"> CART </a></li>
+            
+        </ul>
+        </div>
+        
+        <div id="id01" class="modal">
+                <!-- The class "modal-content animate allows us to open a new page by clicking on Login" -->
+                <div class="modal-content animate">
+                    <div class="imgcontainer">
+    
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    
+                    <!-- Adding a profile picture or icon -->
+                    <!-- <img src="../Images/img_avatar2.png" alt="Avatar" class="avatar"> -->
+                    </div>
+                    <!--Login information on the Modal   -->
+                    <div class="container">
+                    
+                    <!-- Creating textboxes for username and password -->
+                    <input type="text" placeholder="Enter Username" name="username" id="loggedUser" required>
+                    <input type="password" placeholder="Enter Password" name="psw" id="loggedPassword" required>
+                    <button type="login" id="login" onclick="logIn()">Login</button>
+                    
+                    <!-- Creating a span to show the message from ID -->
+                    <span id="loginResult"></span>
+                    </div>
+                    
+                    
+                    </div>
+                </div>
+            </div>
+
+
+    <div id="left" class="header" style="width:51%; margin-top: 50px; float: left;">
     <h1>Diapers</h1>
-    <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
-        <div  class="selection" >
+    </div>
+    <br>
+        <div id="leftLow" class="body" style="width:51%; margin-top: 70px; float: left;">
+        <p>On this page you can select how many diapers you would like to get as well as the right size for your baby!</p>
+            <div  class="selection" >
             <form>
                 <p type="ChooseDiaper">Choose Diaper</p>
                 <br>
@@ -47,10 +99,13 @@
                 <option>6</option>
               </select>
             </form>
-        </div>
-        <br>
-            
+            </div>
+            <br>
             <button id="addItemToCart" name="addItemToCart" onClick="window.location.reload()" >Add Diapers to Cart</button> <!-- onclick: reloads the page so that the pushed items get shown in the table -->
+
+        </div>    
+      
+            
 
            
         </div>
@@ -61,7 +116,7 @@
             <!-- Table? -->
             <table id="tableCart">
                 <thead>
-                    <tr class="header">
+                    <tr class="header" >
                         <th>Type</th>
                         <th>Size</th>
                         <th>Price</th>
@@ -81,6 +136,15 @@
             
         </div>
 
+        <div id="right-below" class="floatRightBelow" style="width:30%; margin-top: 50px; float:right;"> 
+            <button id="purchaseButton" >Purchase!</button>
+
+        </div>
+
+    <script src="js/UserClass.js"></script>
+    <script src="js/Login.js"></script>
+    <script src="js/UserName.js"></script>
+    <script src="js/Index.js"></script>
     <script src="js/ProductClass.js"></script>
     <script src="js/LineItemClass.js"></script>
     <script src="js/Product.js"></script>

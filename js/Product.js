@@ -1,19 +1,25 @@
 // Could also write the defining of things in localStorage as:
-var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
+//var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
 
-/* // Defining the localStorage for the lineItems, so that we can store it
+// Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
-
+var users = JSON.parse(localStorage.getItem('users'))
 
 // If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
 if(lineItems === null){
     var lineItems = [];
-} */
+}
+
+/* 
+_______________________________________________________________________________________________________________________________
+WHEN CLICKING THE ADD TO CART BUTTON, WE ADD IT TO THE ARRAY LINEITEMS, AND THEN LOCALSTORAGE
+
+*/
 
 // Setting the currentUserId to the loggedInUser, or setting it as No User.
 var currentUserId = localStorage.getItem("loggedInUser") !== null ? JSON.parse(localStorage.getItem("loggedInUser")) : 'No User';
 
-console.log(currentUserId);
+
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
@@ -21,27 +27,31 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     var diaperSize = document.getElementById("diaperSize").value;
     var diapersADay = document.getElementById("diapersADay").value;
         
-    //var itemId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
+    var itemId = '_' + Math.random().toString(36).substr(2, 9); 
 
 
     // Could do a for-loop if we want to add more products and prices, but if we only have two it would make sense to only do it hardcoded.
     // Set an if-statement to get the price of the diapers
     if (diaperType === 'Reusable') {
-        var diaperPrice = 40 /* products[0].productPrice */;
+        var diaperPrice = 40;
     } else if (diaperType === 'Recyclable') {
-        var diaperPrice = 30 /* products[1].productPrice */;
+        var diaperPrice = 30;
     }
 
     // Push the values of the dropdown lists into the localStorage
-    lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice,));
+    lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
     
     localStorage.setItem('lineItems', JSON.stringify(lineItems)); 
 });
 
 
-//Make sure that the information is correctly stored in the local-storage, with the calculatePrice as well.
 
+console.log(lineItems);
 
+/* 
+_____________________________________________________________________________________________________________________________________
+ADDING WHAT IS IN THE LINEITEM-ARRAY TO THE CART IN HTML
+*/
 
 //for every object in the array lineItems, the function creatHTML is called and use the subscription array for showing it in HTML.
 var html = "";
@@ -52,10 +62,10 @@ for (i=0; i < lineItems.length; i++ ){
     //Try to create an item in lineItems in stead for a new array, and add that to the html
 
     //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
-    var lineItems = new LineItem (lineItems[i].itemId, lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice, lineItems[i].cartlinePrice, );
+    var cartLine = new LineItem (lineItems[i].itemId, lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice, lineItems[i].cartlinePrice, );
 
     //Then we add the cartline that we created above to the html-string.
-    html += lineItems.createHTML(); 
+    html += cartLine.createHTML(); 
    
 }
 
@@ -85,65 +95,94 @@ Registration todo:
 `
 
 /* 
-
+__________________________________________________________________________________________________________
 THE REMOVE BUTTON:
 
 */
 
 var removeFromCartButtons = document.getElementsByClassName('removeFromList');
 
-//Add a lineCounter to see where we are, and then increment it later on if it is not equal to i.
-// Problem is, that i always is the last lineItem on the list.
-var lineCounter = 0;
-
 // Loops through the buttons and find the clicked
 for (var i = 0; i < removeFromCartButtons.length; i++) {
-    removeFromCartButtons[i].addEventListener("click", function(){
+    removeFromCartButtons[i].addEventListener("click", function(e){
 
 // Do the removal of the item through a splice. 
     // Find the index of clicked element
-    alert(i);
-    var index = lineItems.prototype.indexOf(i);
+    //alert(i);
 
-    console.log(index);
-    console.log(lineCounter+ " and the id of removeFromCart: "+i);
-    // Check if the ID is included at all (-1 means not included) otherwise there's nothing to be removed)
+    var index = lineItems.findIndex(function(item) {
+        return item.itemId == JSON.parse(e.target.dataset.object).itemId
+    })
    
-    if(lineCounter === i)  {
-        // splice it out of the picks list and store new array to local storage
-        lineItems.splice(index, 1);
-    } else {
-        return false;
-    }
-
-    console.log(lineItems);
+    //removeItem(lineItems, index)
+    lineItems.splice(index, 1)
+    
     localStorage.setItem("lineItems", JSON.stringify(lineItems));
-    alert("This item has been removed from cart");
+    alert("Item has been removed from cart");
     
     //automatically refresh after click
     onClick = ManualRefresh()
+
+
     })  
-    lineCounter++;
+
+}
+
+/* removeItem(user, 0)
+
+const removeItem = function (list, index) {
+    list.splice(index,1)
+} */
+
+function ManualRefresh(){
+    window.location.reload();
 }
 
 
-/* function ManualRefresh(){
-    window.location.reload();
-} */
+/* 
+_______________________________________________________________________________________________________________________
+THE PURCHASE BUTTON
 
-console.log(lineItems);
+1. Link to the button in HTML
+2. If the user is not logged in, he cannot proceed.
+3. Taking what is in the local storage and take it with you to subscription page?
+4. redirect to subscription page
 
-/*
-Problem2: When adding to the cart, we're getting the price of diapers from "ProductClass.js" in the "LineItem.js", and it only gets the price 
-from the first item in products-array and we then push that price to the cart. When we then add a second item to the cart, it takes the 
-second price from products-array. If we would want to add a third product, we only get the error that there is no more Prices to take from.
-
-Problem3: The diaperType is only Recyclable when you add it to the cart (Could be related to the one above)
 */
 
+var purchaseButton = document.getElementById("purchaseButton")
 
 
-//Have a unique ID of a user, and a unique ID of the product - Or lineItem?
+//When clicking the purchase-button
+purchaseButton.addEventListener("click", function(){
+
+    // If user is not logged in, it has to logIn. 
+    if (currentUserId === "No User"){
+        alert("Please log in")
+        return false;
+    }
+
+    // Take the current user and push the lineItems to his shoppingCart.
+    for (i=0; i<users.length;i++) {
+        if(users[i].userId == currentUserId) {
+            users[i].shoppingCart = lineItems
+            console.log(users[i].shoppingCart)
+        }
+    }
+
+
+    // Take the contents of the current lineItems and push to the users shoppingCart array
+    
+
+    // Lastly, redirect to the subscriptionpage where the user can see their purchase.
+   window.location = "Subscription.html"
+
+})
+
+
+
+// Problem is, that i always is the last lineItem on the list.
+
 
 //Need to calculate the price first, then can do the function under.
 
