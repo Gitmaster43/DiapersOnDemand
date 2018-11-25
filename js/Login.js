@@ -1,6 +1,6 @@
 // By clicking the login-button the "modal" appears
 // Get the modal
-var modal = document.getElementById('id01');
+// var modal = document.getElementById('id01');
 
  // declare the variable 'login' and connect it to the button in Registration.html.
  var login = document.getElementById('login');
@@ -58,7 +58,6 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
           localStorage.setItem("loggedInUserName", users[i].username);
 
 //   redirect to new html side for logged in users 
-            
         if (window.location.host === "Index.html" || window.location.host === "Registration.html"){
           window.location = "index.html";
         } else if (window.location.host === "Product.html") {

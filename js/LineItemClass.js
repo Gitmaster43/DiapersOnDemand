@@ -22,7 +22,7 @@ class LineItem {
     }
 
 
-
+    
     //Creating a function that creates a table row with data from the lineItem
     createHTML(){
         return "<tr><td>"+ this.diaperType 

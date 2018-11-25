@@ -1,5 +1,5 @@
 // Could also write the defining of things in localStorage as:
-//var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
+var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
 
 // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
@@ -61,7 +61,7 @@ for (i=0; i < lineItems.length; i++ ){
 
     //Try to create an item in lineItems in stead for a new array, and add that to the html
 
-    //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
+    //Bind a line in the cart to a new lineItem, with the attributes we want. These neeeeed to be in the same order as the class constructor
     var cartLine = new LineItem (lineItems[i].itemId, lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice, lineItems[i].cartlinePrice, );
 
     //Then we add the cartline that we created above to the html-string.

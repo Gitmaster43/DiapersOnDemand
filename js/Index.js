@@ -1,5 +1,3 @@
-
-
 var currentUserId = localStorage.getItem("loggedInUser");
 var noUser = '"No User"';
 
