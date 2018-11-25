@@ -52,12 +52,12 @@ for (var i = 0; i < users.length; i++) {
 // first () indicates at least 1 special character requirement, second () indicates at least 1 capital letter, third() indicates that the password has to contain at least 6 characters
       
 // Sets password variable equal to user input   
-passwordrequirements ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"; 
+/* passwordrequirements ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"; 
 console.log(password);
-console.log(passwordrequirements.test(password));
+console.log(passwordrequirements.test(password)); */
 // Checks if password matches criteria of variable pwd
 if ("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}".test(password)) {
-  return true; 
+  //return true; 
 } else {
   alert("password does meet requirments")
   return false

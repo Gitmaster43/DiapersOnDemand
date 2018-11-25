@@ -3,6 +3,7 @@
 
 // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));
+var users = JSON.parse(localStorage.getItem('users'))
 
 // If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
 if(lineItems === null){
@@ -101,37 +102,42 @@ THE REMOVE BUTTON:
 
 var removeFromCartButtons = document.getElementsByClassName('removeFromList');
 
-//Add a lineCounter to see where we are, and then increment it later on if it is not equal to i.
-
-var lineCounter = 0;
-
 // Loops through the buttons and find the clicked
 for (var i = 0; i < removeFromCartButtons.length; i++) {
-    removeFromCartButtons[i].addEventListener("click", function(){
+    removeFromCartButtons[i].addEventListener("click", function(e){
 
 // Do the removal of the item through a splice. 
     // Find the index of clicked element
-    alert(i);
-    var index = lineItems.indexOf(i);
+    //alert(i);
 
-    console.log(index);
-    console.log(lineCounter+ " and the id of removeFromCart: "+i);
-    // Check if the ID is included at all (-1 means not included) otherwise there's nothing to be removed)
+    var index = lineItems.findIndex(function(item) {
+        return item.itemId == JSON.parse(e.target.dataset.object).itemId
+    })
    
-    if(lineCounter === i)  {
-        // splice it out of the picks list and store new array to local storage
-        lineItems.splice(index, 1);
-    } else {
-        return false;
-    }
-
-    console.log(lineItems);
-    localStorage.setItem("lineItems", JSON.stringify(lineItems));
-    alert("This item has been removed from cart");
+    //removeItem(lineItems, index)
+    lineItems.splice(index, 1)
     
+    localStorage.setItem("lineItems", JSON.stringify(lineItems));
+    alert("Item has been removed from cart");
+    
+    //automatically refresh after click
+    onClick = ManualRefresh()
+
+
     })  
-    lineCounter++;
+
 }
+
+/* removeItem(user, 0)
+
+const removeItem = function (list, index) {
+    list.splice(index,1)
+} */
+
+function ManualRefresh(){
+    window.location.reload();
+}
+
 
 /* 
 _______________________________________________________________________________________________________________________
@@ -146,23 +152,37 @@ THE PURCHASE BUTTON
 
 var purchaseButton = document.getElementById("purchaseButton")
 
+
+
+
+
+//When clicking the purchase-button
 purchaseButton.addEventListener("click", function(){
 
+    // If user is not logged in, it has to logIn. 
     if (currentUserId === "No User"){
         alert("Please log in")
         return false;
     }
 
-    window.location = "../Subscription.html"
+    // Take the current user and push the lineItems to his shoppingCart.
+    for (i=0; i<users.length;i++) {
+        if(users[i].userId == currentUserId) {
+            users[i].shoppingCart = lineItems
+            console.log(users[i].shoppingCart)
+        }
+    }
+
+
+    // Take the contents of the current lineItems and push to the users shoppingCart array
+    
+
+    // Lastly, redirect to the subscriptionpage where the user can see their purchase.
+   window.location = "Subscription.html"
 
 })
 
-/* //automatically refresh after click
-onClick = ManualRefresh()
 
-function ManualRefresh(){
-    window.location.reload();
-} */
 
 // Problem is, that i always is the last lineItem on the list.
 
