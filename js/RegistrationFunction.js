@@ -1,16 +1,16 @@
-  //LOCAL STORAGE of users:
-// localStorage.clear();
-// Define users as "users" and either push them or get them from local storage:    
+//_______________________________________________________________________________________________________
+// EITHER GET USERS FROM LOCALSTORAGE OR INITIALIZE ARRAY AND PUSH HARDCODED USERS TO LOCALSTORAGE  
 
-if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
+if(users === null){ 
     // initialize empty user array 
-    var users = [];                                                   //If not, we create an empty array with users we can push later
+    var users = [];                                                   
 
-    // Check code for our self, hardcoded users, push user to the array
+    // Push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", ""));
     
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", ""));
 
+    //Set them to LocalStorage
     localStorage.setItem('users', JSON.stringify(users));
 
   } else {
@@ -20,13 +20,11 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 //______________________________________________________________________________________________________________________
   
 
-// When we want to get item out we want to parse it back into a native JavaScript object
-
-//Console our users so that we can see what is in there.
-
+//_______________________________________________________________________________________________________________
+// FUNCTION FOR REGISTERING USER
 
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
+document.getElementById("submit").addEventListener("click", function(){   // Get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
   userName = document.getElementById("regUserName").value;
@@ -39,12 +37,8 @@ document.getElementById("submit").addEventListener("click", function(){   //we g
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
-  userId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
+  userId = '_' + Math.random().toString(36).substr(2, 9);
 
-// Take the user data and push it to the Class
-// "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
-
-//checks if these inputs are not created you can continue and push them, otherwise return false
 
 
 //_________________________________________________________________________
