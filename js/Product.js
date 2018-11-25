@@ -1,5 +1,4 @@
 // Could also write the defining of things in localStorage as:
-//var lineItems = localStorage.getItem("lineItems") !== null ? JSON.parse(localStorage.getItem("lineItems")) : [];
 
 // Defining the localStorage for the lineItems, so that we can store it
 var lineItems = JSON.parse(localStorage.getItem("lineItems"));

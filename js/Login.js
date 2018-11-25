@@ -24,7 +24,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
  var resultSpan = document.getElementById("loginResult");
  
 
- // Insert the hashPassword function from Henriks example in order to hash the inputted password when the user logs in, to match with the stored hashed password.
+//  Insert the hashPassword function from Henriks example in order to hash the inputted password when the user logs in, to match with the stored hashed password.
  function hashPassword(rawPassword){
   var a = 1, c = 0, h, o;
   if (rawPassword) {
