@@ -59,7 +59,7 @@ function logIn() {
 
     // redirect to new html side for logged in users 
       if (window.location.host === "Index.html" || window.location.host === "Registration.html"){
-        window.location = "index.html";
+        window.location = "Index.html";
       } else if (window.location.host === "Product.html") {
         window.location.reload;
       }
