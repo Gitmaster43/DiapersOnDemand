@@ -45,8 +45,8 @@ return String(a);
 // Function to go through the User Data to match Username/Password
 function logIn() {
    
-  var username = document.getElementById("loggedUser").value
-  var password = document.getElementById("loggedPassword").value
+  var username = document.getElementById("loginUserInput").value
+  var password = document.getElementById("loginPasswordInput").value
   
 // Loop that goes through the User Data to identify right or wrong Username/Password
   for (var i = 0; i < users.length; i++) {
@@ -69,8 +69,8 @@ function logIn() {
 
   // Disabling fields after 3 attempts.
   if( attempt == 0){    
-      document.getElementById("loggedUser").disabled = true;
-      document.getElementById("loggedPassword").disabled = true;
+      document.getElementById("loginUserInput").disabled = true;
+      document.getElementById("loginPasswordInput").disabled = true;
       document.getElementById("login").disabled = true; 
     return false;
   } else {
@@ -91,8 +91,8 @@ var enter = function(e) {
     }
   }
   
-  document.getElementById("loggedUser").addEventListener("keyup", enter);
-  document.getElementById("loggedPassword").addEventListener("keyup", enter);
+  document.getElementById("loginUserInput").addEventListener("keyup", enter);
+  document.getElementById("loginPasswordInput").addEventListener("keyup", enter);
   
   login.onclick = logIn
 
