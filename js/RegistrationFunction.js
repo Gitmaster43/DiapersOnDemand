@@ -1,46 +1,69 @@
-  //LOCAL STORAGE of users:
-// localStorage.clear();
-// Define users as "users" and either push them or get them from local storage:    
+//_______________________________________________________________________________________________________
+// EITHER GET USERS FROM LOCALSTORAGE OR INITIALIZE ARRAY AND PUSH HARDCODED USERS TO LOCALSTORAGE  
 
-if(users === null){ // if there are nothing within the localstorage, the variable "users" will be initialized 
+if(users === null){ 
     // initialize empty user array 
-    var users = [];                                                   //If not, we create an empty array with users we can push later
+    var users = [];                                                   
 
-    // Check code for our self, hardcoded users, push user to the array
+    // Push user to the array
     users.push(new User("Johannes","Reisinger","Joe","reisingerjohannes@icloud.com","1234","004795008845","07051994","Something 14","2000","Frederiksberg", ""));
     
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", ""));
 
+    //Set them to LocalStorage
     localStorage.setItem('users', JSON.stringify(users));
 
   } else {
     var users = JSON.parse(localStorage.getItem("users")); // else, we get the users from local storage.
   }
 
+//______________________________________________________________________________________________________________________
+  
 
-  // When we want to get item out we want to parse it back into a native JavaScript object
-
-//Console our users so that we can see what is in there.
-
+//_______________________________________________________________________________________________________________
+// FUNCTION FOR REGISTERING USER
 
 // Here we get the elements by the ID, and say that the click should get the value from all the registration-boxes
-document.getElementById("submit").addEventListener("click", function(){   //we get information from placeholders in html 
+document.getElementById("submit").addEventListener("click", function(){   // Get information from placeholders in html 
   firstName = document.getElementById("regFirstName").value;
   lastName = document.getElementById("regLastName").value;
   userName = document.getElementById("regUserName").value;
   email = document.getElementById("regEmail").value;
+  confirmEmail = document.getElementById("regConfirmEmail").value;
   password = document.getElementById("regPassword").value;
+  confirmPassword = document.getElementById("regConfirmPassword").value;
   phoneNumber = document.getElementById("regPhoneNumber").value;
   dateOfBirth = document.getElementById("regDateOfBirth").value;
   streetName = document.getElementById("regStreetName").value;
   postalNumber = document.getElementById("regPostalNumber").value;
   city = document.getElementById("regCity").value;
-  userId = '_' + Math.random().toString(36).substr(2, 9); // Copied straight from Alex's code. What does it do?
+  userId = '_' + Math.random().toString(36).substr(2, 9);
 
-// Take the user data and push it to the Class
-// "users" is an array, we push a new object into that array, the template is retrieve from the class "User" and we save this object after we have stringified it 
 
-//checks if these inputs are not created you can continue and push them, otherwise return false
+
+//_________________________________________________________________________
+//FIRSTNAME and LASTNAME MUST BE ADDED BY USER
+//If there are no upper/lower case letters in the placeholder, stop user
+
+nameReq = /[a-zA-Z -]/;
+
+if (nameReq.test(firstName)) {
+
+} else {
+  alert("You have a firstname, right? Type it in!")
+  return false
+};
+
+
+if (nameReq.test(lastName)) {
+
+} else {
+  alert("You have a lastname, right? Type it in!")
+  return false
+};
+
+//_________________________________________________________________________
+//USERNAME DOES NOT EXIST ALREADY
 
 //loops through the already existing users, and check if the username input already exist. If it does, user is stopped
 for (var i = 0; i < users.length; i++) {
@@ -49,19 +72,53 @@ for (var i = 0; i < users.length; i++) {
       return false;               
       }};
   
-// first () indicates at least 1 special character requirement, second () indicates at least 1 capital letter, third() indicates that the password has to contain at least 6 characters
-      
-// Sets password variable equal to user input   
-/* passwordrequirements ="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"; 
-console.log(password);
-console.log(passwordrequirements.test(password)); */
-// Checks if password matches criteria of variable pwd
-if ("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}".test(password)) {
-  //return true; 
+ 
+
+//_________________________________________________________________________
+//EMAIL AND CONFIRM EMAIL MUST BE EQUAL TO EACHOTHER BEFORE CONTINUEING
+
+if (email == confirmEmail){
+
 } else {
-  alert("password does meet requirments")
+  alert("Emails does not match")
+  return false 
+};
+
+//_________________________________________________________________________
+
+
+emailreq = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+if (emailreq.test(email)) {
+  
+} else {
+  alert("Email does not meet requirments")
   return false
 };
+
+      //_________________________________________________________________________
+//PASSWORDS MUST BE EQUAL TO EACHOTHER BEFORE CONTINUEING 
+
+if (password == confirmPassword){
+
+} else {
+  alert("Passwords does not match")
+  return false 
+};
+
+//_________________________________________________________________________
+//PASSWORD MEETS REQUIREMENTS WHEN CREATING USER
+
+passwordreq = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+// Checks if password matches criteria of variable pwd. Test checks if the string in () matches the regEx
+if (passwordreq.test(password)) {
+  
+} else {
+  alert("Password does meet requirments")
+  return false
+};
+
 
 //loops through the already existing users, and check if the password input already exist. If it does, user is stopped
 
@@ -91,66 +148,73 @@ users.push(new User(firstName, lastName, userName, email, password, phoneNumber,
  
 // Password (line now to line+91): Depicts if the user matches the password requirements
 
-// // Defining the variables 
-// var myInput = document.getElementById("regPassword");
-// var letter = document.getElementById("letter");
-// var capital = document.getElementById("capital");
-// var number = document.getElementById("number");
-// var length = document.getElementById("length");
+// Defining the variables 
+var myInput = document.getElementById("regPassword");
+var letter = document.getElementById("letter");
+var capital = document.getElementById("capital");
+var number = document.getElementById("number");
+var length = document.getElementById("length");
 
-// // TODO: Set a function that checks if the user name is unique in the storage.
+// TODO: Set a function that checks if the user name is unique in the storage.
 
-// // When the user clicks on the password field, show the message box
-// myInput.onfocus = function() {
-//   document.getElementById("message").style.display = "block";
-// } 
+// When the user clicks on the password field, show the message box
+myInput.onfocus = function() {
+  document.getElementById("message").style.display = "block";
+} 
 
-// // When the user clicks outside of the password field, hide the message box
-// myInput.onblur = function() {
-//   document.getElementById("message").style.display = "none";
-// }
+// When the user clicks outside of the password field, hide the message box
+myInput.onblur = function() {
+  document.getElementById("message").style.display = "none";
+}
 
-// // When the user starts to type something inside the password field
-// myInput.onkeyup = function() {
-//   // Validate lowercase letters
-//   var lowerCaseLetters = /[a-z]/g;
-//   if(myInput.value.match(lowerCaseLetters)) { 
-//     letter.classList.remove("invalid");       
-//     letter.classList.add("valid");           
-//   } else {
-//     letter.classList.remove("valid");
-//     letter.classList.add("invalid");
-// }
+//_________________________________________________________________________________________________
 
-//   // Validate capital letters
-//   var upperCaseLetters = /[A-Z]/g;
-//   if(myInput.value.match(upperCaseLetters)) { 
-//     capital.classList.remove("invalid");
-//     capital.classList.add("valid");
-//   } else {
-//     capital.classList.remove("valid");
-//     capital.classList.add("invalid");
-//   }
+//SHOWS REQUIREMENTS NEXT TO THE PLACEHOLDERS
 
-//   // Validate numbers
-//   var numbers = /[0-9]/g;
-//   if(myInput.value.match(numbers)) { 
-//     number.classList.remove("invalid");
-//     number.classList.add("valid");
-//   } else {
-//     number.classList.remove("valid");
-//     number.classList.add("invalid");
-//   }
+// When the user starts to type something inside the password field
+myInput.onkeyup = function() {
+  // Validate lowercase letters
+  var lowerCaseLetters = /[a-z]/g;
+  if(myInput.value.match(lowerCaseLetters)) { 
+    letter.classList.remove("invalid");       
+    letter.classList.add("valid");           
+  } else {
+    letter.classList.remove("valid");
+    letter.classList.add("invalid");
+}
 
-//   // Validate length
-//   if(myInput.value.length >= 8) {
-//     length.classList.remove("invalid");
-//     length.classList.add("valid");
-//   } else {
-//     length.classList.remove("valid");
-//     length.classList.add("invalid");
-//   }
-// }
+  // Validate capital letters
+  var upperCaseLetters = /[A-Z]/g;
+  if(myInput.value.match(upperCaseLetters)) { 
+    capital.classList.remove("invalid");
+    capital.classList.add("valid");
+  } else {
+    capital.classList.remove("valid");
+    capital.classList.add("invalid");
+  }
+
+  // Validate numbers
+  var numbers = /[0-9]/g;
+  if(myInput.value.match(numbers)) { 
+    number.classList.remove("invalid");
+    number.classList.add("valid");
+  } else {
+    number.classList.remove("valid");
+    number.classList.add("invalid");
+  }
+
+  // Validate length
+  if(myInput.value.length >= 8) {
+    length.classList.remove("invalid");
+    length.classList.add("valid");
+  } else {
+    length.classList.remove("valid");
+    length.classList.add("invalid");
+  }
+}
+
+//_________________________________________________________________________________________________
+
 
 // Confirm password function (line now to +10)
 

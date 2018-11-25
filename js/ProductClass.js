@@ -1,5 +1,6 @@
 
-
+//_________________________________________________________________________________________________
+// PRODUCTCLASS
 //create class "product" - within dropdown bar of size, number of diapers, priceCalc
 
 class Product {
@@ -20,10 +21,3 @@ var products = [];
 products.push(new Product(0, "Reusable", 40,));
 products.push(new Product(1, "Recyclable", 30,));
 
-//Checking if the pushing of products actually worked.
-//console.log(products);
-
-/* 
-const diaperPrice = products.map(product => product.productPrice);
-
-console.log(diaperPrice); */

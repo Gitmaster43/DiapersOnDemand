@@ -1,8 +1,13 @@
+
+//_________________________________________________________________________________________________
+// Retrieve the current userID from localStorage and bind it to a variable.
+
 var currentUserId = localStorage.getItem("loggedInUser");
 var noUser = '"No User"';
 
+//___________________________________________________________________________________________________
+// LOGOUT. Function that clears the value within in the localStorage under the key "loggedInUser"
 
-//function that clears the value within in the localStorage under the key "loggedInUser"
 function logOut() {
     if (currentUserId!==noUser) {
         var currentUserId = "No User";
@@ -20,38 +25,24 @@ function logOut() {
     }
 
 
-//idea, to get 
-var usersInLocalStorage = JSON.parse(localStorage.getItem("users"));
-// var currentUsersId = usersInLocalStorage[i].userId;
-
-for (i = 0; i < usersInLocalStorage.length; i++) {
-    if (usersInLocalStorage[i].userId == currentUserId){ //det er kun når denne statement er sand, det skal være muligt at logge af, ellers skal den sige "du er ikke logget på"
-            // console.log("userID matches")
-            
-    }  
-}
-
-for (i = 0; i < usersInLocalStorage.length; i++) {
-    if ((usersInLocalStorage[i].userId !== currentUserId)){
-    // console.log("not logged in");
-    break;
-}
-}
-// console.log(currentUsersId); //this gives me the password of the user
+//______________________________________________________________________________________________________
+// SHOW AND UN-SHOW LOGIN AND LOGOUT -buttons.
 
 
-// __________________________________________________________________________ //
-// Only see subscription button on index.html when user is logged in
+//______________________________________________________________________________________________________
+// SUBSCRIPTIONBUTTON. By default not visible (HTML, style.display = "none"), and function below shows it if condtion is true. 
 
 var users = JSON.parse(localStorage.getItem("users"));
 
 function displaySubscriptionButton() {
    
-
+    // Loop over the users
     for (i=0; i < users.length; i++){
 
- 
+        // Check if the userId is equal to the loggedInUser
         if (users[i].userId == localStorage.getItem('loggedInUser')) {
+
+            // Get the element by Id, and set's the style to show a block if condition above is true.. 
             document.getElementById('subscription').style.display = "block";
         } 
      }

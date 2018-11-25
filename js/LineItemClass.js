@@ -1,5 +1,7 @@
 
 
+//___________________________________________________________________________________________________________
+// LINEITEMCLASS
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class LineItem {
@@ -11,10 +13,12 @@ class LineItem {
         this.diapersADay = numberADay;
         this.diaperPrice = price;
         
+        // Remove-button, stringify's the rest of the attributes so that we can access them and remove them later.
         this.button = "<input type='button' class='removeFromList' name='remove from list'  data-object='" + JSON.stringify(this) + "' value='Remove'></input>";
      
     }
     
+    // Method for calculating the total price of the lineItem.
     cartLinePrice () {
         var cartLinePrice = this.diapersADay * this.diaperPrice;
  
@@ -22,8 +26,7 @@ class LineItem {
     }
 
 
-    
-    //Creating a function that creates a table row with data from the lineItem
+    //Creating a method that creates a table row with data from the pushed lineItem
     createHTML(){
         return "<tr><td>"+ this.diaperType 
         + "</td><td>" + this.diaperSize 
@@ -31,12 +34,8 @@ class LineItem {
         + "</td><td>" + this.diapersADay 
         + "</td><td>" + this.cartLinePrice()
         + "</td><td>" + this.button 
-        + "</td></tr>" //Button to remove the item from the list
+        + "</td></tr>" 
     }
-
-
-    
-
 
 } 
 
