@@ -153,9 +153,6 @@ THE PURCHASE BUTTON
 var purchaseButton = document.getElementById("purchaseButton")
 
 
-
-
-
 //When clicking the purchase-button
 purchaseButton.addEventListener("click", function(){
 
