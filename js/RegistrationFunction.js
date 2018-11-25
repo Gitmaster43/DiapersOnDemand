@@ -41,7 +41,7 @@ document.getElementById("submit").addEventListener("click", function(){   // Get
 
 
 
-//_________________________________________________________________________
+
 //FIRSTNAME and LASTNAME MUST BE ADDED BY USER
 //If there are no upper/lower case letters in the placeholder, stop user
 
