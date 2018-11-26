@@ -57,15 +57,8 @@ function logIn() {
       localStorage.setItem("loggedInUser", users[i].userId);
       localStorage.setItem("loggedInUserName", users[i].username);
 
-
-    // redirect to new html side for logged in users 
-      if (window.location.host == "Index.html" || window.location.host == "Registration.html"){
-        window.location.href = "Index.html";
-      } else if (window.location.host == "Product.html") {
-        
-        window.location.reload;
-      }
-      return false;   
+    // redirect to Index.html side for logged in users 
+    window.location = "Index.html";
     }   
   }
 
