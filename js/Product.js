@@ -91,7 +91,7 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
         // The findIndex-fundtion goes over the itemId's and return the index of the item.itemId that is equal to the itemId in the local storage.
         return item.itemId == JSON.parse(e.target.dataset.object).itemId
     })
-   
+
     // Splice the item that is the index, and only that.
     cartLine.splice(index, 1)
     
