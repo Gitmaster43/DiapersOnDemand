@@ -57,7 +57,7 @@ function logIn() {
       localStorage.setItem("loggedInUser", users[i].userId);
       localStorage.setItem("loggedInUserName", users[i].username);
 
-    // redirect to Index.html side for logged in users 
+    // redirect or reload based on where you are: 
     if (window.location.pathname.includes("Index.html") || window.location.pathname.includes("Registration.html") ){
       window.location.href = "Index.html";
       } else if (window.location.pathname.includes("Product.html")) {

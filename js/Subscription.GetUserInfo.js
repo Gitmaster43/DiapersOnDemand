@@ -80,14 +80,15 @@ var html = "";
 for (i=0; i < users.length; i++ ){
     if(users[i].userId == localStorage.getItem('loggedInUser')){
 
+        console.log(users[i].shoppingCart);
         //Bind a variable to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
         var cartLine = users[i].shoppingCart;
         console.log(cartLine);
         for (j = 0; j < cartLine.length; j++){
 
             //Defines the lines in the cart with a new LineItem. Since we have translated the info into JSON, we have to define it in the Class again when getting it back.
-            var lines =  new LineItem (cartLine[i].itemId, cartLine[i].currentUserId, cartLine[i].diaperType, cartLine[i].diaperSize, cartLine[i].diapersADay, cartLine[i].diaperPrice, cartLine[i].cartlinePrice, );
-            
+            var lines =  new LineItem (cartLine[i].itemId, cartLine[i].currentUserId, cartLine[i].diaperType, cartLine[i].diaperSize, cartLine[i].diapersADay, cartLine[i].diaperPrice, cartLine[i].cartlinePrice);
+            console.log(lines)
             //Then we add the lines variable that we created above to the html-string and call the function.
             html += lines.createHTML(); 
         }
@@ -112,23 +113,28 @@ var removeFromCartButtons = document.getElementsByClassName('removeFromList');
 for (var i = 0; i < removeFromCartButtons.length; i++) {
     removeFromCartButtons[i].addEventListener("click", function(e){
 
-
-    // Do the removal of the item through a splice. This function could probably be standardized.
+        // Loop through the lineItems
+     for (j=0; j < users.length; j++ ){
+        if(users[j].userId == localStorage.getItem('loggedInUser')){
+        // Do the removal of the item through a splice. This function could probably be standardized.
+            
+        var index = users[j].shoppingCart.findIndex(function(item) {
+            return item.itemId == JSON.parse(e.target.dataset.object).itemId
+        })
         
-    var index = lines.findIndex(function(item) {
-        return item.itemId == JSON.parse(e.target.dataset.object).itemId
+        users[j].shoppingCart.splice(index, 1)
+        
+        
+        localStorage.setItem("users", JSON.stringify(users));
+        alert("Item has been removed from cart");
+        
+        //automatically refresh after click
+        // onClick = ManualRefresh()
+
+        }
+     }
+
     })
-   
-    lines.splice(index, 1)
-    
-    localStorage.setItem("users", JSON.stringify(lines));
-    alert("Item has been removed from cart");
-    
-    //automatically refresh after click
-    onClick = ManualRefresh()
-
-
-    })  
 
 }
 
