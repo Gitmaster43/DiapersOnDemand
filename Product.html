@@ -21,12 +21,12 @@
         <div class="row">
             <!-- Made the div for main navigation, and set the main nav. Then linked to the different pages. -->
         <ul class="main-nav">
-            <li><a type="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"></button>LOGIN</a> </li>
-            <li><a type="button" onclick="logOut()" id="logout"> LOGOUT </a></li>
-            <li><a href="Registration.html"> SIGN UP </a></li> <!-- Redirected to the registration page -->
-            <li><a href="Product.html"> PRODUCTS </a></li>
-            <li><a href="Subscription.html"> SUBSCRIPTION </a></li>
-            <li><a href="Product.html"> CART </a></li>
+                <li><a type="button" onclick="document.getElementById('id01').style.display='block'" style="width:auto;"></button>LOGIN</a> </li>
+                <li><a type="button" onclick="logOut()" id="logout"> LOGOUT </a></li>
+                <li><a href="Registration.html"> SIGN UP </a></li> <!-- Redirected to the registration page -->
+                <li><a href="Product.html"> PRODUCTS </a></li>
+                <li><a href="Subscription.html" id="subscription" style="display:none"> SUBSCRIPTION </a></li>
+                
             
         </ul>
         </div>
@@ -38,8 +38,7 @@
     
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
                     
-                    <!-- Adding a profile picture or icon -->
-                    <!-- <img src="../Images/img_avatar2.png" alt="Avatar" class="avatar"> -->
+                
                     </div>
                     <!--Login information on the Modal   -->
                     <div class="container">

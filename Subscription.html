@@ -9,7 +9,7 @@
 </head>
 <body>
         
-<div id="userInfo"></div>
+<div id="userInfo" ></div>
 
 
 <button onclick="document.getElementById('id02').style.display='block'" style="width:auto;">Edit User Information</button>
@@ -51,8 +51,35 @@
       
       </div>
     </div>
+    </div>
+    <div id="right" class="floatRight" style="width:49%; float: right;">
+        <!-- Create the cart, which gets information from the local storage -->
+        <!-- Table? -->
+        <table id="tableCart">
+            <thead>
+                <tr class="header" >
+                    <th>Type</th>
+                    <th>Size</th>
+                    <th>Price</th>
+
+                    <th>Quantity per day</th>
+                    <th>Total price</th>
+                    <th>Remove Item</th>
+                </tr>
+            </thead>
+
+            <tbody align="middle">
+                
+
+            </tbody>
+
+        </table>
+        
+    </div>
 </div>
 
+    
+    <script src="js/LineItemClass.js"></script>
     <script src="js/Subscription.GetUserInfo.js"></script>
     <script src="js/Subscription.ChangeUserInfo.js"></script>
    

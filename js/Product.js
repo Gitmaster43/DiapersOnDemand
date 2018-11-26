@@ -2,7 +2,7 @@
 // BIND LINEITEMS TO THE LOCALSTORAGE, OR INITIALIZE AN EMPTY ARRAY
 
 // Defining the localStorage for the lineItems, so that we can store it. If there are nothing in the localStorage, we initialize and empty array. This is so that we can add things to the array
-var lineItems = localStorage.getItem("lineItems") === null ? [] : JSON.parse(localStorage.getItem("lineItems"));
+var cartLine = localStorage.getItem("lineItems") === null ? [] : JSON.parse(localStorage.getItem("lineItems"));
 
 // Binding the users to a variable
 var users = JSON.parse(localStorage.getItem('users')) 
@@ -38,9 +38,9 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     }
 
     // Push the values of the dropdown lists into the localStorage
-    lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
+    cartLine.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
     
-    localStorage.setItem('lineItems', JSON.stringify(lineItems)); 
+    localStorage.setItem('lineItems', JSON.stringify(cartLine)); 
 });
 
 /* 
@@ -53,10 +53,11 @@ for every object in the array lineItems, the function creatHTML is called and us
 var html = "";
 
 // Loop through the lineItems
-for (i=0; i < lineItems.length; i++ ){
+for (i=0; i < cartLine.length; i++ ){
 
     //Bind a variable to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
-    var cartLine = new LineItem (lineItems[i].itemId, lineItems[i].currentUserId, lineItems[i].diaperType, lineItems[i].diaperSize, lineItems[i].diapersADay, lineItems[i].diaperPrice, lineItems[i].cartlinePrice, );
+    //Since we have translated the info into JSON, and then translated back, we have to define it in the Class again when getting it.
+    var cartLine = new LineItem (cartLine[i].itemId, cartLine[i].currentUserId, cartLine[i].diaperType, cartLine[i].diaperSize, cartLine[i].diapersADay, cartLine[i].diaperPrice, cartLine[i].cartlinePrice, );
 
     //Then we add the cartline that we created above to the html-string and call the function.
     html += cartLine.createHTML(); 
@@ -82,16 +83,20 @@ var removeFromCartButtons = document.getElementsByClassName('removeFromList');
 for (var i = 0; i < removeFromCartButtons.length; i++) {
     removeFromCartButtons[i].addEventListener("click", function(e){
 
-
     // Do the removal of the item through a splice. 
         
-    var index = lineItems.findIndex(function(item) {
+    // Find the index of the item that we want with an "findIndex" callback function
+    var index = cartLine.findIndex(function(item) {
+
+        // The findIndex-fundtion goes over the itemId's and return the index of the item.itemId that is equal to the itemId in the local storage.
         return item.itemId == JSON.parse(e.target.dataset.object).itemId
     })
    
-    lineItems.splice(index, 1)
+    // Splice the item that is the index, and only that.
+    cartLine.splice(index, 1)
     
-    localStorage.setItem("lineItems", JSON.stringify(lineItems));
+    // Set the remaining items in the localStorage.
+    localStorage.setItem("lineItems", JSON.stringify(cartLine));
     alert("Item has been removed from cart");
     
     //automatically refresh after click
@@ -131,16 +136,16 @@ purchaseButton.addEventListener("click", function(){
     for (i = 0; i < users.length; i++) {
 
         if(users[i].userId == currentUserId) {
-            users[i].shoppingCart = lineItems
-            console.log(users[i].shoppingCart)
+            users[i].shoppingCart = cartLine
+            
         }
     }
 
-
     // Take the contents of the current lineItems and push to the users shoppingCart array
-    
+    localStorage.setItem('users', JSON.stringify(users));
 
     // Lastly, redirect to the subscriptionpage where the user can see their purchase.
    window.location = "Subscription.html"
 
 })
+console.log(users[0].shoppingCart)

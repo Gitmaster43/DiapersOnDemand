@@ -1,5 +1,5 @@
 
-console.log(window.location.host);
+
 //______________________________________________________________________________________________________
 // BIND USERS TO LOCALSTORAGE OR INITIALIZE EMPTY ARRAY AND PUSH USERS
 
@@ -58,7 +58,12 @@ function logIn() {
       localStorage.setItem("loggedInUserName", users[i].username);
 
     // redirect to Index.html side for logged in users 
-    window.location = "Index.html";
+    if (window.location.pathname.includes("Index.html") || window.location.pathname.includes("Registration.html") ){
+      window.location.href = "Index.html";
+      } else if (window.location.pathname.includes("Product.html")) {
+        window.location.reload();
+      }
+      return false;
     }   
   }
 
