@@ -1,5 +1,5 @@
 
-
+console.log(window.location.host);
 //______________________________________________________________________________________________________
 // BIND USERS TO LOCALSTORAGE OR INITIALIZE EMPTY ARRAY AND PUSH USERS
 
@@ -57,27 +57,27 @@ function logIn() {
       localStorage.setItem("loggedInUser", users[i].userId);
       localStorage.setItem("loggedInUserName", users[i].username);
 
+
     // redirect to new html side for logged in users 
-      if (window.location.host === "Index.html" || window.location.host === "Registration.html"){
-        window.location = "Index.html";
-      } else if (window.location.host === "Product.html") {
+      if (window.location.host == "Index.html" || window.location.host == "Registration.html"){
+        window.location.href = "Index.html";
+      } else if (window.location.host == "Product.html") {
+        
         window.location.reload;
       }
-          
+      return false;   
     }   
   }
 
+  attempt--;
+  resultSpan.innerText = "You've entered a wrong username or password. You have left "+attempt+" attempt(s)."
   // Disabling fields after 3 attempts.
   if( attempt == 0){    
       document.getElementById("loginUserInput").disabled = true;
       document.getElementById("loginPasswordInput").disabled = true;
       document.getElementById("login").disabled = true; 
     return false;
-  } else {
-
-    attempt--;
-    resultSpan.innerText = "You've entered a wrong username or password. You have left "+attempt+" attempt(s)."
-  }
+  } 
 }
 
 
