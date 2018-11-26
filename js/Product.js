@@ -148,4 +148,3 @@ purchaseButton.addEventListener("click", function(){
    window.location = "Subscription.html"
 
 })
-console.log(users[0].shoppingCart)
