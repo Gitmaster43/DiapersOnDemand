@@ -19,7 +19,7 @@ function logOut() {
         // Automatically removes Username from index page
         localStorage.setItem("loggedInUserName", "");
 
-        window.location = "index.html"; 
+        window.location = "Index.html"; 
     }  
     return false;
     }
