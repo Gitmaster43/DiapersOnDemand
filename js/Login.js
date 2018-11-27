@@ -58,11 +58,11 @@ function logIn() {
       localStorage.setItem("loggedInUserName", users[i].username);
 
     // redirect or reload based on where you are: 
-    if (window.location.pathname.includes("Index.html") || window.location.pathname.includes("Registration.html") ){
-      window.location.href = "Index.html";
-      } else if (window.location.pathname.includes("Product.html")) {
+    if (window.location.pathname.includes("Registration") ){
+      window.location = "Index.html";
+      } else if (window.location.pathname.includes("Product.html") || window.location.pathname.includes("Index.html")) {
         window.location.reload();
-      }
+      } 
       return false;
     }   
   }
