@@ -113,7 +113,7 @@ function editUser () {
      // Triggers the function (declared in Subscription.GetUserInfo) which updates the information in the table
      displayUserInformation();
    
-     window.location.reload; 
+     window.location.reload(); 
  }
 
 
