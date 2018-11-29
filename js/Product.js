@@ -17,7 +17,6 @@ WHEN CLICKING THE ADD TO CART BUTTON, WE ADD IT TO THE ARRAY LINEITEMS, AND THEN
 var currentUserId = localStorage.getItem("loggedInUser") === null ? 'No User' : JSON.parse(localStorage.getItem("loggedInUser"));
 
 
-
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
 document.getElementById("addItemToCart").addEventListener("click", function(){
     
