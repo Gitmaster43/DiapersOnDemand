@@ -14,7 +14,7 @@ WHEN CLICKING THE ADD TO CART BUTTON, WE ADD IT TO THE ARRAY LINEITEMS, AND THEN
 */
 
 // Setting the currentUserId to the loggedInUser, or setting it as No User.
-var currentUserId = localStorage.getItem("loggedInUser") === null ? 'No User' : JSON.parse(localStorage.getItem("loggedInUser"));
+var currentUserId = localStorage.getItem("loggedInUser") === null ? 'No User' : localStorage.getItem("loggedInUser");
 
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
@@ -114,8 +114,6 @@ function ManualRefresh(){
 /* 
 _______________________________________________________________________________________________________________________
 THE PURCHASE BUTTON
-
-GET HELP FROM MARTEN TOMORROW
 
 */
 

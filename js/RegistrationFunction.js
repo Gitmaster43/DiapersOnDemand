@@ -110,7 +110,7 @@ document.getElementById("submit").addEventListener("click", function(){   // Get
   if (passwordreq.test(password)) {
     
   } else {
-    alert("Password does meet requirments")
+    alert("Password does not meet requirements")
     return false
   };
 
