@@ -118,6 +118,10 @@ document.getElementById("submit").addEventListener("click", function(){   // Get
   // Push the new user to the array.
   users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city, userId));
     console.log(users);                         //what is this for? It does not show in console.
+
+    //New is a operator that does four things:
+    //Creates a new object which inherits and calls the constructor function, with specified arguments
+
     //Local storage (domain specific): hardcoded version 
     // turning our users into a JSON string and then set it into local storage
     // first parameter in the parantheses is the name (unique; is in local storage)
