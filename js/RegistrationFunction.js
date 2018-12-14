@@ -37,7 +37,7 @@ document.getElementById("submit").addEventListener("click", function(){   // Get
   city = document.getElementById("regCity").value;
   userId = '_' + Math.random().toString(36).substr(2, 9);
 
-
+// _ internal use 
 
   //FIRSTNAME and LASTNAME MUST BE ADDED BY USER
   //If there are no upper/lower case letters in the placeholder, stop user
@@ -110,7 +110,7 @@ document.getElementById("submit").addEventListener("click", function(){   // Get
   if (passwordreq.test(password)) {
     
   } else {
-    alert("Password does meet requirments")
+    alert("Password does not meet requirements")
     return false
   };
 
@@ -118,6 +118,10 @@ document.getElementById("submit").addEventListener("click", function(){   // Get
   // Push the new user to the array.
   users.push(new User(firstName, lastName, userName, email, password, phoneNumber, dateOfBirth, streetName, postalNumber, city, userId));
     console.log(users);                         //what is this for? It does not show in console.
+
+    //New is a operator that does four things:
+    //Creates a new object which inherits and calls the constructor function, with specified arguments
+
     //Local storage (domain specific): hardcoded version 
     // turning our users into a JSON string and then set it into local storage
     // first parameter in the parantheses is the name (unique; is in local storage)
@@ -157,17 +161,19 @@ myInput.onblur = function() {
 // When the user starts to type something inside the password field
 myInput.onkeyup = function() {
   // Validate lowercase letters
-  var lowerCaseLetters = /[a-z]/g;
+  var lowerCaseLetters = /[a-z]/; 
   if(myInput.value.match(lowerCaseLetters)) { 
     letter.classList.remove("invalid");       
     letter.classList.add("valid");           
-  } else {
+  } else { // delete: changes from green back to red because we change the class
     letter.classList.remove("valid");
     letter.classList.add("invalid");
 }
 
+// g modifier: used to perform a global match --> finds all matches and does not stop after our first requirement
+
   // Validate capital letters
-  var upperCaseLetters = /[A-Z]/g;
+  var upperCaseLetters = /[A-Z]/;
   if(myInput.value.match(upperCaseLetters)) { 
     capital.classList.remove("invalid");
     capital.classList.add("valid");
@@ -177,7 +183,7 @@ myInput.onkeyup = function() {
   }
 
   // Validate numbers
-  var numbers = /[0-9]/g;
+  var numbers = /[0-9]/;
   if(myInput.value.match(numbers)) { 
     number.classList.remove("invalid");
     number.classList.add("valid");

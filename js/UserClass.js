@@ -28,7 +28,7 @@ class User {
   
       var a = 1, c = 0, h, o;
       if (rawPassword) {
-
+ 
         a = 0;
         for (h = rawPassword.length - 1; h >= 0; h--) {
           o = rawPassword.charCodeAt(h);
