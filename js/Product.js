@@ -14,7 +14,7 @@ WHEN CLICKING THE ADD TO CART BUTTON, WE ADD IT TO THE ARRAY LINEITEMS, AND THEN
 */
 
 // Setting the currentUserId to the loggedInUser, or setting it as No User.
-var currentUserId = localStorage.getItem("loggedInUser") === null ? 'No User' : localStorage.getItem("loggedInUser");
+var currentUserId = localStorage.getItem("loggedInUser") === null ? '"No User"' : localStorage.getItem("loggedInUser");
 
 
 // We get the button to add items to cart and get the values from the other inputs when that button is clicked
@@ -35,12 +35,23 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     } else if (diaperType === 'Recyclable') {
         var diaperPrice = 30;
     }
+    
+    //WE MADE A FOR LOOP THAT WOOOOOOORKS BEFORE LUNCH AND IT SHOWS THE RIGHT PRICE
+    /* for (var product of products) {
+        
+        if (diaperType === product["productType"]){
+            console.log(product["productPrice"]);
+            var diaperPrice = product["productPrice"];           
+        }      
+     } */
 
     // Push the values of the dropdown lists into the localStorage
     lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
     
     localStorage.setItem('lineItems', JSON.stringify(lineItems)); 
 });
+
+
 
 /* 
 _____________________________________________________________________________________________________________________________________
@@ -124,7 +135,7 @@ var purchaseButton = document.getElementById("purchaseButton")
 purchaseButton.addEventListener("click", function(){
 
     // If user is not logged in, it has to logIn. 
-    if (currentUserId === "No User"){
+    if (currentUserId === '"No User"'){
         alert("Please log in")
         return false;
     }

@@ -20,3 +20,6 @@ var products = [];
 products.push(new Product(0, "Reusable", 40,));
 products.push(new Product(1, "Recyclable", 30,));
 
+
+
+
