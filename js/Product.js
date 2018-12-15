@@ -98,7 +98,7 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
     // Find the index of the item that we want with an "findIndex" callback function
     var index = lineItems.findIndex(function(item) {
 
-        // The findIndex-fundtion goes over the itemId's and return the index of the item.itemId that is equal to the itemId in the local storage.
+        // The findIndex-function goes over the itemId's in lineItems[] and return the index of the item.itemId (a.k.a. the lineItem's Id) that is equal to the itemId of the button we clicked (in local storage).
         return item.itemId == JSON.parse(e.target.dataset.object).itemId
     })
 
@@ -143,8 +143,11 @@ purchaseButton.addEventListener("click", function(){
     // Take the current user and push the lineItems to his shoppingCart.
     for (i = 0; i < users.length; i++) {
 
+        // Check if the user is the right one
         if(users[i].userId == currentUserId) {
-            users[i].shoppingCart = cartLine
+            
+            // Set the users cart equal to the lineItems array
+            users[i].shoppingCart = lineItems
             
         }
     }

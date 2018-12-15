@@ -177,7 +177,7 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
         alert("Item has been removed from cart");
         
         //automatically refresh after click
-        // onClick = ManualRefresh()
+        onClick = ManualRefresh()
 
         }
      }
