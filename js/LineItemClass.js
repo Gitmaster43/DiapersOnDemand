@@ -5,8 +5,8 @@
 
 //create an class for lineItem to define the attributes the lineItem can have.
 class LineItem {
-    constructor (itemId, currentUserId, type, size, numberADay, price,){    
-        this.itemId = itemId;
+    constructor (itemId, currentUserId, type, size, numberADay, price,){    //blueprint; many objects
+        this.itemId = itemId; //this: has no value; substitued when you make an object; placeholder ; keyword
         this.currentUserId = currentUserId;
         this.diaperType = type;
         this.diaperSize = size;
@@ -19,7 +19,7 @@ class LineItem {
     }
     
     // Method for calculating the total price of the lineItem.
-    cartLinePrice () {
+    cartLinePrice () { // in a class functions are called methods
         var cartLinePrice = this.diapersADay * this.diaperPrice;
  
         return cartLinePrice;
@@ -28,7 +28,7 @@ class LineItem {
 
     //Creating a method that creates a table row with data from the pushed lineItem
     createHTML(){
-        return "<tr><td>"+ this.diaperType 
+        return "<tr><td>"+ this.diaperType
         + "</td><td>" + this.diaperSize 
         + "</td><td>" + this.diaperPrice 
         + "</td><td>" + this.diapersADay 

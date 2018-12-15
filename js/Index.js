@@ -1,19 +1,19 @@
-
 //_________________________________________________________________________________________________
 // Retrieve the current userID from localStorage and bind it to a variable.
 
 var currentUserId = localStorage.getItem("loggedInUser");
-var noUser = '"No User"';
-
+var noUser = '"No User"'; // Localstorage: we need double qotes to be in the string and to match 
+console.log(Boolean(currentUserId!==noUser))
 //___________________________________________________________________________________________________
 // LOGOUT. Function that clears the value within in the localStorage under the key "loggedInUser"
 
 function logOut() {
-    if (currentUserId!==noUser) {
+    if (currentUserId!==noUser) { //runs all the time although statement is false as line six 
         var currentUserId = "No User";
+
         localStorage.setItem('loggedInUser', JSON.stringify(currentUserId));
         alert("You are now logged out")
-        document.getElementById("logout").disabled = true; 
+        document.getElementById("logout").disabled = true; // does not work
 
         // Sets value of key loggedInUserName empty in localStorage
         // Automatically removes Username from index page
@@ -21,7 +21,10 @@ function logOut() {
 
         window.location = "Index.html"; 
     }  
+    
+   
     return false;
+  
     }
 
 

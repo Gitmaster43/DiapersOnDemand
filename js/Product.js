@@ -26,24 +26,24 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     var diapersADay = document.getElementById("diapersADay").value;
         
     // Add an itemId with a random number to have an Id for use later on.
-    // Takes the randomized string of 36 letters and returns the 9 letters with and from the second index. The underscore means that it is only for internal use. 
+    // Takes a randomized string which is made of A-Z & 0-9 (36) and returns the 9 letters with and from the second index. The underscore means that it is only for internal use. 
     var itemId = '_' + Math.random().toString(36).substr(2, 9); 
 
     // Set an if-statement to get the price of the diapers
-    if (diaperType === 'Reusable') {
-        var diaperPrice = 40;
-    } else if (diaperType === 'Recyclable') {
-        var diaperPrice = 30;
-    }
+    // if (diaperType === 'Reusable') {
+    //     var diaperPrice = 40;
+    // } else if (diaperType === 'Recyclable') {
+    //     var diaperPrice = 30;
+    // }
     
-    //WE MADE A FOR LOOP THAT WOOOOOOORKS BEFORE LUNCH AND IT SHOWS THE RIGHT PRICE
-    /* for (var product of products) {
+    //For of loop: iterates over the products and returns the price
+    for (var product of products) {
         
         if (diaperType === product["productType"]){
-            console.log(product["productPrice"]);
+            
             var diaperPrice = product["productPrice"];           
         }      
-     } */
+     } 
 
     // Push the values of the dropdown lists into the localStorage
     lineItems.push(new LineItem(itemId, currentUserId, diaperType, diaperSize, diapersADay, diaperPrice));
@@ -103,7 +103,7 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
     })
 
     // Splice the item that is the index, and only that.
-    lineItems.splice(index, 1)
+    lineItems.splice(index, 1) //position, 1 thing will be removed
     
     // Set the remaining items in the localStorage.
     localStorage.setItem("lineItems", JSON.stringify(lineItems));
