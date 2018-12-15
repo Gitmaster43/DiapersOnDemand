@@ -144,7 +144,7 @@ purchaseButton.addEventListener("click", function(){
     for (i = 0; i < users.length; i++) {
 
         if(users[i].userId == currentUserId) {
-            users[i].shoppingCart = cartLine
+            users[i].shoppingCart = lineItems
             
         }
     }

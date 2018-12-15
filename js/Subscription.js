@@ -127,7 +127,7 @@ var html = "";
 // Loop through the lineItems
 for (i=0; i < users.length; i++ ){
     if(users[i].userId == localStorage.getItem('loggedInUser')){
-
+       
         console.log(users[i].shoppingCart);
         //Bind a variable to a new lineItem, with the attributes we want. These neeeed to be in the same order as the class constructor
         var cartLine = users[i].shoppingCart;
@@ -177,7 +177,7 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
         alert("Item has been removed from cart");
         
         //automatically refresh after click
-        // onClick = ManualRefresh()
+        onClick = ManualRefresh()
 
         }
      }
