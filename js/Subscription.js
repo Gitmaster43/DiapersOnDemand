@@ -123,7 +123,7 @@ function editUser () {
 
 // Declaring html as a empty string.
 var html = "";
-
+debugger
 // Loop through the lineItems
 for (i=0; i < users.length; i++ ){
     if(users[i].userId == localStorage.getItem('loggedInUser')){
