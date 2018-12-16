@@ -30,9 +30,9 @@ function displayUserInformation() {
 // We are creating the function for our Table in which the loggedInUser's information will be shown
 function showTable(user) {
 
-    //Create Table reference
-    var dvTable = document.getElementById('userInfo'); // Nothing: we don't need it bruv
-    dvTable.innerHTML = "";
+    // //Create Table reference
+    // var dvTable = document.getElementById('userInfo'); // Nothing: we don't need it bruv
+    // dvTable.innerHTML = "";
     
     //Create Table
     var table = document.createElement("TABLE");
