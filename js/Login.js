@@ -1,5 +1,3 @@
-
-
 //______________________________________________________________________________________________________
 // BIND USERS TO LOCALSTORAGE OR INITIALIZE EMPTY ARRAY AND PUSH USERS
 
@@ -14,7 +12,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
     localStorage.setItem('users', JSON.stringify(users));
 }
-
+// new: operator which creates an empty javascript object
 //______________________________________________________________________________________________________________________
 // DECLARE VARIABLES AND HASHPASSWORD FUNCTION
 
@@ -22,7 +20,6 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
 var login = document.getElementById("login");
 var attempt = 3;
 var resultSpan = document.getElementById("loginResult");
-
 
 // Insert the hashPassword function from Henriks example in order to hash the inputted password when the user logs in, to match with the stored hashed password.
 function hashPassword(rawPassword){
@@ -32,7 +29,7 @@ if (rawPassword) {
   
   // Loops through the password and replaces letters with numbers.
   for (h = rawPassword.length - 1; h >= 0; h--) {
-    o = rawPassword.charCodeAt(h);
+    o = rawPassword.charCodeAt(h); //charCode: method=returns a number
     a = (a << 6 & 268435455) + o + (o << 14);
     c = a & 266338304;
     a = c !== 0 ? a ^ c >> 21 : a;
@@ -81,7 +78,7 @@ function logIn() {
 
 // if the user presses Enter while in the password box or Username box, it should trigger a click on the login button
 
-var enter = function(e) {
+var enter = function(e) { //e=event
   if (e.keyCode == 13) {
     // Run function logIn and return false.
     logIn();

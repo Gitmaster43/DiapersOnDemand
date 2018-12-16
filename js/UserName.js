@@ -12,7 +12,7 @@ function showUserName() {
     // We are getting the username from localStorage
     username = localStorage.getItem("loggedInUserName")
     
-    // We are showing the logged in UserName indicated by the $ sign 
+    // We are showing the logged in UserName 
     showUserName.innerHTML = username;
 
 }

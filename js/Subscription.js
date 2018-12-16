@@ -31,7 +31,7 @@ function displayUserInformation() {
 function showTable(user) {
 
     //Create Table reference
-    var dvTable = document.getElementById('userInfo');
+    var dvTable = document.getElementById('userInfo'); // Nothing: we don't need it bruv
     dvTable.innerHTML = "";
     
     //Create Table
@@ -41,7 +41,7 @@ function showTable(user) {
     //Init Header Row
     var columns = [];
     columns.push("Username","Firstname","Lastname","Email");
-    var row = table.insertRow(-1);
+    var row = table.insertRow(-1);//-1: indicates it is the last row, index
 
     //Fill out Header Row
     for (var i =0; i<columns.length; i++) {
@@ -62,7 +62,7 @@ function showTable(user) {
         var cell4 = row.insertCell(-1);
         cell4.innerHTML = user['email'];
        
-    userInfo.appendChild(table);
+    userInfo.appendChild(table); // could also write dvTable
 }
 
 // Calling the function in order to execute it 
@@ -96,7 +96,7 @@ function editUser () {
      } if (document.getElementById('userName').value == "", 
            document.getElementById('firstName').value == "" ,
            document.getElementById('lastName').value == "",
-           document.getElementById('email').value =="") 
+           document.getElementById('email').value == "") 
          {
  
              alert("Type in your information");
@@ -123,7 +123,7 @@ function editUser () {
 
 // Declaring html as a empty string.
 var html = "";
-debugger
+
 // Loop through the lineItems
 for (i=0; i < users.length; i++ ){
     if(users[i].userId == localStorage.getItem('loggedInUser')){
@@ -165,9 +165,9 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
      for (j=0; j < users.length; j++ ){
         if(users[j].userId == localStorage.getItem('loggedInUser')){
         // Do the removal of the item through a splice. This function could probably be standardized.
-            
+          
         var index = users[j].shoppingCart.findIndex(function(item) {
-            return item.itemId == JSON.parse(e.target.dataset.object).itemId
+            return item.itemId == JSON.parse(e.target.dataset.object).itemId //JSON.parse: object we clicked on 
         })
         
         users[j].shoppingCart.splice(index, 1)
