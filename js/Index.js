@@ -9,7 +9,7 @@ var noUser = '"No User"';
 // LOGOUT. Function that clears the value within in the localStorage under the key "loggedInUser"
 
 function logOut() {
-    if (currentUserId!==noUser) {
+    if (currentUserId !== noUser) {
         var currentUserId = "No User";
         localStorage.setItem('loggedInUser', JSON.stringify(currentUserId));
         alert("You are now logged out")
@@ -24,9 +24,6 @@ function logOut() {
     return false;
     }
 
-
-//______________________________________________________________________________________________________
-// SHOW AND UN-SHOW LOGIN AND LOGOUT -buttons.
 
 
 //______________________________________________________________________________________________________
