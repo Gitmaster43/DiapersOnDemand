@@ -12,7 +12,7 @@ if(users === null){ // if there are nothing within the localstorage, the variabl
     users.push(new User("Anders","Vartdal","Andy","anva18ae@student.cbs.dk","1234","","07051994","Something 14","2000","Frederiksberg", "2"));
     localStorage.setItem('users', JSON.stringify(users));
 }
-
+// new: operator which creates an empty javascript object
 //______________________________________________________________________________________________________________________
 // DECLARE VARIABLES AND HASHPASSWORD FUNCTION
 

@@ -36,7 +36,7 @@ document.getElementById("addItemToCart").addEventListener("click", function(){
     //     var diaperPrice = 30;
     // }
     
-    //For of loop: iterates over the products and returns the price
+    //For of loop: iterates over the products(array) and returns the price
     for (var product of products) {
         
         if (diaperType === product["productType"]){

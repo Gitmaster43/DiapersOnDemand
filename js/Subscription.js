@@ -165,9 +165,9 @@ for (var i = 0; i < removeFromCartButtons.length; i++) {
      for (j=0; j < users.length; j++ ){
         if(users[j].userId == localStorage.getItem('loggedInUser')){
         // Do the removal of the item through a splice. This function could probably be standardized.
-            
+          
         var index = users[j].shoppingCart.findIndex(function(item) {
-            return item.itemId == JSON.parse(e.target.dataset.object).itemId
+            return item.itemId == JSON.parse(e.target.dataset.object).itemId //JSON.parse: object we clicked on 
         })
         
         users[j].shoppingCart.splice(index, 1)

@@ -6,8 +6,8 @@
 //create an class for lineItem to define the attributes the lineItem can have.
 class LineItem {
     constructor (itemId, currentUserId, type, size, numberADay, price,){    //blueprint; many objects
-        this.itemId = itemId; //this: has no value; substitued when you make an object; placeholder ; keyword
-        this.currentUserId = currentUserId;
+        this.itemId = itemId; 
+        this.currentUserId = currentUserId; // this: reference to an object, accessing a property
         this.diaperType = type;
         this.diaperSize = size;
         this.diapersADay = numberADay;

@@ -21,6 +21,7 @@ class User {
         this.city = city;
         this.userId = userId;
         this.shoppingCart = [];
+        
     }
   
      // Method copied from Henriks login-example. 
